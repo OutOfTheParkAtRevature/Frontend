@@ -9,6 +9,9 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 /* Material Design components */
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
+/* Bootstrap Components */
+import { NgbModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
+
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +27,8 @@ import { RolesComponent } from './components/roles/roles.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BearerAuthInterceptorService } from './_services/bearer-auth-interceptor.service';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -51,9 +56,11 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormsModule,
     FullCalendarModule,
     MatSlideToggleModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgbModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [NgbRating],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptorService, multi:true } ],
+  bootstrap: [AppComponent, NgbRating]
 })
 export class AppModule { }
