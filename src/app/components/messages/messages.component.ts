@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MessagesComponent implements OnInit {
 
+  // didReceive:boolean= false;
   constructor() { }
 
   ngOnInit(): void {

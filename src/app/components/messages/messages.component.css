@@ -1,0 +1,14 @@
+div h5{
+    display: inline-block;
+    margin-right: 1em;
+}
+
+.user-container{
+    height: 70vh;
+    overflow-y:auto;
+}
+
+.chat-container{
+    height: 68vh;
+    background-color: seashell;
+}
