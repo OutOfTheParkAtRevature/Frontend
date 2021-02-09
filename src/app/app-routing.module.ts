@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DrawComponent } from './components/draw/draw.component';
 import { EquipmentComponent } from './components/equipment/equipment.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'players', component: PlayersComponent},
   {path: 'teams', component: TeamsComponent},
+  {path: 'auth', component: AuthenticationComponent},
   {path: 'equipment', component: EquipmentComponent},
   {path: 'roles', component: RolesComponent},
   // {path: 'plays', component: PlaysComponent},
