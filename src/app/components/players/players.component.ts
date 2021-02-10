@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { User } from 'src/app/_models/User';
 import { AccountService } from 'src/app/_services/account.service';
 import { UserService } from 'src/app/_services/user.service';
+=======
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
+<<<<<<< HEAD
 
 
 
@@ -63,6 +67,13 @@ export class PlayersComponent implements OnInit {
       console.log(err)
     })
     this.getUsers();
+=======
+export class PlayersComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
   }
 
 }

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
 
 import { NavComponent } from './nav.component';
@@ -33,6 +34,18 @@ describe('NavComponent', () => {
         .withRoutes([{path: '', component: DummyComponent}, {path: 'plays', component: DummyComponent}])],
       declarations: [ NavComponent ],
       providers: [{ provide: AccountService, useValue: accountServiceMock }, HttpClient]
+=======
+
+import { NavComponent } from './nav.component';
+
+describe('NavComponent', () => {
+  let component: NavComponent;
+  let fixture: ComponentFixture<NavComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ NavComponent ]
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
     })
     .compileComponents();
   });
@@ -46,6 +59,7 @@ describe('NavComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+<<<<<<< HEAD
 
   it('should show unordered list', () => {
     const unorderedList = fixture.debugElement.queryAll(By.css('ul'));
@@ -122,3 +136,6 @@ describe('NavComponent', () => {
 class DummyComponent {
 
 }
+=======
+});
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf

@@ -1,0 +1,31 @@
+<div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+    <ng-container *ngIf="loggedInUser.roleID == 1"> 
+    <form #editEventForm="ngForm" (ngSubmit)="editEvent(event.id)">
+        <label id="editLabel" for="Description">Description</label>
+        <input [(ngModel)]="editedEvent.description" id="editInput" name="Description" class="form-control me-2" type="text" value="{{event.summary}}" aria-label="Description">
+        <br>
+        <label id="editLabel" for="Message">Message</label>
+        <input [(ngModel)]="editedEvent.message" id="editInput" name="Message" class="form-control me-2" type="text" value="{{event.description}}" aria-label="Message">
+        <br>
+        <label id="editLabel" for="Location">Location</label>
+        <input [(ngModel)]="editedEvent.location" id="editInput" name="TeamName" class="form-control me-2" type="text" value="{{event.location}}" aria-label="Location">
+        <br>
+        <label id="editLabel" for="StartTime">Start Time</label>
+        <input [(ngModel)]="editedEvent.startTime" id="editInput" name="StartTime" class="form-control me-2" type="datetime-local"  aria-label="StartTime">
+        <br>
+        <label id="editLabel" for="EndTime">End Time</label>
+        <input [(ngModel)]="editedEvent.endTime" id="editInput" name="EndTime" class="form-control me-2" type="datetime-local" aria-label="EndTime">
+        <br>
+        <button id="editRequestButton" type="submit" class="btn btn-outline-success">Edit</button>
+    </form>
+    </ng-container>
+    <ng-container *ngIf="loggedInUser.roleID != 1">
+        <h2 class="text-center">Not Authorized</h2>
+        <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
+      </ng-container>
+</div>
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
+</div>

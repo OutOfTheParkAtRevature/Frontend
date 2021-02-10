@@ -88,9 +88,15 @@
      background-color: #fff;
    } */
    
+<<<<<<< HEAD
    /* label, h5 {
      color: #fff;
    } */
+=======
+   label, h5 {
+     /* color: #fff; */
+   }
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
    
    /* .logoImg {
      width: 10%;

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { HttpClient } from '@angular/common/http';
 import { GamesService } from 'src/app/_services/games.service';
 import { Team } from 'src/app/_models/Team';
+=======
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 
 @Component({
   selector: 'app-teams',
@@ -9,6 +12,7 @@ import { Team } from 'src/app/_models/Team';
   styleUrls: ['./teams.component.css']
 })
 export class TeamsComponent implements OnInit {
+<<<<<<< HEAD
   
   //teams: any;
   teams: Array<Team> = new Array<Team>();
@@ -34,6 +38,12 @@ export class TeamsComponent implements OnInit {
         team.winningPct = (team.wins / (team.wins + team.losses)).toPrecision(2);
       } 
     });
+=======
+
+  constructor() { }
+
+  ngOnInit(): void {
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
   }
 
 }

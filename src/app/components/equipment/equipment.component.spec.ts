@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EquipmentComponent } from './equipment.component';
 
+<<<<<<< HEAD
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { EquipmentService } from '../_services/equipment.service';
@@ -25,6 +26,15 @@ describe('EquipmentComponent', () => {
       imports: [FormsModule, HttpClientTestingModule],
       declarations: [ EquipmentComponent ],
       providers: [{ provide: EquipmentService, useValue: equipmentServiceMock }, HttpClientTestingModule]
+=======
+describe('EquipmentComponent', () => {
+  let component: EquipmentComponent;
+  let fixture: ComponentFixture<EquipmentComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ EquipmentComponent ]
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
     })
     .compileComponents();
   });
@@ -38,6 +48,7 @@ describe('EquipmentComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+<<<<<<< HEAD
 
   it('should get equipment', () => {
     component.equipmentList = [{}];
@@ -62,4 +73,6 @@ describe('EquipmentComponent', () => {
     expect(component.getTeam).toHaveBeenCalled();
   });
 
+=======
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 });

@@ -12,6 +12,7 @@ import googleCalendarPlugin from '@fullcalendar/google-calendar';
 })
 export class CalendarComponent implements OnInit {
 
+<<<<<<< HEAD
   eventDto = [
     { title: 'event 1', date: '2021-02-03' },
     { title: 'event 2', date: '2021-02-06' }, 
@@ -28,6 +29,21 @@ export class CalendarComponent implements OnInit {
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     dateClick: this.handleDateClick.bind(this), // bind is important!
+=======
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+  calendarOptions: CalendarOptions = {
+    initialView: 'dayGridMonth',
+    dateClick: this.handleDateClick.bind(this), // bind is important!
+    events: 
+    [
+      { title: 'event 1', date: '2021-02-03' },
+      { title: 'event 2', date: '2021-02-06' }, 
+    ],
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
     /* Connect directly into Google Calendar */
     eventSources: [
       {

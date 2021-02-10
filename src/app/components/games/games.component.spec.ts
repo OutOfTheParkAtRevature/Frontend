@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GamesComponent } from './games.component';
+<<<<<<< HEAD
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+=======
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 
 describe('GamesComponent', () => {
   let component: GamesComponent;
@@ -9,7 +12,10 @@ describe('GamesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+<<<<<<< HEAD
       imports: [HttpClientTestingModule],
+=======
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
       declarations: [ GamesComponent ]
     })
     .compileComponents();
@@ -24,6 +30,7 @@ describe('GamesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+<<<<<<< HEAD
 
   it('should call getHomeTeams()', () => {
     component.games = [{}];
@@ -55,4 +62,6 @@ describe('GamesComponent', () => {
     component.games[0].gameDate = Date.now;
     component.setTimes();
   });
+=======
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 });

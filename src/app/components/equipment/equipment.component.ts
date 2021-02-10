@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Equipment } from 'src/app/_models/Equipment';
 import { EquipmentRequest } from 'src/app/_models/EquipmentRequest';
 import { AccountService } from 'src/app/_services/account.service';
 import { EquipmentService } from 'src/app/_services/equipment.service';
 
+=======
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 
 @Component({
   selector: 'app-equipment',
@@ -12,6 +15,7 @@ import { EquipmentService } from 'src/app/_services/equipment.service';
 })
 export class EquipmentComponent implements OnInit {
 
+<<<<<<< HEAD
   //equipmentList: any;
   equipmentList: Array<EquipmentRequest> = new Array<EquipmentRequest>();
 
@@ -65,4 +69,11 @@ export class EquipmentComponent implements OnInit {
   }
 
 
+=======
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 }

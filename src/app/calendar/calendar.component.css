@@ -1,0 +1,19 @@
+#calendarTitle {
+    text-align: center;
+}
+
+#calendar {
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 75vh;
+}
+.flex-parent {
+    display: flex;
+    margin-top: -20px;
+}
+.flex-child {
+    flex: 1;
+}

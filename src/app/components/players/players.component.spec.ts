@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -40,6 +41,19 @@ describe('PlayersComponent', () => {
       providers: [
         {provide: UserService, UseValue: userServiceMock}, {provide: AccountService, UseValue: accountServiceMock}, HttpClientTestingModule
       ]
+=======
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { PlayersComponent } from './players.component';
+
+describe('PlayersComponent', () => {
+  let component: PlayersComponent;
+  let fixture: ComponentFixture<PlayersComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ PlayersComponent ]
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
     })
     .compileComponents();
   });
@@ -48,6 +62,7 @@ describe('PlayersComponent', () => {
     fixture = TestBed.createComponent(PlayersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+<<<<<<< HEAD
     // submitEl = fixture.debugElement.query(By.css('button'));
     // userNameEl = fixture.debugElement.query(By.css('input[name=Username]'));
     // passwordEl = fixture.debugElement.query(By.css('input[name=Password]'));
@@ -116,3 +131,11 @@ describe('PlayersComponent', () => {
   //   expect(roleIdEl).toBeTruthy();
   // });
 });
+=======
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf

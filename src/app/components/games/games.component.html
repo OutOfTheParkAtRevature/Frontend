@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
     <h2 id="gamesTitle">Games</h2>
     <a *ngIf="loggedInUser.roleID === 1" routerLink="/games/create">Create Game</a>
@@ -40,3 +41,6 @@
 <div *ngIf="(accountService.currentUser$ | async) === null">
     <app-home></app-home>
 </div>
+=======
+<p>games works!</p>
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf

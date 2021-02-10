@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 
+<<<<<<< HEAD
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +30,15 @@ describe('HomeComponent', () => {
       imports: [FormsModule, HttpClientTestingModule, RouterTestingModule],
       declarations: [ HomeComponent ],
       providers: [{ provide: AccountService, useValue: accountServiceMock }, HttpClientTestingModule, RouterTestingModule]
+=======
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ HomeComponent ]
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
     })
     .compileComponents();
   });
@@ -42,6 +52,7 @@ describe('HomeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+<<<<<<< HEAD
 
   it('should call login()', () => {
     component.model.username = 'travis';
@@ -67,4 +78,6 @@ describe('HomeComponent', () => {
     component.getUserTeam();
   });
 
+=======
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 });

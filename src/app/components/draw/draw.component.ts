@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import { CONTEXT_NAME } from '@angular/compiler/src/render3/view/util';
 import {
@@ -12,10 +13,14 @@ import { DrawService } from 'src/app/_services/draw.service';
 import { UserService } from 'src/app/_services/user.service';
 //import { play } from './play';
 import { Play } from 'src/app/_models/Play';
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 
 @Component({
   selector: 'app-draw',
   templateUrl: './draw.component.html',
+<<<<<<< HEAD
   styles: ['canvas { margin-right: auto; margin-left: auto;  border: 1px solid; }']
 })
 export class DrawComponent implements AfterViewInit {
@@ -219,3 +224,15 @@ getPlayBook() {
 
 
 
+=======
+  styleUrls: ['./draw.component.css']
+})
+export class DrawComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}
+>>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf

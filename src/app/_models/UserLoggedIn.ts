@@ -1,6 +1,6 @@
 export interface UserLoggedIn {
     id: number;
-    userID: string;
+    //userID: string;
     userName: string;
     fullName: string;
     phoneNumber: string;
