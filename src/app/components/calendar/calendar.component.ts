@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 //Events from Calendar
+import { Calendar } from '@fullcalendar/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import { formatDate } from '@fullcalendar/angular';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';

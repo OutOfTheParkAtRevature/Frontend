@@ -1,1 +1,24 @@
-<p>teams works!</p>
+<div class="container" style="text-align: center;">
+    <h2>League Standings</h2>
+    <br>
+    <table matSort class="table table-striped">
+      <caption></caption>
+        <thead>
+          <tr>
+            <th scope="col">Team Name</th>
+            <th scope="col">Wins</th>
+            <th scope="col">Losses</th>
+            <th scope="col" mat-sort-header="winning%">PCT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let team of teams">
+            <td>{{team.name}}</td>
+            <td>{{team.wins}}</td>
+            <td>{{team.losses}}</td>
+            <td><p *ngIf="team.winningPct || team.winningPct === 0">{{team.winningPct}}</p></td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
