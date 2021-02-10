@@ -1,9 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+/* FullCalendar.io components */
+import { FullCalendarModule } from '@fullcalendar/angular'; // the main connector. must go first
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+
+/* Material Design components */
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+
+/* Bootstrap Components */
+import { NgbModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
+
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -37,6 +47,8 @@ import { EquipmentService } from './_services/equipment.service';
 import { GamesService } from './_services/games.service';
 import { MessageService } from './_services/message.service';
 import { UserService } from './_services/user.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BearerAuthInterceptorService } from './_services/bearer-auth-interceptor.service';
 
 
 @NgModule({
@@ -73,6 +85,7 @@ import { UserService } from './_services/user.service';
     FullCalendarModule,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptorService, multi:true },
       AccountService,
       CalendarService,
       DrawService,
@@ -81,6 +94,12 @@ import { UserService } from './_services/user.service';
       MessageService,
       UserService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,
+    MatSlideToggleModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    NgbRating
+  ],
+  exports: [NgbRating],
 })
 export class AppModule { }
