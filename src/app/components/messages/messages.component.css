@@ -11,10 +11,24 @@ div h5{
 .chat-container{
     height: 68vh;
     background-color: seashell;
+    padding-top: 1em;
 }
 
 .inboxes{
     height: 4em;
     background-color: rgb(219, 182, 134);
     border: 1px  solid rgb(247, 227, 201);
+}
+
+.chat-message{
+    padding-left: 1.5em;
+    border-radius: 2em;
+    background-color: darkgray;
+}
+
+.chat-message:nth-child(even)
+{
+    text-align: right;
+    padding-left: 0;
+    padding-right: 1.5em;
 }
