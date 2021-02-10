@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { Game } from 'src/app/_models/Game';
-import { AccountService } from 'src/app/_services/account.service';
-import { GamesService } from 'src/app/_services/games.service';
-
-=======
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
+import { Game } from '../../_models/Game';
+import { AccountService } from '../../_services/account.service';
+import { GamesService } from '../../_services/games.service';
 
 @Component({
   selector: 'app-games',
@@ -14,7 +10,6 @@ import { GamesService } from 'src/app/_services/games.service';
 })
 export class GamesComponent implements OnInit {
 
-<<<<<<< HEAD
   constructor(private gamesService: GamesService, public accountService: AccountService) { }
 
   //games:any = [];
@@ -75,14 +70,4 @@ export class GamesComponent implements OnInit {
       })
     })
   }
-
-
-
-=======
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 }

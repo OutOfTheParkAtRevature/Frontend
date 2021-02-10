@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '@auth0/auth0-spa-js';
-import { AccountService } from 'src/app/_services/account.service';
-import { GamesService } from 'src/app/_services/games.service';
-import { Game } from 'src/app/_models/Game';
-import { Team } from 'src/app/_models/Team';
+import { AccountService } from '../../../_services/account.service';
+import { GamesService } from '../../../_services/games.service';
+import { Game } from '../../../_models/Game';
+import { Team } from '../../../_models/Team';
 
 @Component({
   selector: 'app-create-game',
@@ -40,7 +40,7 @@ export class CreateGameComponent implements OnInit {
       });
     } else {
       this.teamList.forEach(team => {
-        if (team.teamID == this.userLoggedIn.teamID) {
+        if (team.id == this.userLoggedIn.teamID) {
           let teamName = team.name;
           alert(`Created game must include ${teamName}`);
         }
@@ -69,7 +69,7 @@ export class CreateGameComponent implements OnInit {
   getHomeTeam() {
     for (let i = 0; i < this.teamList.length; i++) {
       if (this.teamList[i].name == this.newGame.homeTeam.name) {
-        this.newGame.homeTeamId = this.teamList[i].teamID;
+        this.newGame.homeTeamId = this.teamList[i].id;
       }
     }
   }
@@ -77,7 +77,7 @@ export class CreateGameComponent implements OnInit {
   getAwayTeam() {
     for (let i = 0; i < this.teamList.length; i++) {
       if (this.teamList[i].name == this.newGame.awayTeam.name) {
-        this.newGame.awayTeamId = this.teamList[i].teamID;
+        this.newGame.awayTeamId = this.teamList[i].id;
       }
     }
   }

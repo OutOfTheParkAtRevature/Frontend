@@ -1,15 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { UserLoggedIn } from 'src/app/_models/UserLoggedIn';
-import { UserLoggingIn } from 'src/app/_models/UserLoggingIn';
-import { AccountService } from 'src/app/_services/account.service';
-import { UserService } from 'src/app/_services/user.service';
-=======
-import { UserLoggedIn } from 'src/app/_models/UserLoggedIn';
-import { UserLoggingIn } from 'src/app/_models/UserLoggingIn';
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
+import { UserLoggedIn } from '../../_models/UserLoggedIn';
+import { UserLoggingIn } from '../../_models/UserLoggingIn';
+import { AccountService } from '../../_services/account.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-nav',
@@ -24,12 +19,10 @@ export class NavComponent implements OnInit {
   };
 
   model2: UserLoggedIn = {
-    userID: null, userName: null, fullName: null, phoneNumber: null, 
+    id: null, userName: null, fullName: null, phoneNumber: null, 
     email: null, teamID: null, roleID: null
   };
 
-
-<<<<<<< HEAD
   constructor(public accountService: AccountService, private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
@@ -74,26 +67,4 @@ export class NavComponent implements OnInit {
     this.accountService.logout();
     this.router.navigate([''])
   }
-
-=======
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  // login() {
-  //   this.accountService.login(this.model).subscribe( res => {
-  //     console.log(res);
-  //     this.router.navigate([''])
-  //   }, err => {
-  //     console.log(err);
-  //   });
-  // }
-
-  // logout() {
-  //   this.accountService.logout();
-  //   this.router.navigate([''])
-  // }
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
-
 }

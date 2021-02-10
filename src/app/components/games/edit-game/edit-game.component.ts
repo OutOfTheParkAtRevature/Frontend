@@ -1,9 +1,9 @@
 import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/_services/account.service';
-import { GamesService } from 'src/app/_services/games.service';
-import { Game } from 'src/app/_models/Game';
-import { Team } from 'src/app/_models/Team';
+import { AccountService } from '../../../_services/account.service';
+import { GamesService } from '../../../_services/games.service';
+import { Game } from '../../../_models/Game';
+import { Team } from '../../../_models/Team';
 
 @Component({
   selector: 'app-edit-game',

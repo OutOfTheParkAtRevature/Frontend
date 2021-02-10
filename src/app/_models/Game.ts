@@ -3,7 +3,8 @@ import { Team } from "./Team";
 
 export class Game
 {
-    gameId: number;
+    //gameId: number;
+    id: number;
     homeTeamId: number;
     awayTeamId: number;
     //gameDate: string;

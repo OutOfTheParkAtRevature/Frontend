@@ -2,7 +2,8 @@
 
 export class RecipientList
 {
-    recipientListId: number;
+    //recipientListId: number;
+    id: number;
     recipientId: number;
 
     constructor(id: number)

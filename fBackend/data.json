@@ -2,26 +2,37 @@
 	"equipments": 
 	[
 		{
-			"EquipmentId": 1,
+			"id": 1,
 			"Description": "Jersey"
 		},
 		{
-			"EquipmentId": 2,
+			"id": 2,
 			"Description": "Shoulderpads"
 		},
 		{
-			"EquipmentId": 3,
+			"id": 3,
 			"Description": "Helmet"
 		}
 	],
 	"equipmentRequests" : [],
     "events": [],
-	"games": [],
+	"games": 
+	[
+		{
+			"id": 1,
+			"homeTeamId": 1,
+			"awayTeamId": 2,
+			"gameDate": "1-1-2000",
+			"winningTeam": 1,
+			"homeScore": 2,
+			"awayScore": 0
+		}
+	],
 	"messages": [],
 	"playbooks": 
 	[
 		{
-			"PlaybookId": 1,
+			"id": 1,
 			"TeamId": 1
 		}
 	],
@@ -29,34 +40,34 @@
 	"recipientLists": 
 	[
 		{
-			"RecipientListId": 1,
+			"id": 1,
 			"RecipientId": 1
 		}
 	],
 	"roles": 
 	[
 		{
-			"RoleId": 1,
+			"id": 1,
 			"RoleName": "Players"
 		},
 		{
-			"RoleId": 2,
+			"id": 2,
 			"RoleName": "Parents"
 		},
 		{
-			"RoleId": 3,
+			"id": 3,
 			"RoleName": "Assistant Coaches"
 		},
 		{
-			"RoleId": 4,
+			"id": 4,
 			"RoleName": "Coaches"
 		},
 		{
-			"RoleId": 5,
+			"id": 5,
 			"RoleName": "League Admins"
 		},
 		{
-			"RoleId": 6,
+			"id": 6,
 			"RoleName": "App Admins"
 		}
 	],
@@ -64,16 +75,22 @@
 	[
 		{
 			"id": 1,
-			"Name": "Barcelona",
-			"Wins": 1,
-			"Losses": 2
+			"name": "Barcelona",
+			"wins": 1,
+			"losses": 0
+		},
+		{
+			"id": 2,
+			"name": "Arsenal",
+			"wins": 0,
+			"losses": 1
 		}
 	],
 	"userInboxes": [],
 	"users": 
 	[
 		{
-			"userId": 1,
+			"id": 1,
 			"userName": "Player",
 			"fullName": "Player",
 			"phoneNumber": "111-1111",
@@ -83,7 +100,7 @@
 			"roleID": 1
 		},
 		{
-			"userId": 2,
+			"id": 2,
 			"userName": "Parent",
 			"fullName": "Parent",
 			"phoneNumber": "222-2222",
@@ -93,7 +110,7 @@
 			"roleID": 2
 		},
 		{
-			"userId": 3,
+			"id": 3,
 			"userName": "AssCoach",
 			"fullName": "AssCoach",
 			"phoneNumber": "333-3333",
@@ -103,7 +120,7 @@
 			"roleID": 3
 		},
 		{
-			"userId": 4,
+			"id": 4,
 			"userName": "Coach",
 			"fullName": "Coach",
 			"phoneNumber": "444-4444",
@@ -113,7 +130,7 @@
 			"roleID": 4
 		},
 		{
-			"userId": 5,
+			"id": 5,
 			"userName": "LeagueAdmin",
 			"fullName": "LeagueAdmin",
 			"phoneNumber": "555-5555",
@@ -123,7 +140,7 @@
 			"roleID": 5
 		},
 		{
-			"userId": 6,
+			"id": 6,
 			"userName": "AppAdmin",
 			"fullName": "AppAdmin",
 			"phoneNumber": "666-6666",

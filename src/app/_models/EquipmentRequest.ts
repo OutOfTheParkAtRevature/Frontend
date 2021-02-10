@@ -5,7 +5,8 @@ import { User } from "./User";
 
 export class EquipmentRequest
 {
-    requestId: number;
+    //requestId: number;
+    id: number;
     userId: string;
     teamId: number;
     requestDate: string;

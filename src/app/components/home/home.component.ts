@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { Router } from '@angular/router';
-import { Team } from 'src/app/_models/Team';
-import { User } from 'src/app/_models/User';
-import { UserLoggedIn } from 'src/app/_models/UserLoggedIn';
-import { UserLoggingIn } from 'src/app/_models/UserLoggingIn';
-import { AccountService } from 'src/app/_services/account.service';
-import { UserService } from 'src/app/_services/user.service';
-=======
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
+import { Team } from '../../_models/Team';
+import { User } from '../../_models/User';
+import { UserLoggedIn } from '../../_models/UserLoggedIn';
+import { UserLoggingIn } from '../../_models/UserLoggingIn';
+import { AccountService } from '../../_services/account.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +14,6 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-<<<<<<< HEAD
   constructor(public accountService: AccountService, private userService: UserService, private router: Router) { }
 
   user: UserLoggedIn; 
@@ -80,11 +76,6 @@ export class HomeComponent implements OnInit {
     },
     (err) => console.log(err)
    );
-=======
-  constructor() { }
-
-  ngOnInit(): void {
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
   }
 
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/_services/account.service';
-import { UserService } from 'src/app/_services/user.service';
-import { User } from 'src/app/_models/User';
+import { AccountService } from '../../../_services/account.service';
+import { UserService } from '../../../_services/user.service';
+import { User } from '../../../_models/User';
 
 @Component({
   selector: 'app-editplayer',
@@ -53,7 +53,7 @@ export class EditplayerComponent implements OnInit {
     console.log(this.editedUser);
     this.userService.editUser(this.userId, this.editedUser).subscribe(res => {
       console.log(res);
-      this.redirect.navigate([`/players/details/${this.user.userID}`])
+      this.redirect.navigate([`/players/details/${this.user.id}`])
     }, err => {
       console.log(err);
     })

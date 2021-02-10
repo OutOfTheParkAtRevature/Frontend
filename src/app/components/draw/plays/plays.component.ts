@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '@auth0/auth0-spa-js';
 import { element } from 'protractor';
-import { Team } from 'src/app/_models/Team';
-import { AccountService } from 'src/app/_services/account.service';
-import { DrawService } from 'src/app/_services/draw.service';
-import { GamesService } from 'src/app/_services/games.service';
-import { Play } from 'src/app/_models/Play';
+import { Team } from '../../../_models/Team';
+import { AccountService } from '../../../_services/account.service';
+import { DrawService } from '../../../_services/draw.service';
+import { GamesService } from '../../../_services/games.service';
+import { Play } from '../../../_models/Play';
 
 @Component({
   selector: 'app-plays',

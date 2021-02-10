@@ -2,9 +2,9 @@ import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AccountService } from 'src/app/_services/account.service';
-import { EquipmentService } from 'src/app/_services/equipment.service';
-import { EquipmentRequest } from 'src/app/_models/EquipmentRequest';
+import { AccountService } from '../../../_services/account.service';
+import { EquipmentService } from '../../../_services/equipment.service';
+import { EquipmentRequest } from '../../../_models/EquipmentRequest';
 
 @Component({
   selector: 'app-edit-equipment-request',
@@ -43,7 +43,7 @@ export class EditEquipmentRequestComponent implements OnInit {
       this.getUser();
       this.getItem();
 
-      this.titleService.setTitle(`Edit Request - #${this.equipmentRequest.requestId}`)
+      this.titleService.setTitle(`Edit Request - #${this.equipmentRequest.id}`)
       //this.editedEquipmentRequest = {
       //  status: this.equipmentRequest.status
       //};

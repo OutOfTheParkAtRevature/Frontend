@@ -2,6 +2,7 @@
 
 export class Role
 {
-    roleId: number;
+    //roleId: number;
+    id: number;
     roleName: string;
 }

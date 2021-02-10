@@ -13,7 +13,7 @@ import { UserLoggingIn } from '../_models/UserLoggingIn';
 export class AccountService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl: string = "localhost:3000/";
+  baseUrl: string = "http://localhost:3000/";
   private currentUserSource = new ReplaySubject<UserLoggedIn>(1);
   currentUser$ = this.currentUserSource.asObservable();
 

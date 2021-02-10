@@ -1,11 +1,11 @@
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService } from 'src/app/_services/account.service';
-import { UserService } from 'src/app/_services/user.service';
-import { Role } from 'src/app/_models/Role';
-import { Team } from 'src/app/_models/Team';
-import { User } from 'src/app/_models/User';
+import { AccountService } from '../../../_services/account.service';
+import { UserService } from '../../../_services/user.service';
+import { Role } from '../../../_models/Role';
+import { Team } from '../../../_models/Team';
+import { User } from '../../../_models/User';
 
 @Component({
   selector: 'app-create-player',
@@ -54,7 +54,7 @@ export class CreatePlayerComponent implements OnInit {
   getTeam() {
     for (let i = 0; i < this.teamList.length; i++) {
       if (this.teamList[i].name == this.model.team.name) {
-        this.model.teamID = this.teamList[i].teamID;
+        this.model.teamID = this.teamList[i].id;
       }
     }
   }
@@ -70,7 +70,7 @@ export class CreatePlayerComponent implements OnInit {
   getRole() {
     for (let i = 0; i < this.roleList.length; i++) {
       if (this.roleList[i].roleName == this.model.role.roleName) {
-        this.model.roleID = this.roleList[i].roleId;
+        this.model.roleID = this.roleList[i].id;
       }
     }
   }

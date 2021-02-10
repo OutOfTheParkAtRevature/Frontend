@@ -14,7 +14,7 @@ import { User } from '../_models/User';
 export class EquipmentService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl: string = "localhost:3000/";
+  baseUrl: string = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
   

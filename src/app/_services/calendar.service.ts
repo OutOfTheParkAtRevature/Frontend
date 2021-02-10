@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class CalendarService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl = "localhost:3000/";
+  baseUrl = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
   getCalendar() {

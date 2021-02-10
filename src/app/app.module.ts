@@ -3,31 +3,33 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { PlayersComponent } from './players/players.component';
-import { TeamsComponent } from './teams/teams.component';
-import { EquipmentComponent } from './equipment/equipment.component';
-import { RolesComponent } from './roles/roles.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DrawComponent } from './components/draw/draw.component';
+import { EquipmentComponent } from './components/equipment/equipment.component';
+import { GamesComponent } from './components/games/games.component';
+import { HomeComponent } from './components/home/home.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { NavComponent } from './components/nav/nav.component';
+import { PlayersComponent } from './components/players/players.component';
+import { RolesComponent } from './components/roles/roles.component';
+import { TeamsComponent } from './components/teams/teams.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NavComponent } from './nav/nav.component';
-import { DrawComponent } from './draw/draw.component';
-import { PlayerdetailsComponent } from './players/playerdetails/playerdetails.component';
-import { EditplayerComponent } from './players/editplayer/editplayer.component';
-import { EquipmentRequestDetailsComponent } from './equipment/equipment-request-details/equipment-request-details.component';
-import { EditEquipmentRequestComponent } from './equipment/edit-equipment-request/edit-equipment-request.component';
-import { PlaysComponent } from './draw/plays/plays.component';
-import { CreateEquipmentRequestComponent } from './equipment/create-equipment-request/create-equipment-request.component';
-import { CreatePlayerComponent } from './players/create-player/create-player.component';
-import { HomeComponent } from './home/home.component';
-import { MessagesComponent } from './messages/messages.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { GamesComponent } from './games/games.component';
-import { CreateGameComponent } from './games/create-game/create-game.component';
-import { EditGameComponent } from './games/edit-game/edit-game.component';
-import { CreateEventComponent } from './calendar/create-event/create-event.component';
-import { EditEventsComponent } from './calendar/edit-events/edit-events.component';
+import { PlayerdetailsComponent } from './components/players/playerdetails/playerdetails.component';
+import { EditplayerComponent } from './components/players/editplayer/editplayer.component';
+import { EquipmentRequestDetailsComponent } from './components/equipment/equipment-request-details/equipment-request-details.component';
+import { EditEquipmentRequestComponent } from './components/equipment/edit-equipment-request/edit-equipment-request.component';
+import { PlaysComponent } from './components/draw/plays/plays.component';
+import { CreateEquipmentRequestComponent } from './components/equipment/create-equipment-request/create-equipment-request.component';
+import { CreatePlayerComponent } from './components/players/create-player/create-player.component';
+import { CreateGameComponent } from './components/games/create-game/create-game.component';
+import { EditGameComponent } from './components/games/edit-game/edit-game.component';
+//import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
+//import { EditEventsComponent } from './components/calendar/edit-events/edit-events.component';
 import { AccountService } from './_services/account.service';
 import { CalendarService } from './_services/calendar.service';
 import { DrawService } from './_services/draw.service';
@@ -59,8 +61,8 @@ import { UserService } from './_services/user.service';
     GamesComponent,
     CreateGameComponent,
     EditGameComponent,
-    CreateEventComponent,
-    EditEventsComponent,
+    //CreateEventComponent,
+    //EditEventsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -68,6 +70,7 @@ import { UserService } from './_services/user.service';
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FullCalendarModule,
   ],
   providers: [
       AccountService,

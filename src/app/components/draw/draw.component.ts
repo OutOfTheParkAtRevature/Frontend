@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 import { CONTEXT_NAME } from '@angular/compiler/src/render3/view/util';
 import {
   Component, Input, ElementRef, AfterViewInit,OnInit, ViewChild
@@ -7,20 +5,16 @@ import {
 import { NgModel } from '@angular/forms';
 import { fromEvent } from 'rxjs';
 import { switchMap, takeUntil, pairwise } from 'rxjs/operators'
-import { PlayerdetailsComponent } from 'src/app/players/playerdetails/playerdetails.component';
-import { AccountService } from 'src/app/_services/account.service';
-import { DrawService } from 'src/app/_services/draw.service';
-import { UserService } from 'src/app/_services/user.service';
+//import { PlayerdetailsComponent } from '../../players/playerdetails/playerdetails.component';
+import { AccountService } from '../../_services/account.service';
+import { DrawService } from '../../_services/draw.service';
+import { UserService } from '../../_services/user.service';
 //import { play } from './play';
-import { Play } from 'src/app/_models/Play';
-=======
-import { Component, OnInit } from '@angular/core';
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
+import { Play } from '../../_models/Play';
 
 @Component({
   selector: 'app-draw',
   templateUrl: './draw.component.html',
-<<<<<<< HEAD
   styles: ['canvas { margin-right: auto; margin-left: auto;  border: 1px solid; }']
 })
 export class DrawComponent implements AfterViewInit {
@@ -221,18 +215,3 @@ getPlayBook() {
 }  
 
 }
-
-
-
-=======
-  styleUrls: ['./draw.component.css']
-})
-export class DrawComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf

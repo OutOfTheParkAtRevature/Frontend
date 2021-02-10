@@ -10,7 +10,11 @@ How to mock backend:
 Now this command prompt is busy, so you need to open up a new one to start the angular.
 
 
+IF ITS NOT WORKING< DISABLE CORS IN YOUR BROWSER:
+(for Opera): launcher.exe --disable-web-security --user-data-dir="C:\TempData"
 
+
+You can edit mock data in data.json
 To add a new DTO, go into data.json and add:
 	"MyDTOName" : []
 	

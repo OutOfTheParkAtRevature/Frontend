@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { HttpClient } from '@angular/common/http';
-import { UserService } from 'src/app/_services/user.service';
-import { Role } from 'src/app/_models/Role';
-=======
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
+import { UserService } from '../../_services/user.service';
+import { Role } from '../../_models/Role';
 
 @Component({
   selector: 'app-roles',
@@ -13,7 +10,6 @@ import { Role } from 'src/app/_models/Role';
 })
 export class RolesComponent implements OnInit {
 
-<<<<<<< HEAD
   roles: Array<Role> = new Array<Role>();
   constructor(private userService: UserService, private http: HttpClient) { }
 
@@ -36,11 +32,4 @@ export class RolesComponent implements OnInit {
         (error) => console.log(error)
    );
   }
-=======
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
 }

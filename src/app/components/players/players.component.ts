@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
-import { User } from 'src/app/_models/User';
-import { AccountService } from 'src/app/_services/account.service';
-import { UserService } from 'src/app/_services/user.service';
-=======
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
+import { User } from '../../_models/User';
+import { AccountService } from '../../_services/account.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.css']
 })
-<<<<<<< HEAD
-
 
 
 export class PlayersComponent implements OnInit {
@@ -41,7 +36,7 @@ export class PlayersComponent implements OnInit {
 
   getTeams() {
     this.users.forEach(element => {
-      this.userService.getTeam(element.teamID).subscribe( response => {
+      this.userService.getTeam(element.id).subscribe( response => {
         element.team = response;
       }, err => {
         console.log(err);
@@ -51,7 +46,7 @@ export class PlayersComponent implements OnInit {
 
   getRoles() {
     this.users.forEach(element => {
-      this.userService.getRole(element.roleID).subscribe( response => {
+      this.userService.getRole(element.id).subscribe( response => {
         element.role = response;
       }, err => {
         console.log(err);
@@ -67,13 +62,6 @@ export class PlayersComponent implements OnInit {
       console.log(err)
     })
     this.getUsers();
-=======
-export class PlayersComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf
   }
 
 }

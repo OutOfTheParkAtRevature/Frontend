@@ -11,7 +11,7 @@ import { RecipientList } from '../_models/RecipientList';
 export class MessageService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl = "localhost:3000/";
+  baseUrl = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
   getMessages(): Observable<Message[]>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountService } from 'src/app/_services/account.service';
-import { EquipmentService } from 'src/app/_services/equipment.service';
-import { Equipment } from 'src/app/_models/Equipment';
-import { EquipmentRequest } from 'src/app/_models/EquipmentRequest';
+import { AccountService } from '../../../_services/account.service';
+import { EquipmentService } from '../../../_services/equipment.service';
+import { Equipment } from '../../../_models/Equipment';
+import { EquipmentRequest } from '../../../_models/EquipmentRequest';
 
 @Component({
   selector: 'app-create-equipment-request',
@@ -38,7 +38,7 @@ export class CreateEquipmentRequestComponent implements OnInit {
   getCurrentUser() {
     this.accountService.currentUser$.subscribe( user => {
       this.model.teamId = user.teamID;
-      this.model.userId = user.userID;
+      this.model.id = user.id;
     })
   }
 
@@ -53,7 +53,7 @@ export class CreateEquipmentRequestComponent implements OnInit {
   getCreatedItem() {
     for (let i = 0; i < this.itemList.length; i++) {
       if (this.itemList[i].description == this.model.item.description) {
-        this.model.itemId = this.itemList[i].equipmentId;
+        this.model.itemId = this.itemList[i].id;
       }
     }
   }

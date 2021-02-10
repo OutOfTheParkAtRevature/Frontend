@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div id="homePage">
     <div *ngIf="(accountService.currentUser$ | async) === null" class="container text-center" id="login">
         <h2>Welcome!</h2>
@@ -15,14 +14,9 @@
         
         <div *ngIf="(accountService.currentUser$ | async)" class="container" id="loggedIn">
             <h1>Welcome, {{user.fullName}}</h1>
-            <h2>This is your {{team.name}} portal</h2>
+            <div *ngIf="team && team.name">
+                <h2>This is your {{team.name}} portal</h2>
+            </div>
             <p>Please use the links above</p>
         </div>  
 </div>
-
-
-
-
-=======
-<p>home works!</p>
->>>>>>> 53b66201a7d54551c99df3dd3547abb4cc2d25cf

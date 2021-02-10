@@ -2,7 +2,8 @@
 
 export class Message
 {
-    messageId: number;
+    //messageId: number;
+    id: number;
     senderId: string;
     senderName: string;
     recipientListId: number;

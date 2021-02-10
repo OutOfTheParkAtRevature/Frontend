@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AccountService } from 'src/app/_services/account.service';
-import { EquipmentService } from 'src/app/_services/equipment.service';
-import { EquipmentRequest } from 'src/app/_models/EquipmentRequest';
+import { AccountService } from '../../../_services/account.service';
+import { EquipmentService } from '../../../_services/equipment.service';
+import { EquipmentRequest } from '../../../_models/EquipmentRequest';
 
 @Component({
   selector: 'app-equipment-request-details',
