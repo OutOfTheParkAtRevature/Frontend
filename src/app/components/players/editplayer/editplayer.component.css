@@ -1,0 +1,25 @@
+#editPlayerTitle {
+    text-align: center;
+}
+
+#editPlayer {
+    text-align: center;
+}
+
+#backToUsers {
+    margin-left: 35%;
+}
+
+#editPlayerLabel {
+    margin-left: 35%;
+}
+
+#editPlayerInput {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#editPlayerButton {
+    margin-left: 47%;
+}

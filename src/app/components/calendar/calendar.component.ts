@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 //Events from Calendar
+import { Calendar } from '@fullcalendar/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import { formatDate } from '@fullcalendar/angular';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
@@ -12,19 +13,22 @@ import googleCalendarPlugin from '@fullcalendar/google-calendar';
 })
 export class CalendarComponent implements OnInit {
 
+  eventDto = [
+    { title: 'event 1', date: '2021-02-03' },
+    { title: 'event 2', date: '2021-02-06' }, 
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
+    this.calendarOptions.events = this.eventDto;  
   }
+
+
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     dateClick: this.handleDateClick.bind(this), // bind is important!
-    events: 
-    [
-      { title: 'event 1', date: '2021-02-03' },
-      { title: 'event 2', date: '2021-02-06' }, 
-    ],
     /* Connect directly into Google Calendar */
     eventSources: [
       {

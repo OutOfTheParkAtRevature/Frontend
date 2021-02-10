@@ -22,4 +22,12 @@ describe('AuthenticationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call onChangingSection()', () => {
+    component.boolLogIn = true;
+    component.boolRegister = false;
+    component.onChangingSection();
+    expect(component.boolLogIn).toBeTruthy();
+    expect(component.boolRegister).toBeFalsy();
+  });
 });

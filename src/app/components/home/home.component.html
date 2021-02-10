@@ -1,1 +1,22 @@
-<p>home works!</p>
+<div id="homePage">
+    <div *ngIf="(accountService.currentUser$ | async) === null" class="container text-center" id="login">
+        <h2>Welcome!</h2>
+        <h3>Please login below!</h3>
+        <div class="form_container">
+            <form  #loginForm="ngForm" (ngSubmit)="login()" ngNativeValidate autocomplete="off">
+                <input name="username" [(ngModel)]="model.username" class="form-control me-2" id="usernameInput" type="text" placeholder="Username" required>
+                <input name = "password" [(ngModel)]="model.password" class="form-control me-2" id="passwordInput" type="password" placeholder="Password" required>
+                <button class="btn btn-outline-success" type="submit" id="loginButton">Login</button>
+                </form>
+        </div>
+        <p><strong>Please contact your administrator if you need an account.</strong></p>
+        </div>
+        
+        <div *ngIf="(accountService.currentUser$ | async)" class="container" id="loggedIn">
+            <h1>Welcome, {{user.fullName}}</h1>
+            <div *ngIf="team && team.name">
+                <h2>This is your {{team.name}} portal</h2>
+            </div>
+            <p>Please use the links above</p>
+        </div>  
+</div>

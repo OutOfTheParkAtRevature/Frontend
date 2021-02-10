@@ -4,14 +4,15 @@ import {
   Component, Input, ElementRef, AfterViewInit,OnInit, ViewChild
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { moveCursor } from 'readline';
-import { fromEvent, pipe } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { switchMap, takeUntil, pairwise, take } from 'rxjs/operators'
-//import { PlayerdetailsComponent } from '../players/playerdetails/playerdetails.component';
-//import { AccountService } from '../_services/account.service';
-//import { DrawService } from '../_services/draw.service';
-//import { UserService } from '../_services/user.service';
-import { play } from '../../_models/play';
+//import { PlayerdetailsComponent } from '../../players/playerdetails/playerdetails.component';
+import { AccountService } from '../../_services/account.service';
+import { DrawService } from '../../_services/draw.service';
+import { UserService } from '../../_services/user.service';
+//import { play } from './play';
+import { Play } from '../../_models/Play';
+
 
 @Component({
   selector: 'app-draw',
@@ -25,8 +26,9 @@ export class DrawComponent implements AfterViewInit {
   // setting a width and height for the canvas
   @Input() public width = 600;
   @Input() public height = 600;
-  constructor(){}//private drawService: DrawService, private userService: UserService, public accountService: AccountService){}
-  model = new play;
+
+  constructor(private drawService: DrawService, private userService: UserService, public accountService: AccountService){}
+  model = new Play;
   playbooks: any = {}; //Needs DTO
   playBookList: any = []; //Needs DTO
   Eraser: string = 'white';
@@ -249,7 +251,7 @@ SetBackGroundWhite(){
 }
 
 // backend logic here
-/*
+
 saveCanvas() {
 
   this.ImageString = this.canvasEl.toDataURL(); //1 indicates full quality
@@ -294,7 +296,6 @@ getPlayBook() {
   });
 } 
 
-*/
 }
 
 
