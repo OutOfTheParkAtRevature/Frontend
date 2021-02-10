@@ -12,6 +12,7 @@ import { DrawService } from '../../_services/draw.service';
 import { UserService } from '../../_services/user.service';
 //import { play } from './play';
 import { Play } from '../../_models/Play';
+import { Playbook } from 'src/app/_models/Playbook';
 
 
 @Component({
@@ -29,13 +30,13 @@ export class DrawComponent implements AfterViewInit {
 
   constructor(private drawService: DrawService, private userService: UserService, public accountService: AccountService){}
   model = new Play;
-  playbooks: any = {}; //Needs DTO
-  playBookList: any = []; //Needs DTO
+  playbooks: Playbook; //playbooks: any = [];
+  playBookList: Playbook[]; //playbooks: any = [];
   Eraser: string = 'white';
   isMakingCircle: boolean;
   isMakingLines: boolean;
   isMakingXs: boolean;
-  ImageString;
+  ImageString: string;
   canvasEl: HTMLCanvasElement;
   cx: CanvasRenderingContext2D;
 
@@ -283,15 +284,15 @@ getPlaybooks() {
 // gets the team id of the user
 getTeamPlayBook() {
   this.accountService.currentUser$.subscribe( user => {
-    this.playbooks.teamid = user.teamID;
+    this.playbooks.teamId = user.teamID;
   })
 }
 
 // looks through playbooks and grabs the first one with matching ID
 getPlayBook() {
   this.playBookList.forEach(playbook => {
-    if (playbook.teamID == this.playbooks.teamid) {
-      this.model.PlaybookId = playbook.playbookID;
+    if (playbook.teamId == this.playbooks.teamId) {
+      this.model.PlaybookId = playbook.id;
     }
   });
 } 
