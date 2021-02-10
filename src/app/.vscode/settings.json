@@ -1,0 +1,81 @@
+{
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.quickSuggestionsDelay": 500,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "editor.codeLens": false,
+    "csharp.referencesCodeLens.enabled": false,
+    "editor.snippetSuggestions": "none",
+    "editor.suggest.showClasses": false,
+    "editor.suggest.showColors": false,
+    "editor.suggest.showConstants": false,
+    "editor.suggest.showConstructors": false,
+    "editor.suggest.showCustomcolors": false,
+    "editor.suggest.showEnumMembers": false,
+    "editor.suggest.showEnums": false,
+    "editor.suggest.showEvents": false,
+    "editor.suggest.showFields": false,
+    "editor.suggest.showFiles": false,
+    "editor.suggest.showFolders": false,
+    "editor.suggest.showFunctions": false,
+    "editor.suggest.showIcons": false,
+    "editor.suggest.showInterfaces": false,
+    "editor.suggest.showIssues": false,
+    "editor.suggest.showKeywords": false,
+    "editor.suggest.showMethods": false,
+    "editor.suggest.showModules": false,
+    "editor.suggest.showOperators": false,
+    "editor.suggest.showProperties": false,
+    "editor.suggest.showReferences": false,
+    "editor.suggest.showSnippets": false,
+    "editor.suggest.showStructs": false,
+    "editor.suggest.showTypeParameters": false,
+    "editor.suggest.showUnits": false,
+    "editor.suggest.showUsers": false,
+    "editor.suggest.showValues": false,
+    "editor.suggest.showVariables": false,
+    "editor.suggest.showWords": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.suggestSelection": "first",
+    "editor.wordBasedSuggestions": false,
+    "editor.suggest.filterGraceful": false,
+    "editor.hover.enabled": true,
+    "editor.parameterHints": false,
+    "editor.autoClosingQuotes": "never",
+    "editor.autoSurround": "never",// When the word is selected
+    "editor.autoClosingBrackets": "never",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+
+
+    //Theme
+    "workbench.colorCustomizations": {
+        "editor.background": "#282828",
+        "editor.foreground": "#d4d4d4",
+        "editor.selectionBackground":"#000011",
+       // "editor.selectionForeground": "#991111",  //Feature not implemented
+        "editor.lineHighlightBackground": "#383838"
+      },
+
+    "editor.tokenColorCustomizations": {
+        "comments": "#666666",    //Dark Grey
+        "strings":  "#aaaaaa",    //Lighter Grey
+        "textMateRules":[
+            {
+                "scope":    ["keyword", "storage.modifier", "keyword.type", "constant.language", "storage.type.ts", "storage.type.class.ts", 
+                                "entity.name.tag", "support.type.primitive.ts", "variable.language.this.ts", "keyword.operator.new.ts"],
+                "settings": {"foreground": "#60c0ff"}
+            },
+            {
+                "scope":    ["constant.character.escape","meta.interpolation", "keyword.operator.type.annotation.ts", "punctuation.decorator.ts",
+                             "keyword.operator.assignment.ts"],
+                "settings": {"foreground": "#d4d4d4", "fontStyle": "bold"}
+            },
+            {//Default Text Colour
+                "scope":    ["keyword.operator", "keyword.other.unit.px.css", "keyword.other.unit.percentage.css"],
+                "settings": {"foreground": "#d4d4d4"}
+            }
+        ]
+     }
+}

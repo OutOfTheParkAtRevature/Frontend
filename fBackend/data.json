@@ -1,0 +1,136 @@
+{    
+	"equipments": 
+	[
+		{
+			"EquipmentId": 1,
+			"Description": "Jersey"
+		},
+		{
+			"EquipmentId": 2,
+			"Description": "Shoulderpads"
+		},
+		{
+			"EquipmentId": 3,
+			"Description": "Helmet"
+		}
+	],
+	"equipmentRequests" : [],
+    "events": [],
+	"games": [],
+	"messages": [],
+	"playbooks": 
+	[
+		{
+			"PlaybookId": 1,
+			"TeamId": 1
+		}
+	],
+	"plays": [],
+	"recipientLists": 
+	[
+		{
+			"RecipientListId": 1,
+			"RecipientId": 1
+		}
+	],
+	"roles": 
+	[
+		{
+			"RoleId": 1,
+			"RoleName": "Players"
+		},
+		{
+			"RoleId": 2,
+			"RoleName": "Parents"
+		},
+		{
+			"RoleId": 3,
+			"RoleName": "Assistant Coaches"
+		},
+		{
+			"RoleId": 4,
+			"RoleName": "Coaches"
+		},
+		{
+			"RoleId": 5,
+			"RoleName": "League Admins"
+		},
+		{
+			"RoleId": 6,
+			"RoleName": "App Admins"
+		}
+	],
+	"teams": 
+	[
+		{
+			"id": 1,
+			"Name": "Barcelona",
+			"Wins": 1,
+			"Losses": 2
+		}
+	],
+	"userInboxes": [],
+	"users": 
+	[
+		{
+			"userId": 1,
+			"userName": "Player",
+			"fullName": "Player",
+			"phoneNumber": "111-1111",
+			"email": "Player@Game",
+			"password": "Player",
+			"teamID": 1,
+			"roleID": 1
+		},
+		{
+			"userId": 2,
+			"userName": "Parent",
+			"fullName": "Parent",
+			"phoneNumber": "222-2222",
+			"email": "Parent@Game",
+			"password": "Parent",
+			"teamID": 1,
+			"roleID": 2
+		},
+		{
+			"userId": 3,
+			"userName": "AssCoach",
+			"fullName": "AssCoach",
+			"phoneNumber": "333-3333",
+			"email": "AssCoach@Game",
+			"password": "AssCoach",
+			"teamID": 1,
+			"roleID": 3
+		},
+		{
+			"userId": 4,
+			"userName": "Coach",
+			"fullName": "Coach",
+			"phoneNumber": "444-4444",
+			"email": "Coach@Game",
+			"password": "Coach",
+			"teamID": 1,
+			"roleID": 4
+		},
+		{
+			"userId": 5,
+			"userName": "LeagueAdmin",
+			"fullName": "LeagueAdmin",
+			"phoneNumber": "555-5555",
+			"email": "LeagueAdmin@Game",
+			"password": "LeagueAdmin",
+			"teamID": 1,
+			"roleID": 5
+		},
+		{
+			"userId": 6,
+			"userName": "AppAdmin",
+			"fullName": "AppAdmin",
+			"phoneNumber": "666-6666",
+			"email": "AppAdmin@Game",
+			"password": "AppAdmin",
+			"teamID": 1,
+			"roleID": 6
+		}
+	]
+}

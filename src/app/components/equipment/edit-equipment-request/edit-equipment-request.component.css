@@ -1,0 +1,25 @@
+#editRequestTitle {
+    text-align: center;
+}
+
+#requestId {
+    text-align: center;
+}
+
+#backToRequests {
+    margin-left: 35%;
+}
+
+#editLabel {
+    margin-left: 35%;
+}
+    
+#editInput {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#editRequestButton {
+    margin-left: 47%;
+}
