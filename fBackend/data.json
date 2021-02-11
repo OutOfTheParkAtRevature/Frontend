@@ -1,4 +1,32 @@
 {
+  "articles": [
+	{
+		"id": 1,
+		"title": "TITLE",
+		"body": "BODY"
+	}
+  ],
+  "teamArticles": [
+	{
+		"id": 1,
+		"title": "TITLE",
+		"body": "BODY",
+		"teamId": 1,
+		"isVisible": true,
+		"date": "1-1-1111",
+		"isPinned": false
+	}
+  ],
+  "leagueArticles": [
+	{
+		"id": 1,
+		"title": "TITLE",
+		"body": "BODY",
+		"isVisible": true,
+		"date": "1-1-1111",
+		"isPinned": false
+	}
+  ],
   "equipments": [
     {
       "id": 1,

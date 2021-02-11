@@ -1,0 +1,22 @@
+<div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+    <h2 id="gamesTitle">Games</h2>
+    <a *ngIf="userService.isCoachAuthorized(loggedInUser)" routerLink="/games/create">Create Game</a>
+
+    TODO PINNED ARTICLE
+
+    <ng-container *ngFor="let article of articles">
+        <div *ngIf="article.isVisible">
+            <h6> {{article.title}} </h6>
+            <p> 
+                {{article.date}}  
+                <a [routerLink]="['/article/edit', article.id]" *ngIf="userService.isCoachAuthorized(loggedInUser)">Edit</a>
+            </p>
+            <p> {{article.body}} </p>
+        </div>
+    </ng-container>
+</div>
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
+</div>

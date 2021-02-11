@@ -16,13 +16,13 @@
     <a id="backToUsers" routerLink="/players">Back to Users</a>
     <form #editUserForm="ngForm" (ngSubmit)="editUser()">
         <label id="editPlayerLabel" for="FullName">Full Name</label>
-        <input id="editPlayerInput" name="FullName" [(ngModel)]="editedUser.fullname" class="form-control me-2" type="text" value="{{user.fullName}}" aria-label="FullName">
+        <input id="editPlayerInput" name="FullName" [(ngModel)]="editedUser.fullName" class="form-control me-2" type="text" value="{{user.fullName}}" aria-label="FullName">
         <br>
         <label id="editPlayerLabel" for="Password">Password</label>
         <input id="editPlayerInput" name="Password" [(ngModel)]="editedUser.password" class="form-control me-2" type="password" value="{{user.password}}}" aria-label="Password">
         <br>
         <label id="editPlayerLabel" for="PhoneNumber">Phone Number</label>
-        <input id="editPlayerInput" name="PhoneNumber" [(ngModel)]="editedUser.phonenumber" class="form-control me-2" type="tel" pattern="[0-9]{10}" value="{{user.phoneNumber}}" aria-label="PhoneNumber">
+        <input id="editPlayerInput" name="PhoneNumber" [(ngModel)]="editedUser.phoneNumber" class="form-control me-2" type="tel" pattern="[0-9]{10}" value="{{user.phoneNumber}}" aria-label="PhoneNumber">
         <br>
         <label id="editPlayerLabel" for="Email">Email</label>
         <input id="editPlayerInput" name="Email" [(ngModel)]="editedUser.email" class="form-control me-2" type="email" value="{{user.email}}" aria-label="Email">

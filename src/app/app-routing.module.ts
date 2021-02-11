@@ -23,6 +23,7 @@ import { EditGameComponent } from './components/games/edit-game/edit-game.compon
 import { AuthenticationComponent } from './components/authentication/authentication.component';
 //import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
 //import { EditEventsComponent } from './components/calendar/edit-events/edit-events.component';
+import { TeamNewsComponent } from './components/news/team-news/team-news.component';
 
 
 
@@ -47,6 +48,7 @@ const routes: Routes = [
   {path: 'equipment/edit/:id', component: EditEquipmentRequestComponent},
   {path: "equipment/create", component: CreateEquipmentRequestComponent},
   {path: "messages", component: MessagesComponent},
+  {path: "teamNews", component: TeamNewsComponent},
   {path: "auth", component: AuthenticationComponent},
 ];
 
