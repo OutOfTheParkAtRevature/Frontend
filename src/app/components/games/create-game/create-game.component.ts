@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from '@auth0/auth0-spa-js';
+// import { User } from '@auth0/auth0-spa-js';
 import { AccountService } from '../../../_services/account.service';
 import { GamesService } from '../../../_services/games.service';
 import { Game } from '../../../_models/Game';
@@ -20,7 +20,7 @@ export class CreateGameComponent implements OnInit {
   //userLoggedIn:any;
   newGame: Game;
   teamList: Array<Team> = new Array<Team>();
-  userLoggedIn: User;
+  // userLoggedIn: User;
 
   ngOnInit(): void {
     this.getTeamList();
@@ -31,22 +31,22 @@ export class CreateGameComponent implements OnInit {
     this.getAwayTeam();
     this.getHomeTeam();
 
-    if (this.userLoggedIn.teamID == this.newGame.homeTeamId || this.userLoggedIn.teamID == this.newGame.awayTeamId) {
-      this.gamesService.createGame(this.newGame).subscribe(game => {
-        console.log(game);
-        this.router.navigate(['/games'])
-      }, err => {
-        console.log(err);
-      });
-    } else {
-      this.teamList.forEach(team => {
-        if (team.id == this.userLoggedIn.teamID) {
-          let teamName = team.name;
-          alert(`Created game must include ${teamName}`);
-        }
-      });
+    // if (this.userLoggedIn.teamID == this.newGame.homeTeamId || this.userLoggedIn.teamID == this.newGame.awayTeamId) {
+    //   this.gamesService.createGame(this.newGame).subscribe(game => {
+    //     console.log(game);
+    //     this.router.navigate(['/games'])
+    //   }, err => {
+    //     console.log(err);
+    //   });
+    // } else {
+    //   this.teamList.forEach(team => {
+    //     if (team.id == this.userLoggedIn.teamID) {
+    //       let teamName = team.name;
+    //       alert(`Created game must include ${teamName}`);
+    //     }
+    //   });
       
-    }
+    // }
 
     
   }
@@ -62,7 +62,7 @@ export class CreateGameComponent implements OnInit {
 
   getLoggedInUser() {
     this.accountService.currentUser$.subscribe( user$ => {
-      this.userLoggedIn = user$;
+      // this.userLoggedIn = user$;
     })
   }
 
