@@ -1,0 +1,46 @@
+trigger:
+- staging
+
+pr:
+- staging
+
+pool:
+  vmImage: ubuntu-18.04
+
+stages:
+  - stage: analyze
+    displayName: Analyze
+    jobs:
+      - job: analyze
+        steps:
+          - task: Npm@1
+            displayName: Install Dependencies
+            inputs:
+              command: install
+          - task: SonarCloudPrepare@1
+            inputs:
+              SonarCloud: 'sonarcloud connection'
+              scannerMode: CLI
+              organization: 121420-dotnet-sonarcloud
+              configFile: sonar-project.properties
+          - task: Npm@1
+            displayName: Analyze Build
+            inputs:
+              command: custom
+              customCommand: run build -- --prod
+          - task: Npm@1
+            displayName: Analyze Tests
+            inputs:
+              command: custom
+              customCommand: run test-headless -- --code-coverage
+          - task: PublishCodeCoverageResults@1
+            displayName: Publish Code Coverage
+            inputs:
+              codeCoverageTool: Cobertura
+              summaryFileLocation: coverage/cobertura-coverage.xml
+              reportDirectory: coverage
+              failIfCoverageEmpty: true
+          - task: SonarCloudAnalyze@1
+            displayName: Run Code Analysis
+          - task: SonarCloudPublish@1
+            displayName: Publish Code Analysis
