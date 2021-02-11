@@ -9,7 +9,7 @@ import { UserLoggingIn } from '../_models/UserLoggingIn';
 
 @Injectable({
   providedIn: 'root'
-})
+}) 
 export class AccountService {
 
   //baseUrl = environment.apiUrl;

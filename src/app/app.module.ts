@@ -83,6 +83,8 @@ import { BearerAuthInterceptorService } from './_services/bearer-auth-intercepto
     BrowserAnimationsModule,
     AppRoutingModule,
     FullCalendarModule,
+    NgbModule,
+    MatSlideToggleModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptorService, multi:true },
@@ -100,6 +102,9 @@ import { BearerAuthInterceptorService } from './_services/bearer-auth-intercepto
     NgbModule,
     NgbRating
   ],
-  exports: [NgbRating],
+  exports: [
+      NgbRating,
+      MatSlideToggleModule
+    ],
 })
 export class AppModule { }

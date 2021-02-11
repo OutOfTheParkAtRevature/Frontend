@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
 
   model2: UserLoggedIn = {
     id: null, userName: null, fullName: null, phoneNumber: null, 
-    email: null, teamID: null, roleID: null
+    email: null, teamID: null, roleName:null//roleID: null
   };
 
   constructor(public accountService: AccountService, private router: Router, private userService: UserService) { }
