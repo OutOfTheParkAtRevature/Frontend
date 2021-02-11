@@ -28,7 +28,15 @@
 			"awayScore": 0
 		}
 	],
-	"messages": [],
+	"messages": [
+		{
+			"id": 1,
+			"recipientID": 1,
+			"senderID": 1,
+			"senderName": "Player"
+
+		}
+	],
 	"playbooks": 
 	[
 		{
@@ -42,6 +50,10 @@
 		{
 			"id": 1,
 			"RecipientId": 1
+		},
+		{
+			"id": 2,
+			"RecipientId": 2
 		}
 	],
 	"roles": 
@@ -89,13 +101,29 @@
 	"userInboxes": [
 		{ 
 			"userID": 1,
-			"recipientID": [
+			"recipient": [
+				{
+					"userID": 4,
+					"userFullName": "Coach"
+				}
+			],
+			"messageID": 1,
+			"isRead": false
+		},
+		{ 
+			"userID": 1,
+			"recipient": [
 				{
 					"userID": 2,
 					"userFullName": "Parent"
+				},
+				{
+					"userID": 3,
+					"userFullName": "AssCoach"
 				}
-			]
-
+			],
+			"messageID": 2,
+			"isRead": false
 		}
 	],
 	"users": 
