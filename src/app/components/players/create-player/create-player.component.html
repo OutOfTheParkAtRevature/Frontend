@@ -1,5 +1,5 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-    <div *ngIf="loggedInUser.roleID == 1">
+    <div *ngIf="userService.isAssCoachAuthorized(loggedInUser)">
         <h2 id="createPlayerTitle">Add New User</h2>
         <br>
         <a id="backToUsers" routerLink="/players">Back to Users</a>
@@ -32,7 +32,7 @@
         
     </div>
 
-    <ng-container *ngIf="loggedInUser.roleID != 1">
+    <ng-container *ngIf="!userService.isAssCoachAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>

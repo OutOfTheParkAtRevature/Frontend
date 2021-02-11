@@ -3,6 +3,7 @@ import { Equipment } from '../../_models/Equipment';
 import { EquipmentRequest } from '../../_models/EquipmentRequest';
 import { AccountService } from '../../_services/account.service';
 import { EquipmentService } from '../../_services/equipment.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-equipment',
@@ -14,7 +15,7 @@ export class EquipmentComponent implements OnInit {
   //equipmentList: any;
   equipmentList: Array<EquipmentRequest> = new Array<EquipmentRequest>();
 
-  constructor(private equipmentService: EquipmentService, public accountService: AccountService) { }
+  constructor(private equipmentService: EquipmentService, public accountService: AccountService, public userService: UserService) { }
 
   ngOnInit(): void {
     this.getEquipment();

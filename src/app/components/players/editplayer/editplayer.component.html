@@ -1,13 +1,13 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
 
-    <ng-container *ngIf="loggedInUser.userID == user.userID || loggedInUser.roleID == 1">
-    <div *ngIf="loggedInUser.userID == user.userID">
+    <ng-container *ngIf="loggedInUser.id == user.id || userService.isAssCoachAuthorized(loggedInUser)">
+    <div *ngIf="loggedInUser.id == user.id">
         <h2 id="editPlayerTitle">Welcome {{user.fullName}}</h2>
         <br>
         <h5 id="editPlayer">Please edit your information below:</h5>
     </div>
 
-    <div *ngIf="loggedInUser.roleID == 1">
+    <div *ngIf="userService.isAssCoachAuthorized(loggedInUser)">
         <h2 id="editPlayerTitle">Welcome {{loggedInUser.fullName}}</h2>
         <br>
         <h5 id="editPlayer">Edit {{user.fullName}} below:</h5>
@@ -32,7 +32,7 @@
     </ng-container>
 
     <!-- If the user is not authorized to view  -->
-    <ng-container *ngIf="loggedInUser.userID != user.userID && loggedInUser.roleID != 1">
+    <ng-container *ngIf="loggedInUser.id != user.id && !userService.isAssCoachAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>

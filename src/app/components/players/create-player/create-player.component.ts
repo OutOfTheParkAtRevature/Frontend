@@ -21,7 +21,7 @@ export class CreatePlayerComponent implements OnInit {
   teamList: Array<Team> = new Array<Team>();
   roleList: Array<Role> = new Array<Role>();
 
-  constructor(public accountService: AccountService, private userService: UserService, private router: Router) { }
+  constructor(public accountService: AccountService, public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTeamList();
@@ -30,7 +30,8 @@ export class CreatePlayerComponent implements OnInit {
 
   createUser() {
     this.accountService.currentUser$.subscribe(user => {
-      this.model.teamID = user.roleID;
+      //this.model.teamID = user.roleID;    //Is this a bug?
+      this.model.teamID = user.teamID;
     })
 
     this.getRole();
@@ -68,11 +69,16 @@ export class CreatePlayerComponent implements OnInit {
   }
 
   getRole() {
+      
+    this.model.roleName = this.model.role.roleName;
+      /*
+      //Do we need this?
     for (let i = 0; i < this.roleList.length; i++) {
       if (this.roleList[i].roleName == this.model.role.roleName) {
-        this.model.roleID = this.roleList[i].id;
+        //this.model.roleID = this.roleList[i].id;
       }
     }
+    */
   }
 
 }

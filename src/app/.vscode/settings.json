@@ -63,17 +63,19 @@
         "strings":  "#aaaaaa",    //Lighter Grey
         "textMateRules":[
             {
-                "scope":    ["keyword", "storage.modifier", "keyword.type", "constant.language", "storage.type.ts", "storage.type.class.ts", 
-                                "entity.name.tag", "support.type.primitive.ts", "variable.language.this.ts", "keyword.operator.new.ts"],
+                "scope":    ["keyword", "storage.modifier", "keyword.type", "constant.language", 
+                                "storage.type.ts", "storage.type.class.ts", "entity.name.tag", "support.type.primitive.ts", 
+                                    "variable.language.this.ts", "keyword.operator.new.ts"],
                 "settings": {"foreground": "#60c0ff"}
             },
             {
-                "scope":    ["constant.character.escape","meta.interpolation", "keyword.operator.type.annotation.ts", "punctuation.decorator.ts",
-                             "keyword.operator.assignment.ts"],
+                "scope":    ["constant.character.escape","meta.interpolation", 
+                                "keyword.operator.type.annotation.ts", "punctuation.decorator.ts", "keyword.operator.assignment.ts"],
                 "settings": {"foreground": "#d4d4d4", "fontStyle": "bold"}
             },
             {//Default Text Colour
-                "scope":    ["keyword.operator", "keyword.other.unit.px.css", "keyword.other.unit.percentage.css"],
+                "scope":    ["keyword.operator", 
+                                "keyword.other.unit.px.css", "keyword.other.unit.percentage.css"],
                 "settings": {"foreground": "#d4d4d4"}
             }
         ]
