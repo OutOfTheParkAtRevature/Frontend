@@ -1,6 +1,6 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
     <h2 id="gamesTitle">Games</h2>
-    <a *ngIf="loggedInUser.roleID === 1" routerLink="/games/create">Create Game</a>
+    <a *ngIf="userService.isLeagueAdminAuthorized(loggedInUser)" routerLink="/games/create">Create Game</a>
         <table class="table table-striped" id="games" style="text-align: center;">
             <caption></caption>
             <tr>
@@ -11,7 +11,7 @@
                 <th scope="col">Away Score</th>
                 <th scope="col">Winning Team</th>
                 <th scope="col">Highlights</th>
-                <th *ngIf="loggedInUser.roleID === 1" scope="col">Admin</th>
+                <th *ngIf="userService.isLeagueAdminAuthorized(loggedInUser)" scope="col">Admin</th>
             </tr>
                 <ng-container *ngFor="let game of games">
                     <tr *ngIf="game.homeTeamID == loggedInUser.teamId || game.awayTeamId == loggedInUser.teamId">

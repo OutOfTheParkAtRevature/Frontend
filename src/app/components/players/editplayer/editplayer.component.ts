@@ -13,7 +13,7 @@ import { User } from '../../../_models/User';
 export class EditplayerComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
-              private userService: UserService,
+              public userService: UserService,
               private titleService: Title,
               public accountService: AccountService,
               private redirect: Router) { }
@@ -51,6 +51,13 @@ export class EditplayerComponent implements OnInit {
 
   editUser() {
     console.log(this.editedUser);
+
+    //Send in all the other data
+    this.editedUser.id = this.user.id;
+    this.editedUser.userName = this.user.userName;
+    this.editedUser.teamID = this.user.teamID;
+    this.editedUser.roleName = this.user.roleName;
+
     this.userService.editUser(this.userId, this.editedUser).subscribe(res => {
       console.log(res);
       this.redirect.navigate([`/players/details/${this.user.id}`])

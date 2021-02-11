@@ -1,5 +1,5 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-    <ng-container *ngIf="loggedInUser.roleID == 1">
+    <ng-container *ngIf="userService.isLeagueAdminAuthorized(loggedInUser)">
       <h3 id="createGameTitle">Create Game</h3>
       <a routerLink="/games" id="backToCreateGame">Back to Games</a><br>
       <form #createGameForm="ngForm"  (ngSubmit)="createGame()" ngNativeValidate  autocomplete="off" id="createGame">
@@ -22,7 +22,7 @@
       </form>
     </ng-container>
 
-    <ng-container *ngIf="loggedInUser.roleID != 1">
+    <ng-container *ngIf="userService.isLeagueAdminAuthorized(loggedInUser)">
       <h2 class="text-center">Not Authorized</h2>
       <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>

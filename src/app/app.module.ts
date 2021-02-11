@@ -91,6 +91,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppRoutingModule,
     FullCalendarModule,
     NgbModule,
+    MatSlideToggleModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptorService, multi:true },
@@ -102,7 +103,15 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
       MessageService,
       UserService
   ],
-  bootstrap: [AppComponent,NgbRating],
-  exports: [NgbRating],
+  bootstrap: [AppComponent,
+    MatSlideToggleModule,
+    BrowserAnimationsModule,
+    NgbModule,
+    NgbRating
+  ],
+  exports: [
+      NgbRating,
+      MatSlideToggleModule
+    ],
 })
 export class AppModule { }
