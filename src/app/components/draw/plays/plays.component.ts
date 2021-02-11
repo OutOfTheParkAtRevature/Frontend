@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '@auth0/auth0-spa-js';
+// import { User } from '@auth0/auth0-spa-js';
 import { element } from 'protractor';
 import { Team } from '../../../_models/Team';
 import { AccountService } from '../../../_services/account.service';
@@ -26,7 +26,7 @@ export class PlaysComponent implements OnInit
   imageString: string;
   teamId: number;
   myTeams: Team;
-  user: User;
+  // user: User;
   playbooks: any = {};
 
   ngOnInit(): void {
