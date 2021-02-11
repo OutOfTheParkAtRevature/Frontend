@@ -257,7 +257,10 @@ saveCanvas() {
 
   this.ImageString = this.canvasEl.toDataURL(); //1 indicates full quality
   this.model.ImageString  = this.ImageString;
+  this.model.DrawnBy = this.accountService.currentUser$.subscribe.name;
+  this.model.visible = false; //Awaits approval 
   console.log(this.model.ImageString);
+  console.log(this.model.DrawnBy);
   this.getPlayBook();
 
   console.log(this.model.PlaybookId);
