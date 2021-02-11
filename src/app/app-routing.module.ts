@@ -20,6 +20,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { GamesComponent } from './components/games/games.component';
 import { CreateGameComponent } from './components/games/create-game/create-game.component';
 import { EditGameComponent } from './components/games/edit-game/edit-game.component';
+import { AuthenticationComponent } from './components/authentication/authentication.component';
 //import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
 //import { EditEventsComponent } from './components/calendar/edit-events/edit-events.component';
 
@@ -45,7 +46,8 @@ const routes: Routes = [
   {path: 'equipment/details/:id', component: EquipmentRequestDetailsComponent},
   {path: 'equipment/edit/:id', component: EditEquipmentRequestComponent},
   {path: "equipment/create", component: CreateEquipmentRequestComponent},
-  {path: "messages", component: MessagesComponent}
+  {path: "messages", component: MessagesComponent},
+  {path: "auth", component: AuthenticationComponent},
 ];
 
 @NgModule({
