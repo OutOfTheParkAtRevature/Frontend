@@ -6,7 +6,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 
 /* Material Design components */
-import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 /* Bootstrap Components */
 import { NgbModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
@@ -51,6 +51,12 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BearerAuthInterceptorService } from './_services/bearer-auth-interceptor.service';
 
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +83,7 @@ import { BearerAuthInterceptorService } from './_services/bearer-auth-intercepto
     //EditEventsComponent,
   ],
   imports: [
+    MatSlideToggleModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
