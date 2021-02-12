@@ -1,0 +1,12 @@
+ul{
+    padding: .5em 0 0 .5em;
+}
+
+li{
+    list-style: none;
+    display: inline-block;
+    font-size: .8em;
+}
+li::before{
+    content: '\00a0 ';
+}

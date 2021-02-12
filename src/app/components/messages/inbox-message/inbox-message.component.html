@@ -1,5 +1,9 @@
 
-<p>{{recipientList.fullName}}</p>
+<ul>
+    <li *ngFor="let recipient of Inbox.recipients">
+        {{recipient.fullName}}
+    </li>
+</ul>
 
 
 

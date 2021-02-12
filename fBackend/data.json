@@ -99,7 +99,37 @@
       "losses": 1
     }
   ],
-  "userInboxes": [],
+  "userInboxes": [
+    {
+      "id": 1,
+      "inboxes": [
+        {
+          "id":1,
+          "userID": 1,
+          "recipients": [
+            {
+              "userID": 2,
+              "fullName": "haha I changed your name"
+            }
+          ],
+          "messageID": 1,
+          "isRead": false
+        },
+        {
+          "id":2,
+          "userID": 1,
+          "recipients": [
+            {
+              "userID": 3,
+              "fullName": "AssCoach"
+            }
+          ],
+          "messageID": 2,
+          "isRead": false
+        }
+      ]
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -112,7 +142,7 @@
       "roleName": "Player"
     },
     {
-      "fullname": "haha I changed your name",
+      "fullName": "haha I changed your name",
       "password": "Parent",
       "phonenumber": "222-2222",
       "email": "Parent@Game",

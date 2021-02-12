@@ -8,12 +8,12 @@
     <div class="modal-body">
       
         
-        <div class="form-check" *ngFor="let recipientList of users">
-            <input class="form-check-input" type="checkbox" name="{{recipientList.id}}" value="{{recipientList.id}}" 
-                id="flexCheckDefault_{{recipientList.id}}"
-                (change)="onChangeUser($event, recipientList)">
-            <label class="form-check-label" for="flexCheckDefault">
-              {{recipientList.fullName}}
+        <div class="form-check" *ngFor="let user of users">
+            <input class="form-check-input" type="checkbox" name="{{user.id}}" value="{{user.id}}" 
+                id="flexCheck_{{user.id}}"
+                (change)="onChangeUser($event, user)">
+            <label class="form-check-label" for="flexCheck_{{user.id}}">
+              {{user.fullName}}
             </label>
         </div>
         
@@ -36,25 +36,10 @@
     <div class="row">
         <div class="col-md-3">
             <div class="user-container">
-                <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ratione exercitationem sapiente ad debitis, ea numquam neque similique quia modi, obcaecati, aliquam eveniet. Illum autem temporibus officia alias enim natus. -->
-                <!-- <br> -->
-                <div class="inboxes" *ngFor="let recipientList of users" (click)="OpenInbox(recipientList)">
-                    <app-inbox-message [recipientList]="recipientList">
-                        <!-- send recipientList to inbox-message-Component -->
+                <div class="inboxes" *ngFor="let Inbox of userInbox" (click)="OpenInbox(Inbox)">
+                    <app-inbox-message [Inbox]="Inbox">
                     </app-inbox-message>
-
                 </div>
-                
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                
             </div>
         </div>
         <div class="col-md-9"> 
