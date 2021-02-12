@@ -1,47 +1,69 @@
 
-<div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-        <full-calendar [options]="calendarOptions"></full-calendar>
-    </div>
-    <div class="col-md-2"></div>
+<div class="container">
 
-</div>
-<br>
-<hr>
-<h3 class="text-center">Schedule Details</h3>
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Location</th>
-                <th scope="col">Start Time</th>
-                <th scope="col">End Time</th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let event of eventDTO; index as i">
-                <th scope="row">{{ i + 1 }}</th>
-                <td>
-                    {{ event.Name }}
-                </td>
-                <td>{{ event.Location }}</td>
-                <td>{{ event.StartTime | date }}</td>
-                <td>{{ event.EndTime | date }}</td>
-                <td>
-                    <button class="btn btn-success">Edit</button>
-                    <button class="btn btn-danger">Remove</button>
-                </td>
-            </tr>
-            </tbody>
-            </table>
-    
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <iframe 
+            src="https://calendar.google.com/calendar/embed?&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=b3V0b2Z0aGVwYXJrY2FsZW5kYXJAZ21haWwuY29t&amp;color=%23039BE5&amp;showTitle=0&amp;mode=MONTH&amp;showNav=1&amp;showPrint=0&amp;showCalendars=0" 
+            style="border-width:0" 
+            width="800" 
+            height="600" 
+            frameborder="0" 
+            scrolling="no"></iframe>
+        </div>
+        <div class="col-md-2"></div>
     </div>
-    <div class="col-md-1"></div>
+    
+
+    <br><br><br>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <full-calendar [options]="calendarOptions"></full-calendar>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <br>
+    <hr>
+    <div class="schedule-details">
+        <h3 class="text-center">Schedule Details</h3>
+        <div class="row">
+            <div class="col-md-12">
+                
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Start Time</th>
+                        <th scope="col">End Time</th>
+                        <th scope="col"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let event of eventDTO; index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>
+                            {{ event.Name }}
+                        </td>
+                        <td>{{ event.Location }}</td>
+                        <td>{{ event.StartTime | date }}</td>
+                        <td>{{ event.EndTime | date }}</td>
+                        <td>
+                            <div class="form-group">
+                                <button class="btn btn-success">Edit</button>
+                                <button class="btn btn-danger">Remove</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            
+            </div>
+        </div>
+    </div>
 </div>
+

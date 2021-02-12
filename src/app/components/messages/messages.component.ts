@@ -119,6 +119,8 @@ export class MessagesComponent implements OnInit {
   CreateNewInbox(){
     //Send to the service the new group.
 
+    console.log("Group created successfully");
+
     this.modalService.dismissAll('Close click') 
   }
 

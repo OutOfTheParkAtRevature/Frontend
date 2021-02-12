@@ -6,6 +6,7 @@ import { CalendarOptions } from '@fullcalendar/angular'; // useful for typecheck
 import { formatDate } from '@fullcalendar/angular';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import { Event } from 'src/app/_models/Event';
+import { CalendarService } from 'src/app/_services/calendar.service';
 
 @Component({
   selector: 'app-calendar',
@@ -14,42 +15,24 @@ import { Event } from 'src/app/_models/Event';
 })
 export class CalendarComponent implements OnInit {
 
-  eventDTO:Event[] = [
-    {
-      Name: "Event 1",
-      Location: "Random Address 1",
-      Message: "Some random message",
-      StartTime: new Date(2021,1,8),
-      EndTime: new Date(2021,1,8)
-    },
-    {
-      Name: "Event 2",
-      Location: "Random Address 2",
-      Message: "Some random message #2",
-      StartTime: new Date(2021,1,3),
-      EndTime: new Date(2021,1,3)
-    }
-  ]
+  eventDTO:Event[];
 
-  constructor() { }
+  constructor( private _calendar : CalendarService ) { }
 
   ngOnInit(): void {
 
-    let eventsFullCalendar = []
+    this._calendar.getCalendar().subscribe(
+      dataOnSuccess => {
+        console.log(dataOnSuccess);
+        this.eventDTO = dataOnSuccess.events;
 
-    this.eventDTO.forEach(element => {
-      eventsFullCalendar.push( { 
-        title: element.Name,
-        date: element.StartTime,
-        // start: element.StartTime,
-        // end: element.EndTime
-       });
-    });
+        this.displayElementsIntoCalendar();
 
-    // { title: this.eventDTO, date: '2021-02-03' },
-    // { title: 'event 2', date: '2021-02-06' }, 
-
-    this.calendarOptions.events = eventsFullCalendar;  
+      },
+      dataOnError => {
+        console.log("Error ", dataOnError);
+      }
+    );
   }
 
 
@@ -80,8 +63,9 @@ export class CalendarComponent implements OnInit {
     }
   };
 
+  
 
-  handleDateClick(arg) {
+  handleDateClick(arg): void {
     alert('date click! ' + arg.dateStr)
 
     console.log(arg);
@@ -92,6 +76,22 @@ export class CalendarComponent implements OnInit {
     // });
     
     // console.log(str);
+  }
+
+  ///Display the events to FullCalendar.io
+  displayElementsIntoCalendar(): void {
+    let eventsFullCalendar = []
+
+    this.eventDTO.forEach(element => {
+      eventsFullCalendar.push( { 
+        title: element.Name,
+        date: element.StartTime,
+        // start: element.StartTime,
+        // end: element.EndTime
+       });
+    });
+
+    this.calendarOptions.events = eventsFullCalendar;  
   }
 
 

@@ -85,15 +85,14 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     //EditEventsComponent,
   ],
   imports: [
-    MatSlideToggleModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    NgbModule,
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FullCalendarModule,
-    NgbModule,
-    // NgbModal
+    MatSlideToggleModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptorService, multi:true },

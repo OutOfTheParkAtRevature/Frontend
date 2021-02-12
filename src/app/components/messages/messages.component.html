@@ -1,7 +1,7 @@
 <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Create new Group</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -60,6 +60,10 @@
         <div class="col-md-9"> 
             <div class="chat-container">
                 <div class="chat-message" *ngFor="let conversation of allMessages">
+                    <!-- Conditional Binding: 
+                    [style.color]="eachOutlet.dollarValue < 0 ? 'red' : null"
+                    [ngClass]="{'nameOfClass': condition, "nameOfClass2": condition}"
+                    -->
 
                 </div>
                 <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorum debitis eius doloribus? Impedit voluptatibus ipsum nisi recusandae minus nostrum autem, inventore odit porro ab. Vitae id reprehenderit alias! Illum. -->
