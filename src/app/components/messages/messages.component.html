@@ -40,19 +40,54 @@
                     <app-inbox-message [Inbox]="Inbox">
                     </app-inbox-message>
                 </div>
+
+                <!-- <div class="inboxes">
+                    <p>some text</p>
+                </div>
+                <div class="inboxes">
+                    <p>some text</p>
+                </div>
+                <div class="inboxes">
+                    <p>some text</p>
+                </div>
+                <div class="inboxes">
+                    <p>some text</p>
+                </div>
+
+                <div class="inboxes">
+                    <p>some text</p>
+                </div>
+                <div class="inboxes">
+                    <p>some text</p>
+                </div>
+                <div class="inboxes">
+                    <p>some text</p>
+                </div>
+                <div class="inboxes">
+                    <p>some text</p>
+                </div>
+                <div class="inboxes">
+                    <p>some text</p>
+                </div>
+                <div class="inboxes">
+                    <p>some text</p>
+                </div> -->
             </div>
         </div>
         <div class="col-md-9"> 
             <div class="chat-container">
-                <div class="chat-message" *ngFor="let conversation of allMessages">
+                <div class="chat-message" *ngFor="let conversation of allMessages" >
                     <!-- Conditional Binding: 
                     [style.color]="eachOutlet.dollarValue < 0 ? 'red' : null"
                     [ngClass]="{'nameOfClass': condition, "nameOfClass2": condition}"
                     -->
+                    <div class="chat-content" [class.user-response]="conversation.senderId == 1">
+                        <span > {{conversation.body}} </span>
+                    </div>
 
                 </div>
                 <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorum debitis eius doloribus? Impedit voluptatibus ipsum nisi recusandae minus nostrum autem, inventore odit porro ab. Vitae id reprehenderit alias! Illum. -->
-                <div class="chat-message">
+                <!-- <div class="chat-message">
                     <span>Some text</span>
                 </div>
                 <div class="chat-message">
@@ -87,16 +122,15 @@
                 </div>
                 <div class="chat-message">
                     <span>Some text</span>
-                </div>
+                </div> -->
             </div>
-            <div class="chat-group-information">
-                <span>
-                    Some group information in here
-                </span>
+            <div class="chat-group-information" *ngIf="InboxDescription">
+                <li *ngFor="let inboxUsers of InboxDescription.recipients" > {{inboxUsers.fullName}} </li>
             </div>
             <div class="chat-textarea-submit">
                 <textarea name="message" id="txtMessage" class="form-control"></textarea>
-                <button class="btn btn-primary">Send message</button>
+                <button class="btn btn-primary" >Send message</button>
+                <!-- (click)="SendMessage()" -->
             </div>
 
         </div>

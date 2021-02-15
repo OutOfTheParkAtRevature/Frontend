@@ -26,7 +26,7 @@ div h5{
 
 
 .user-container{
-    height: 70vh;
+    height: 65vh;
     overflow-y:auto;
 }
 
@@ -35,6 +35,7 @@ div h5{
     background-color: seashell;
     padding-top: .5em;
     overflow-y: auto;
+    /* display: none; */
 }
 
 .chat-group-information{
@@ -65,16 +66,33 @@ div h5{
 
 .chat-message{
     padding-left: 1.5em;
-    border-radius: 2em;
-    background-color: darkgray;
     margin: .7em .5em;
+
 }
 
-.chat-message:nth-child(even)
+/* .chat-message:nth-child(even)
 {
     text-align: right;
     padding-left: 0;
     padding-right: 1.5em;
+} */
+
+.chat-content{
+    margin-top: .25em;
+    background-color: darkgray; 
+    border-radius: 2em;
+    padding-left: 1em;
+    width: 80%;
+    float: left;
+}
+
+.user-response {
+    /* background-color: chocolate; */
+    text-align: right;
+    padding-left: 0;
+    padding-right: 1.5em;
+    background-color: rgb(170, 199, 253);
+    float: right;
 }
 
 .chat-textarea-submit button{
@@ -87,4 +105,14 @@ div h5{
 .modal-body{
     max-height: 40vh;
     overflow-y: auto;
+}
+
+li{
+    list-style: none;
+    display: inline-block;
+    font-size: .8em;
+}
+
+li:not(:empty):not(:last-child)::after{
+    content: ', ';
 }
