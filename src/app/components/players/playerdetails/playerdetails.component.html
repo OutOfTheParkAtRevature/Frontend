@@ -1,0 +1,60 @@
+<div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+    <ng-container *ngIf="loggedInUser && loggedInUser.teamID == user.teamID">
+    <h2 id="playerID">User: #{{user.id}}</h2>
+    <a *ngIf="loggedInUser.id == user.id || userService.isAssCoachAuthorized(loggedInUser)" [routerLink]="['/players/edit/', user.id]">Edit</a>
+    <br>
+    <!--<p *ngIf="loggedInUser.roleID == 1"><a [routerLink]="['/players/edit/', user.id]">Admin Edit</a></p>-->
+    <a id="backToUsers" routerLink="/players">Back to Users</a>
+    <table class="table table-striped">
+      <caption></caption>
+        <thead>
+          <tr>
+            <th scope="col">Detail</th>
+            <th scope="col">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>ID</td>
+            <td>{{user.id}}</td>
+          </tr>
+          <tr>
+            <td>Username</td>
+            <td>{{user.userName}}</td>
+          </tr>
+          <tr>
+            <td>Full Name</td>
+            <td>{{user.fullName}}</td>
+          </tr>
+          <tr>
+            <td>Team</td>
+            <td>{{user?.team?.name}}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{user.email}}</td>
+          </tr>
+          <tr>
+            <td>Phone Number</td>
+            <td>{{user.phoneNumber}}</td>
+          </tr>
+          <tr>
+            <td>Role</td>
+            <td>{{user.roleName}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+
+    <!-- If the user is not authorized to view  -->
+    <ng-container *ngIf="loggedInUser.teamID != user.teamID">
+      <h2 class="text-center">Not Authorized</h2>
+      <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
+    </ng-container>
+</div>
+
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+  <app-home></app-home>
+</div>

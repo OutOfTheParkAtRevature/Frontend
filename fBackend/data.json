@@ -1,0 +1,146 @@
+{
+  "equipments": [
+    {
+      "id": 1,
+      "Description": "Jersey"
+    },
+    {
+      "id": 2,
+      "Description": "Shoulderpads"
+    },
+    {
+      "id": 3,
+      "Description": "Helmet"
+    }
+  ],
+  "equipmentRequests": [],
+  "events": [],
+  "games": [
+    {
+      "id": 1,
+      "homeTeamId": 1,
+      "awayTeamId": 2,
+      "gameDate": "1-1-2000",
+      "winningTeam": 1,
+      "homeScore": 2,
+      "awayScore": 0
+    }
+  ],
+  "messages": [],
+  "playbooks": [
+    {
+      "id": 1,
+      "TeamId": 1
+    }
+  ],
+  "plays": [],
+  "recipientLists": [
+    {
+      "id": 1,
+      "RecipientId": 1
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "roleName": "Player"
+    },
+    {
+      "id": 2,
+      "roleName": "Parent"
+    },
+    {
+      "id": 3,
+      "roleName": "Assistant Coach"
+    },
+    {
+      "id": 4,
+      "roleName": "Head Coach"
+    },
+    {
+      "id": 5,
+      "roleName": "League Manager"
+    },
+    {
+      "id": 6,
+      "roleName": "Admin"
+    }
+  ],
+  "teams": [
+    {
+      "id": 1,
+      "name": "Barcelona",
+      "wins": 1,
+      "losses": 0
+    },
+    {
+      "id": 2,
+      "name": "Arsenal",
+      "wins": 0,
+      "losses": 1
+    }
+  ],
+  "userInboxes": [],
+  "users": [
+    {
+      "id": 1,
+      "userName": "Player",
+      "fullName": "Player",
+      "phoneNumber": "111-1111",
+      "email": "Player@Game",
+      "password": "Player",
+      "teamID": 1,
+      "roleName": "Player"
+    },
+    {
+      "fullname": "haha I changed your name",
+      "password": "Parent",
+      "phonenumber": "222-2222",
+      "email": "Parent@Game",
+      "id": 2,
+      "userName": "Parent",
+      "teamID": 1,
+      "roleName": "Parent"
+    },
+    {
+      "id": 3,
+      "userName": "AssCoach",
+      "fullName": "AssCoach",
+      "phoneNumber": "333-3333",
+      "email": "AssCoach@Game",
+      "password": "AssCoach",
+      "teamID": 1,
+      "roleName": "Assistant Coach"
+    },
+    {
+      "id": 4,
+      "userName": "Coach",
+      "fullName": "Coach",
+      "phoneNumber": "444-4444",
+      "email": "Coach@Game",
+      "password": "Coach",
+      "teamID": 1,
+      "roleName": "Head Coach"
+    },
+    {
+      "id": 5,
+      "userName": "LeagueAdmin",
+      "fullName": "LeagueAdmin",
+      "phoneNumber": "555-5555",
+      "email": "LeagueAdmin@Game",
+      "password": "LeagueAdmin",
+      "teamID": 1,
+      "roleName": "League Manager"
+    },
+    {
+      "id": 6,
+      "userName": "AppAdmin",
+      "fullName": "AppAdmin",
+      "phoneNumber": "666-6666",
+      "email": "AppAdmin@Game",
+      "password": "AppAdmin",
+      "teamID": 1,
+      "roleName": "Admin"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+<div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+    <ng-container *ngIf="userService.isLeagueAdminAuthorized(loggedInUser)"> 
+    <h3 id="createGameTitle" id="editGameTitle">Edit Game</h3>   
+    <a routerLink="/games" id="backToCreateGame">Back to Games</a><br>   
+    <form #editGameForm="ngForm" (ngSubmit)="editGame()" id="editGame">
+        <label for="HomeTeam">Home Team</label>
+        <input name="HomeTeam" class="form-control me-2" type="text" value="{{homeTeam?.name}}" disabled>
+        <br>
+        <label for="HomeTeamScore">Home Team Score</label>
+        <input name="HomeTeamScore" [(ngModel)]="editedGame.homeScore" class="form-control me-2" type="number" min="0" value="{{game.homeScore}}}">
+        <br>
+        <label for="HomeTeam">Away Team</label>
+        <input name="HomeTeam" class="form-control me-2" type="text" value="{{awayTeam?.name}}"disabled>
+        <br>
+        <label for="HomeTeamScore">Away Team Score</label>
+        <input name="HomeTeamScore" [(ngModel)]="editedGame.awayScore" class="form-control me-2" type="number" min="0" value="{{game.awayScore}}}" >
+        <br>
+        <label for="HomeTeamScore">Highlight</label>
+        <input name="HomeTeamScore" [(ngModel)]="editedGame.statistic1" class="form-control me-2" type="text" >
+        <br>
+        <label for="HomeTeamScore">Highlight</label>
+        <input name="HomeTeamScore" [(ngModel)]="editedGame.statistic2" class="form-control me-2" type="text" >
+        <br>
+        <label for="HomeTeamScore">Highlight</label>
+        <input name="HomeTeamScore" [(ngModel)]="editedGame.statistic3" class="form-control me-2" type="text" >
+        <br>
+        <button type="submit" class="btn btn-outline-success" id="editGameButton">Submit</button>
+    </form>
+    </ng-container>
+    <ng-container *ngIf="!userService.isLeagueAdminAuthorized(loggedInUser)">
+        <h2 class="text-center">Not Authorized</h2>
+        <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
+      </ng-container>
+</div>
+
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
+</div>

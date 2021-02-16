@@ -1,0 +1,26 @@
+#requestTitle {
+    text-align: center;
+}
+
+#backToRequest {
+    margin-left: 35%;
+}
+
+#messageLabel {
+    margin-left: 35%;
+}
+
+#messageInput {
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#dropdownLabel {
+    margin-left: 35%;
+}
+
+
+#createRequestButton {
+    margin-left: 46%;
+}

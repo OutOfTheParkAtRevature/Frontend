@@ -1,0 +1,90 @@
+/*Scroll Funcitonality*/
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 3em;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+div h5{
+    display: inline-block;
+    margin-right: 1em;
+}
+
+
+.user-container{
+    height: 70vh;
+    overflow-y:auto;
+}
+
+.chat-container{
+    height: 48vh;
+    background-color: seashell;
+    padding-top: .5em;
+    overflow-y: auto;
+}
+
+.chat-group-information{
+    height: 7vh;
+    overflow-y: auto;
+}
+
+.chat-textarea-submit{
+    height: 13vh;
+}
+
+.chat-textarea-submit textarea{
+    display: inline;
+    width: 85%;
+    max-height: 85%;
+    min-height: 65%;
+}
+
+.inboxes{
+    height: 4em;
+    background-color: rgb(219, 182, 134);
+    border: 1px  solid rgb(247, 227, 201);
+}
+
+.inboxes:hover{
+    background-color: rgb(165, 139, 106);
+}
+
+.chat-message{
+    padding-left: 1.5em;
+    border-radius: 2em;
+    background-color: darkgray;
+    margin: .7em .5em;
+}
+
+.chat-message:nth-child(even)
+{
+    text-align: right;
+    padding-left: 0;
+    padding-right: 1.5em;
+}
+
+.chat-textarea-submit button{
+    display: inline-block;
+    width: 15%;
+    position:absolute;
+}
+
+
+.modal-body{
+    max-height: 40vh;
+    overflow-y: auto;
+}
