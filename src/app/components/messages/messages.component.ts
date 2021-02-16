@@ -27,6 +27,7 @@ export class MessagesComponent implements OnInit {
   userMessage: string = "";
 
   @ViewChild('txtUserMessage') txtUserMessage: ElementRef;
+  @ViewChild('divChatMessage') divChatMessage: ElementRef;
 
   
   userLoggedIn:any;
@@ -240,7 +241,10 @@ export class MessagesComponent implements OnInit {
     myMessage.senderId = "1";
     
     this.allMessages.push(myMessage);
-  
+    
+    //Some times this doesn't go to the last element inserted.
+    this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
+
     //Clear the message
     this.userMessage = "";
     

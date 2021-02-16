@@ -75,7 +75,7 @@
             </div>
         </div>
         <div class="col-md-9" *ngIf="InboxDescription"> 
-            <div class="chat-container">
+            <div class="chat-container" #divChatMessage >
                 <div class="chat-message" *ngFor="let conversation of allMessages" >
                     <!-- Conditional Binding: 
                     [style.color]="eachOutlet.dollarValue < 0 ? 'red' : null"
