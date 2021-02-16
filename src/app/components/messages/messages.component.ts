@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { RecipientList } from 'src/app/_models/RecipientList';
 import { User } from 'src/app/_models/User';
 import { UserInbox } from 'src/app/_models/UserInbox';
@@ -18,26 +18,27 @@ import { Message } from 'src/app/_models/Message';
 })
 export class MessagesComponent implements OnInit {
 
-  userLoggedIn:any;
   users:User[];
   userInbox: Array<Inbox> = [];
   isNewConversation: boolean = false;
   InboxDescription: Inbox;
-
   userNewGroup = { "recipients": [] };
+  allMessages: Array<Message> = [];
+  userMessage: string = "";
 
+  @ViewChild('txtUserMessage') txtUserMessage: ElementRef;
+
+  
+  userLoggedIn:any;
   messagesSent:any[] = [];
   messagesRecieved:any[] = [];
 
-  allMessages: Array<Message> = [];
-
-  message:any = {}
 
   messagesArr: any;
 
   selectedUserId: string;
 
-  constructor( private _message: MessageService, private _users: UserService, private modalService: NgbModal, config: NgbModalConfig,) 
+  constructor( private _message: MessageService, private _users: UserService, private modalService: NgbModal, config: NgbModalConfig) 
   {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -70,6 +71,7 @@ export class MessagesComponent implements OnInit {
 }
 
   getInboxFromUser() {
+
     this._message.getMessages(1).subscribe( UserInboxes => {
       console.log(UserInboxes); 
 
@@ -122,6 +124,8 @@ export class MessagesComponent implements OnInit {
 
     this.allMessages.push(Message1);
     this.allMessages.push(Message2);
+
+    this.userMessage = "";
 
   }
 
@@ -207,9 +211,41 @@ export class MessagesComponent implements OnInit {
     //Post service
     //refresh array
     this.userInbox.push(newGroup);
+
+    this.OpenInbox(newGroup);
     
-    this.userNewGroup.recipients = [];
-    this.modalService.dismissAll('Close click') 
+    this.CloseModal();
+
+  }
+
+  onKeyEnter( event: KeyboardEvent ):void {
+    if (event.key === "Enter")
+    {
+      event.preventDefault();
+      console.log(event);
+
+      this.UploadMessage();
+    }
+  }
+  
+  UploadMessage(): void
+  {
+    //Upload message...
+  
+    //Display the message 
+    let myMessage: Message = new Message ();
+    myMessage.body = this.userMessage;
+    myMessage.date = new Date(); 
+    myMessage.senderName = "Player" // Get user from user logged in
+    myMessage.senderId = "1";
+    
+    this.allMessages.push(myMessage);
+  
+    //Clear the message
+    this.userMessage = "";
+    
+    // this.txtUserMessage.nati
+    this.txtUserMessage.nativeElement.focus();
   }
 
 }

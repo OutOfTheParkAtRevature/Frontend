@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 //Events from Calendar
 import { Calendar } from '@fullcalendar/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
@@ -7,6 +6,7 @@ import { formatDate } from '@fullcalendar/angular';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import { Event } from 'src/app/_models/Event';
 import { CalendarService } from 'src/app/_services/calendar.service';
+import { NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-calendar',
@@ -16,8 +16,13 @@ import { CalendarService } from 'src/app/_services/calendar.service';
 export class CalendarComponent implements OnInit {
 
   eventDTO:Event[];
+  selectedEvent: Event;
+  removeEvent: boolean;
 
-  constructor( private _calendar : CalendarService ) { }
+  constructor( private _calendar : CalendarService, private modalService: NgbModal, config: NgbModalConfig ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+   }
 
   ngOnInit(): void {
 
@@ -94,5 +99,27 @@ export class CalendarComponent implements OnInit {
     this.calendarOptions.events = eventsFullCalendar;  
   }
 
+  EditDialog(content, event : Event) :void {
+    this.selectedEvent = event;
+    this.removeEvent = false;
+    this.modalService.open(content);
+  }
+
+  RemoveEvent():void {
+    //Do some remove event logic
+
+    this.CloseModal();
+  }
+
+  DeleteDialog(content, event : Event) :void {
+    this.selectedEvent = event;
+    this.modalService.open(content);
+    this.removeEvent = true;
+  }
+
+  CloseModal () {
+    this.selectedEvent = new Event();
+    this.modalService.dismissAll('Close click') 
+  }
 
 }

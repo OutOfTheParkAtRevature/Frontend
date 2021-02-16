@@ -74,7 +74,7 @@
                 </div> -->
             </div>
         </div>
-        <div class="col-md-9"> 
+        <div class="col-md-9" *ngIf="InboxDescription"> 
             <div class="chat-container">
                 <div class="chat-message" *ngFor="let conversation of allMessages" >
                     <!-- Conditional Binding: 
@@ -128,8 +128,14 @@
                 <li *ngFor="let inboxUsers of InboxDescription.recipients" > {{inboxUsers.fullName}} </li>
             </div>
             <div class="chat-textarea-submit">
-                <textarea name="message" id="txtMessage" class="form-control"></textarea>
-                <button class="btn btn-primary" >Send message</button>
+                <textarea 
+                    name="message" 
+                    id="txtMessage" 
+                    class="form-control" 
+                    (keydown)="onKeyEnter($event)" 
+                    [(ngModel)]="userMessage"
+                    #txtUserMessage></textarea>
+                <button class="btn btn-primary" (click)="UploadMessage()">Send message</button>
                 <!-- (click)="SendMessage()" -->
             </div>
 

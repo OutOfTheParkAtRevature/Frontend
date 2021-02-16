@@ -81,6 +81,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CreateGameComponent,
     EditGameComponent,
     InboxMessageComponent,
+    AuthenticationComponent,
     //CreateEventComponent,
     //EditEventsComponent,
   ],
