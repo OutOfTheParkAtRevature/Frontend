@@ -1,18 +1,16 @@
 
-import { CONTEXT_NAME } from '@angular/compiler/src/render3/view/util';
 import {
   Component, Input, ElementRef, AfterViewInit,OnInit, ViewChild
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { fromEvent } from 'rxjs';
 import { switchMap, takeUntil, pairwise, take } from 'rxjs/operators'
-//import { PlayerdetailsComponent } from '../../players/playerdetails/playerdetails.component';
 import { AccountService } from '../../_services/account.service';
 import { DrawService } from '../../_services/draw.service';
 import { UserService } from '../../_services/user.service';
-//import { play } from './play';
 import { Play } from '../../_models/Play';
 import { Playbook } from 'src/app/_models/Playbook';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -28,10 +26,11 @@ export class DrawComponent implements AfterViewInit {
   @Input() public width = 600;
   @Input() public height = 600;
 
-  constructor(private drawService: DrawService, private userService: UserService, public accountService: AccountService){}
+  constructor(private drawService: DrawService, private activeParms: ActivatedRoute, public accountService: AccountService){}
   model = new Play;
-  playbooks: Playbook; //playbooks: any = [];
-  playBookList: Playbook[]; //playbooks: any = [];
+  chosenPlaybook: number;
+  playbooks: any = {};
+  playBookList: Playbook[] = [];
   Eraser: string = 'white';
   isMakingCircle: boolean;
   isMakingLines: boolean;
@@ -54,6 +53,8 @@ export class DrawComponent implements AfterViewInit {
   }
 
   public ngOnInit() {
+    this.chosenPlaybook =+ this.activeParms.snapshot.paramMap.get("id");
+    console.log(this.chosenPlaybook);
     this.getTeamPlayBook();
     this.getPlaybooks();
   }
@@ -257,13 +258,17 @@ saveCanvas() {
 
   this.ImageString = this.canvasEl.toDataURL(); //1 indicates full quality
   this.model.ImageString  = this.ImageString;
-  this.model.DrawnBy = this.accountService.currentUser$.subscribe.name;
+  this.accountService.currentUser$.subscribe(user => {
+    this.model.DrawnBy = user.fullName;
+  })
   this.model.visible = false; //Awaits approval 
-  console.log(this.model.ImageString);
+  console.log(this.model.Name);
   console.log(this.model.DrawnBy);
-  this.getPlayBook();
 
+  this.model.PlaybookId = this.chosenPlaybook
+  //this.getPlayBook();
   console.log(this.model.PlaybookId);
+
   this.drawService.createDrawing(this.model).subscribe(response => {
     console.log(response);
   }, err => {
@@ -301,6 +306,6 @@ getPlayBook() {
 } 
 
 }
-
+//Have Name of selected playbook appear/ In plays Give option to select new playbook
 
 

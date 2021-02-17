@@ -8,7 +8,7 @@ export class Play
     public Name: string;
     public Description: string;
     public ImageString: string;
-    public ImageByte: Byte[];
+    //public ImageByte: Byte[];
     public DrawnBy: string;     //user Id
     public visible: boolean;     //Approval
 }

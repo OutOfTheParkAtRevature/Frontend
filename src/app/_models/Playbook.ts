@@ -8,7 +8,7 @@ export class Playbook
     name: string;
 
     constructor(id: number)
-    {
-        this.teamId = id;
-    }
+   {
+     this.teamId = id;
+   }
 }

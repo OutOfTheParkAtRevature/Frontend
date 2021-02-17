@@ -2,8 +2,15 @@
   <h2 id="playsTitle">View Plays</h2>
   <br>
   <div class="parent flex-parent">
-    <div class="flex-child" style="text-align: right"><a class="nav-link" routerLink="/draw">Create Play</a></div>
-  </div>
+    <div class="flex-child" style="text-align: right"><a class="nav-link" [routerLink]="['/draw',chosenplaybookId]">Create Play</a></div>
+  </div> 
+
+  <select (change)="selectPlayBook($event)"> 
+    <option value="0">--PlayBooks--</option>
+    <option  *ngFor="let booklist of TeamPlaybookList" value={{booklist.name}}>
+      {{booklist.name}}
+    </option>
+    </select>
   <table class="table table-striped" style="text-align: center;">
 
   <caption></caption>
@@ -17,10 +24,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let plays of play">
-        <td>{{plays.name}}</td>
-        <td>{{plays.description}}</td>
-        <td><img width="400" height="400" src="{{plays.imageString}}" alt="Image not found"/></td>
-        <td style="vertical-align: middle;"><button class="btn btn-danger" (click)="deletePlay(plays.playID)">Delete</button></td>
+        <td>{{plays.Name}}</td>
+        <td>{{plays.Description}}</td>
+        <td><img width="400" height="400" src="{{plays.ImageString}}" alt="Image not found"/></td>
+        <td style="vertical-align: middle;"><button class="btn btn-danger" (click)="deletePlay(plays.id)">Delete</button></td>
       </tr>
     </tbody>
   </table>
