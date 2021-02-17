@@ -1,7 +1,7 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
     <ng-container *ngIf="loggedInUser && loggedInUser.teamID == user.teamID">
     <h2 id="playerID">User: #{{user.id}}</h2>
-    <a *ngIf="loggedInUser.id == user.id || userService.isAssCoachAuthorized(loggedInUser)" [routerLink]="['/players/edit/', user.id]">Edit</a>
+    <a *ngIf="loggedInUser.id == user.id || accountService.isAssCoachAuthorized(loggedInUser)" [routerLink]="['/players/edit/', user.id]">Edit</a>
     <br>
     <!--<p *ngIf="loggedInUser.roleID == 1"><a [routerLink]="['/players/edit/', user.id]">Admin Edit</a></p>-->
     <a id="backToUsers" routerLink="/players">Back to Users</a>

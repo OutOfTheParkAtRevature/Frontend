@@ -5,16 +5,17 @@ export class Article
     public id: number;
     public title: string;
     public body: string;
-    public team: string;
-    public league: boolean;
+    //public team: string;
+    //public league: boolean;
     public visible: boolean;
     public date: Date;
-    public ImageByte: Byte[];
+    //public ImageByte: Byte[];
     public isPinned: boolean;
 }
 
-export class TeamArticle
+export class TeamArticle extends Article
 {
+    /*
     public id: number;
     public title: string;
     public body: string;
@@ -22,14 +23,18 @@ export class TeamArticle
     public isVisible: boolean;
     public date: Date;
     public isPinned: boolean;
+    */
+   public teamId: number;
 }
 
-export class LeagueArticle
+export class LeagueArticle extends Article
 {
+    /*
     public id: number;
     public title: string;
     public body: string;
     public isVisible: boolean;
     public date: Date;
     public isPinned: boolean;
+    */
 }

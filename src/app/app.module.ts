@@ -41,6 +41,8 @@ import { EditGameComponent } from './components/games/edit-game/edit-game.compon
 //import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
 //import { EditEventsComponent } from './components/calendar/edit-events/edit-events.component';
 import { TeamNewsComponent } from './components/news/team-news/team-news.component';
+import { EditArticleComponent } from './components/news/edit-article/edit-article.component';
+import { CreateArticleComponent } from './components/news/create-article/create-article.component';
 import { AccountService } from './_services/account.service';
 import { CalendarService } from './_services/calendar.service';
 import { DrawService } from './_services/draw.service';
@@ -84,6 +86,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     //CreateEventComponent,
     //EditEventsComponent,
     TeamNewsComponent,
+    EditArticleComponent,
+    CreateArticleComponent
   ],
   imports: [
     MatSlideToggleModule,

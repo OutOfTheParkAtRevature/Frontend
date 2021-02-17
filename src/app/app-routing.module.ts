@@ -24,6 +24,8 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 //import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
 //import { EditEventsComponent } from './components/calendar/edit-events/edit-events.component';
 import { TeamNewsComponent } from './components/news/team-news/team-news.component';
+import { EditArticleComponent } from './components/news/edit-article/edit-article.component';
+import { CreateArticleComponent } from './components/news/create-article/create-article.component';
 
 
 
@@ -49,6 +51,8 @@ const routes: Routes = [
   {path: "equipment/create", component: CreateEquipmentRequestComponent},
   {path: "messages", component: MessagesComponent},
   {path: "teamNews", component: TeamNewsComponent},
+  {path: "article/edit/:id/:isTeam", component: EditArticleComponent},
+  {path: "article/create/:isTeam", component: CreateArticleComponent},
   {path: "auth", component: AuthenticationComponent},
 ];
 

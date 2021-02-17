@@ -22,13 +22,19 @@ export class TeamNewsComponent implements OnInit {
     this.getArticles();
   }
 
-  getArticles() {
+  getArticles(): void {
     this.newsService.getTeamArticles().subscribe(articles => {
       this.articles = articles;
+      this.sortArticles();
       console.log(articles);
     }, err => {
       console.log(err);
     })
+  }
+
+  sortArticles(): void
+  {
+    //Put pinned article on top
   }
 
 

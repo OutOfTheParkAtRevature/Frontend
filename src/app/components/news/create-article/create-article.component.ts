@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '@auth0/auth0-spa-js';
 import { AccountService } from '../../../_services/account.service';
 import { NewsService } from '../../../_services/news.service';
-import { Article } from '../../../_models/Article';
+import { Article, LeagueArticle, TeamArticle } from '../../../_models/Article';
 import { Team } from '../../../_models/Team';
 
 @Component({
@@ -13,51 +13,41 @@ import { Team } from '../../../_models/Team';
 })
 export class CreateArticleComponent implements OnInit {
 
-  constructor(public accountService: AccountService, private newsService: NewsService, private router: Router) { }
+  constructor(public accountService: AccountService, private newsService: NewsService, private route: ActivatedRoute, private router: Router) { }
 
-  //newGame:any = {};
-  //teamList:any = [];
-  //userLoggedIn:any;
-  newGame: Game;
+  newArticle: Article | TeamArticle | LeagueArticle;
+  isTeam: boolean = true;
   teamList: Array<Team> = new Array<Team>();
   userLoggedIn: User;
 
+
+
+    //SET LOGINUSER TEAM TO PLACEHOLDER IN HTML
+
   ngOnInit(): void {
-    this.getTeamList();
-    this.getLoggedInUser();
+    this.route.params.subscribe(params => {
+      if(params.isTeam == 0)    this.isTeam = false;
+    });
   }
 
-  createGame() {
-    this.getAwayTeam();
-    this.getHomeTeam();
-
-    if (this.userLoggedIn.teamID == this.newGame.homeTeamId || this.userLoggedIn.teamID == this.newGame.awayTeamId) {
-      this.gamesService.createGame(this.newGame).subscribe(game => {
+  createArticle() 
+  {
+    if (this.isTeam) {
+      this.newsService.createTeamArticle(this.newArticle).subscribe(game => {
         console.log(game);
-        this.router.navigate(['/games'])
+        this.router.navigate(['/teamNews'])
       }, err => {
         console.log(err);
       });
-    } else {
-      this.teamList.forEach(team => {
-        if (team.teamID == this.userLoggedIn.teamID) {
-          let teamName = team.name;
-          alert(`Created game must include ${teamName}`);
-        }
-      });
-      
-    }
-
-    
-  }
-
-  getTeamList() {
-    this.gamesService.getTeams().subscribe(teams => {
-      this.teamList = teams;
-      console.log(teams);
-    }, err => {
-      console.log(err);
-    });
+    } 
+    else {
+        this.newsService.createLeagueArticle(this.newArticle).subscribe(game => {
+          console.log(game);
+          this.router.navigate(['/leagueNews'])
+        }, err => {
+          console.log(err);
+        });
+    } 
   }
 
   getLoggedInUser() {

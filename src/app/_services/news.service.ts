@@ -76,16 +76,19 @@ export class NewsService {
     return this.http.get<TeamArticle>(this.baseUrl + 'teamArticles/' + id);
   }
 
-  createTeamArticle(teamArticle: TeamArticle): Observable<TeamArticle>
+  createTeamArticle(teamArticle: any): Observable<TeamArticle>
   {
     //return this.http.post(this.baseUrl + 'teamArticles', teamArticle);
-    return this.http.post<TeamArticle>(this.baseUrl + 'teamArticles', teamArticle);
+    let art: TeamArticle = teamArticle;
+    return this.http.post<TeamArticle>(this.baseUrl + 'teamArticles', art);
   }
 
-  editTeamArticle(teamArticle: TeamArticle, id: number): Observable<TeamArticle>
+  //editTeamArticle(teamArticle: TeamArticle, id: number): Observable<TeamArticle>
+  editTeamArticle(teamArticle: any, id: number): Observable<TeamArticle>
   {
     //return this.http.put(this.baseUrl + `teamArticles/edit/${id}`, teamArticle);
-    return this.http.put<TeamArticle>(this.baseUrl + 'teamArticles/' + id, teamArticle);
+    let art: TeamArticle = teamArticle;
+    return this.http.put<TeamArticle>(this.baseUrl + 'teamArticles/' + id, art);
   }
 
 }

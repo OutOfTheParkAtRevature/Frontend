@@ -2,9 +2,7 @@ import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../../../_services/account.service';
 import { NewsService } from '../../../_services/news.service';
-import { Article } from '../../../_models/article';
-import { TeamArticle } from '../../../_models/article';
-import { LeagueArticle } from '../../../_models/article';
+import { Article, TeamArticle, LeagueArticle } from '../../../_models/Article';
 import { Team } from '../../../_models/Team';
 
 @Component({
@@ -23,13 +21,20 @@ export class EditArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.articleId = params.Id;
-      if(params.isTeam == 0)    this.isTeam = false;
+      this.articleId = params.id;
+      if(params.isTeam == 0)
+      {
+          this.isTeam = false;
+          this.editedArticle = new TeamArticle();
+      }
+      else
+          this.editedArticle = new LeagueArticle();
     });
-    this.getGame();
+    this.getArticle();
   }
 
-  getGame() {
+  getArticle(): void 
+  {
     if(this.isTeam)
     {
         this.newsService.getTeamArticle(this.articleId).subscribe
@@ -56,8 +61,9 @@ export class EditArticleComponent implements OnInit {
     }
   }
 
-  editGame() 
+  editArticle() : void
   {
+      this.editedArticle.date = new Date();
     if(this.isTeam)
     {
         this.newsService.editTeamArticle(this.editedArticle, this.articleId).subscribe
