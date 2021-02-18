@@ -12,7 +12,18 @@
       "body": "NEW BODY WITH A LOT OF TEXT",
       "teamId": 1,
       "isVisible": true,
-      "id": 1
+      "id": 1,
+      "Pinned": true,
+      "date": "2021-02-18T17:35:08.143Z"
+    },
+    {
+      "title": "#2",
+      "body": "THIS ARTICLE IS NOT PINNED",
+      "teamId": 1,
+      "isVisible": true,
+      "Pinned": false,
+      "id": 2,
+      "date": "2021-02-18T17:46:58.754Z"
     }
   ],
   "leagueArticles": [
@@ -21,8 +32,21 @@
       "title": "TITLE",
       "body": "BODY",
       "isVisible": true,
-      "date": "1-1-1111",
-      "isPinned": false
+      "date": "2021-02-18T19:45:35.014Z",
+      "isPinned": false,
+      "Pinned": true
+    },
+    {
+      "title": "SECOND ARTICLE",
+      "body": "Kurt Wagner Thu, February 18, 2021, 6:00 AM·2 min read  (Bloomberg) -- Facebook Inc. will begin labeling some user posts that mention climate change in the same way it has annotated posts discussing elections and Covid-19, a sign the social network is taking climate-related misinformation more seriously.  The labels will direct users to Facebook’s Climate Science Information Center -- an existing hub that includes related news articles, climate change data and recommendations for Pages to follow. The new labels will be added to some posts about climate change, regardless of their accuracy, a strategy Facebook has used with other widely discussed topics as a way to fight falsehoods.  Chief Executive Officer Mark Zuckerberg has argued that the best way to keep misinformation from spreading on its networks is not just to remove misleading posts, but to offer people accurate information from authoritative sources. The labels are rolling out first to users in the U.K., though the plan is to bring them to more countries soon, according to a Facebook blog post.",
+      "isVisible": true,
+      "id": 2
+    },
+    {
+      "title": "TRUST NEWS",
+      "body": "HOUSTON, Feb 18 (Reuters) - Texas's freeze entered a sixth day on Thursday, as the biggest energy-producing state in the United States grappled with massive refining outages and oil and gas shutins that rippled beyond its borders into neighboring Mexico.  The cold snap, which has killed at least 21 people and knocked out power to more than 4 million people in Texas, is not expected to let up until this weekend. The deep freeze has shut in about one-fifth of the nation's refining capacity and closed oil and natural gas production across the state.  The outages in Texas also affected power generation in Mexico, with exports of natural gas via pipeline dropping off by about 75% over the last week, according to preliminary Refinitiv Eikon data.  Texas Governor Greg Abbott directed the state's natural gas providers not to ship outside Texas, but state regulators said it is unlikely that they have the right to interfere with existing contracts to buyers.  \"I'm not sure we have authority to mess with that, nor do I really want to,\" said Jim Wright, one of three members of the Texas Railroad Commission, the state's oil and gas regulator.",
+      "isVisible": true,
+      "id": 3
     }
   ],
   "equipments": [
@@ -127,7 +151,6 @@
       "losses": 1
     }
   ],
-
   "userInboxes": [],
   "users": [
     {
@@ -189,8 +212,6 @@
       "password": "AppAdmin",
       "teamID": 1,
       "roleName": "Admin"
-
     }
   ]
 }
-
