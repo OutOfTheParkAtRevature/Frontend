@@ -7,7 +7,7 @@ describe('MessageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(CalendarService);
   });
@@ -15,19 +15,5 @@ describe('MessageService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
-
-  it('should call getEvents()', () => {
-    service.getEvents();
-  });
-
-  it('should call createEvent()', () => {
-    let model: any = {};
-    service.createEvent(model);
-  });
-
-  it('should be call deleteEvent(eventid)', () => {
-    service.deleteEvent("event");
-  });
-
 });
 

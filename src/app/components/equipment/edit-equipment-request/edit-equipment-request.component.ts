@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../../../_services/account.service';
 import { EquipmentService } from '../../../_services/equipment.service';
 import { EquipmentRequest } from '../../../_models/EquipmentRequest';
+import { UserService } from '../../../_services/user.service';
 
 @Component({
   selector: 'app-edit-equipment-request',
@@ -17,7 +18,8 @@ export class EditEquipmentRequestComponent implements OnInit {
               private route: ActivatedRoute,
               private titleService: Title,
               private router: Router,
-              public accountService: AccountService) { }
+              public accountService: AccountService,
+              public userService: UserService) { }
 
   equipmentRequestId: string;
   //equipmentRequest: any = {}

@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { PlaysComponent } from './plays.component';
-
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { PlaysComponent } from './plays.component';
+import { DrawService } from 'src/app/_services/draw.service';
+import { GamesService } from 'src/app/_services/games.service';
+import { AccountService } from 'src/app/_services/account.service';
 
 describe('PlaysComponent', () => {
   let component: PlaysComponent;
@@ -11,8 +12,16 @@ describe('PlaysComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
-      declarations: [ PlaysComponent ]
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
+      providers: [
+        DrawService,
+        GamesService,
+        AccountService
+      ],
+      declarations: [PlaysComponent]
     })
     .compileComponents();
   });
@@ -25,17 +34,5 @@ describe('PlaysComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should call getCurrentPlays()', () => {
-    component.tempPlay = [{}];
-    component.tempPlay[0].playbookID = 3;
-    component.playbooks.teamID = 3;
-    component.getCurrentPlays();
-  });
-  
-  it('should call deletePlay(play)', () => {
-   component.play = [];
-   component.deletePlay(component.play);
   });
 });

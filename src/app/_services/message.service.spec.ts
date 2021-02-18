@@ -7,25 +7,12 @@ describe('MessageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        imports: [HttpClientTestingModule]
+      imports: [HttpClientTestingModule]
     });
     service = TestBed.inject(MessageService);
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-  });
-
-  it('should call getRecpientLists()', () => {
-    service.getRecipientLists();
-  });
-
-  it('should be getRecipientList(id)', () => {
-    service.getRecipientList("id");
-  });
-
-  it('should call sendMessage()', () => {
-    let message: any;
-    service.sendMessage(message);
   });
 });

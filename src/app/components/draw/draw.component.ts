@@ -26,6 +26,7 @@ export class DrawComponent implements AfterViewInit {
   @Input() public width = 600;
   @Input() public height = 600;
 
+
   constructor(private drawService: DrawService, private activeParms: ActivatedRoute, public accountService: AccountService){}
   model = new Play;
   chosenPlaybook: number;

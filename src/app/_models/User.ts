@@ -12,7 +12,9 @@ export interface User {
   password: string;
   pVisible: boolean;
   teamID: number;
-  roleID: number;
+  //roleID: number;
+  roleName: string;
+  
   team: Team;
   role: Role;
 }

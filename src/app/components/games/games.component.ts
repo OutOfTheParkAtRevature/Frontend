@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Game } from '../../_models/Game';
 import { AccountService } from '../../_services/account.service';
 import { GamesService } from '../../_services/games.service';
+import { UserService } from '../../_services/user.service';
 
 @Component({
   selector: 'app-games',
@@ -10,7 +11,7 @@ import { GamesService } from '../../_services/games.service';
 })
 export class GamesComponent implements OnInit {
 
-  constructor(private gamesService: GamesService, public accountService: AccountService) { }
+  constructor(private gamesService: GamesService, public accountService: AccountService, public userService: UserService) { }
 
   //games:any = [];
   games: Array<Game> = new Array<Game>();

@@ -12,7 +12,7 @@ import { User } from '../../../_models/User';
 })
 export class PlayerdetailsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private userService: UserService, public accountService: AccountService) { }
+  constructor(private route: ActivatedRoute, public userService: UserService, public accountService: AccountService) { }
 
   user: User;
   userId: string;
@@ -27,8 +27,9 @@ export class PlayerdetailsComponent implements OnInit {
   getUser(userId) {
     this.userService.getUser(userId).subscribe(response => {
       this.user = response;
+      console.log(this.user.fullName);
       this.getTeam();
-      this.getRole();
+      //this.getRole();
     }, err => {
       console.log(err);
     })
@@ -41,7 +42,9 @@ export class PlayerdetailsComponent implements OnInit {
         console.log(err);
       })
   }
-
+  
+/*
+  //Shouldn't Need this anymore
   getRole() {
     this.userService.getRole(this.user.roleID).subscribe(res => {
       this.user.role = res;
@@ -49,7 +52,7 @@ export class PlayerdetailsComponent implements OnInit {
       console.log(err);
     })
   }
-
+*/
 
 
   

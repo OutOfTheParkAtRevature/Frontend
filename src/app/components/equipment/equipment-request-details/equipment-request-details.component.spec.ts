@@ -1,27 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { EquipmentRequestDetailsComponent } from './equipment-request-details.component';
-
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
+import { EquipmentRequestDetailsComponent } from './equipment-request-details.component';
+import { EquipmentService } from 'src/app/_services/equipment.service';
+import { AccountService } from 'src/app/_services/account.service';
+import { UserService } from 'src/app/_services/user.service';
 
 describe('EquipmentRequestDetailsComponent', () => {
   let component: EquipmentRequestDetailsComponent;
   let fixture: ComponentFixture<EquipmentRequestDetailsComponent>;
-  let equipmentServiceMock;
-  let mockGetTeam;
 
   beforeEach(async () => {
-    equipmentServiceMock = jasmine.createSpyObj('EquipmentService', ['getRequest', 'getTeam', 'getUser', 'getItem']);
-    mockGetTeam = equipmentServiceMock.getTeam.and.returnValue(of(2));
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule],
-      declarations: [ EquipmentRequestDetailsComponent ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
       providers: [
-       // { provide: EquipmentService, useValue: equipmentServiceMock }, 
-        HttpClientTestingModule, RouterTestingModule
-      ]
+        EquipmentService,
+        AccountService,
+        UserService
+      ],
+      declarations: [EquipmentRequestDetailsComponent]
     })
     .compileComponents();
   });
@@ -34,20 +34,5 @@ describe('EquipmentRequestDetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should call getTeam()', () => {
-    component.equipmentRequest = {
-      teamId: 2, team: null
-    }
-    component.getTeam();
-  });
-
-  it('should call getUser()', () => {
-    component.getUser();
-  });
-
-  it('should call getItem()', () => {
-    component.getItem();
   });
 });

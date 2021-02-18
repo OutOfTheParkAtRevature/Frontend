@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { EditplayerComponent } from './editplayer.component';
-
 import { FormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { EditplayerComponent } from './editplayer.component';
+import { UserService } from 'src/app/_services/user.service';
+import { AccountService } from 'src/app/_services/account.service';
 
 describe('EditplayerComponent', () => {
   let component: EditplayerComponent;
@@ -12,8 +12,16 @@ describe('EditplayerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, HttpClientTestingModule, RouterTestingModule],
-      declarations: [ EditplayerComponent ]
+      imports: [
+        FormsModule,
+        HttpClientTestingModule,
+        RouterTestingModule
+      ],
+      providers: [
+        AccountService,
+        UserService
+      ],
+      declarations: [EditplayerComponent]
     })
     .compileComponents();
   });
@@ -26,9 +34,5 @@ describe('EditplayerComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should call editUser()', () => {
-    component.editUser();
   });
 });

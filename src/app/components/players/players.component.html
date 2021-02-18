@@ -18,10 +18,10 @@
                     <td>{{user.fullName}}</td>
                     <td>{{user.userName}}</td>
                     <td>{{user?.team?.name}}</td>
-                    <td>{{user?.role?.roleName}}</td>
+                    <td>{{user.roleName}}</td>
                     <td>
-                        <a [routerLink]="['/players/details', user.userID]">Details</a> &nbsp;
-                        <a [routerLink]="['/players/edit', user.userID]" *ngIf="loggedInUser.roleID === 1 || loggedInUser.userID === user.userID">Edit</a>
+                        <a [routerLink]="['/players/details', user.id]">Details</a> &nbsp;
+                        <a [routerLink]="['/players/edit', user.id]" *ngIf="userService.isAssCoachAuthorized(loggedInUser) || loggedInUser.id === user.id">Edit</a>
                     </td>
                 </tr>
             </ng-container>

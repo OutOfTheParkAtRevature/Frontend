@@ -1,5 +1,5 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-  <ng-container *ngIf="loggedInUser.roleID != 2">
+  <ng-container *ngIf="userService.isParentAuthorized(loggedInUser)">
   <h2 id="equipmentRequestTitle">Equipment Requests</h2>
   <a routerLink="/equipment/create" id="equipmentRequestTable">Create Request</a>
   <table class="table table-striped" >
@@ -10,13 +10,16 @@
           <th scope="col">Requested By</th>
           <th scope="col">Team</th>
           <th scope="col">Status</th>
+          <th>Actions</th>
+          <!--
           <th *ngIf="loggedInUser.roleID === 1" scope="col">Actions</th>
+          -->
         </tr>
       </thead>
       <tbody>
         <!-- table if coach -->
         <ng-container *ngFor="let equipment of equipmentList">
-        <tr *ngIf="equipment.teamId === loggedInUser.teamID && loggedInUser.roleID === 1">
+        <tr *ngIf="equipment.teamId === loggedInUser.teamID && loggedInUser.roleName == 'Head Coach'">
           <td>{{equipment?.item?.description}}</td>
           <td>{{equipment?.user?.fullName}}</td>
           <td>{{equipment?.team?.name}}</td>
@@ -28,7 +31,7 @@
         </tr>
 
         <!-- table if parent -->
-        <tr *ngIf="equipment.teamId === loggedInUser.teamID && loggedInUser.roleID === 3 && equipment.userId === loggedInUser.userID">
+        <tr *ngIf="equipment.teamId === loggedInUser.teamID && loggedInUser.roleName == 'Parent' && equipment.userId === loggedInUser.userID">
           <td>{{equipment?.item?.description}}</td>
           <td>{{equipment?.user?.fullName}}</td>
           <td>{{equipment?.team?.name}}</td>
@@ -43,7 +46,7 @@
     </table>
   </ng-container>
 
-  <ng-container *ngIf="loggedInUser.roleID == 2">
+  <ng-container *ngIf="!userService.isParentAuthorized(loggedInUser)">
     <h2 class="text-center">Not Authorized</h2>
     <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
   </ng-container>

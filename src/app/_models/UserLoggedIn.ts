@@ -6,5 +6,6 @@ export interface UserLoggedIn {
     phoneNumber: string;
     email: string;
     teamID: number;
-    roleID: number;
+    //roleID: number;
+    roleName: string;
 }

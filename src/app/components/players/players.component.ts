@@ -17,7 +17,7 @@ export class PlayersComponent implements OnInit {
   model: User;
 
 
-  constructor(private userService: UserService, public accountService: AccountService) { }
+  constructor(public userService: UserService, public accountService: AccountService) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -27,7 +27,7 @@ export class PlayersComponent implements OnInit {
     this.userService.getUsers().subscribe(response => {
           this.users = response;
           this.getTeams();
-          this.getRoles();
+          //this.getRoles();
         }, err => {
           console.log(err);
         })
@@ -36,7 +36,7 @@ export class PlayersComponent implements OnInit {
 
   getTeams() {
     this.users.forEach(element => {
-      this.userService.getTeam(element.id).subscribe( response => {
+      this.userService.getTeam(element.teamID).subscribe( response => {
         element.team = response;
       }, err => {
         console.log(err);
@@ -44,6 +44,8 @@ export class PlayersComponent implements OnInit {
     })
   }
 
+/*
+  //We don't need this anymore
   getRoles() {
     this.users.forEach(element => {
       this.userService.getRole(element.id).subscribe( response => {
@@ -53,7 +55,7 @@ export class PlayersComponent implements OnInit {
       })
     })
   }
-
+*/
   createUser() {
     this.accountService.registerUser(this.model).subscribe(response => {
       console.log(response);

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AccountService } from '../../../_services/account.service';
 import { EquipmentService } from '../../../_services/equipment.service';
 import { EquipmentRequest } from '../../../_models/EquipmentRequest';
+import { UserService } from '../../../_services/user.service';
 
 @Component({
   selector: 'app-equipment-request-details',
@@ -11,7 +12,8 @@ import { EquipmentRequest } from '../../../_models/EquipmentRequest';
 })
 export class EquipmentRequestDetailsComponent implements OnInit {
 
-  constructor(private equipmentService: EquipmentService, private route: ActivatedRoute, public accountService: AccountService) { }
+  constructor(private equipmentService: EquipmentService, private route: ActivatedRoute, public accountService: AccountService
+                , public userService: UserService) { }
   equipmentRequestId: string;
   //equipmentRequest: any = {};
   equipmentRequest: EquipmentRequest;

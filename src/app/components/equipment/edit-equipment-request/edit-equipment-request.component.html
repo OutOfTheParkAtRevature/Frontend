@@ -1,5 +1,5 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-    <ng-container *ngIf="loggedInUser.roleID == 1"> 
+    <ng-container *ngIf="userService.isParentAuthorized(loggedInUser)"> 
     <h2 id="editRequestTitle">Edit Request #{{equipmentRequest.requestID}}</h2>
     <br>
     <a id="backToRequests" routerLink="/equipment">Back to Requests</a><br>
@@ -30,7 +30,7 @@
         <button id="editRequestButton" type="submit" class="btn btn-outline-success">Edit</button>
     </form>
     </ng-container>
-    <ng-container *ngIf="loggedInUser.roleID != 1">
+    <ng-container *ngIf="!userService.isParentAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>

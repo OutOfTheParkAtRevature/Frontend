@@ -55,6 +55,7 @@
       "id": 1
     }
   ],
+  
   "recipientLists": [
     {
       "id": 1,
@@ -64,27 +65,27 @@
   "roles": [
     {
       "id": 1,
-      "RoleName": "Players"
+      "roleName": "Player"
     },
     {
       "id": 2,
-      "RoleName": "Parents"
+      "roleName": "Parent"
     },
     {
       "id": 3,
-      "RoleName": "Assistant Coaches"
+      "roleName": "Assistant Coach"
     },
     {
       "id": 4,
-      "RoleName": "Coaches"
+      "roleName": "Head Coach"
     },
     {
       "id": 5,
-      "RoleName": "League Admins"
+      "roleName": "League Manager"
     },
     {
       "id": 6,
-      "RoleName": "App Admins"
+      "roleName": "Admin"
     }
   ],
   "teams": [
@@ -101,17 +102,8 @@
       "losses": 1
     }
   ],
-  "userInboxes": [
-    {
-      "userID": 1,
-      "recipientID": [
-        {
-          "userID": 2,
-          "userFullName": "Parent"
-        }
-      ]
-    }
-  ],
+
+  "userInboxes": [],
   "users": [
     {
       "id": 1,
@@ -121,17 +113,17 @@
       "email": "Player@Game",
       "password": "Player",
       "teamID": 1,
-      "roleID": 1
+      "roleName": "Player"
     },
     {
+      "fullname": "haha I changed your name",
+      "password": "Parent",
+      "phonenumber": "222-2222",
+      "email": "Parent@Game",
       "id": 2,
       "userName": "Parent",
-      "fullName": "Parent",
-      "phoneNumber": "222-2222",
-      "email": "Parent@Game",
-      "password": "Parent",
       "teamID": 1,
-      "roleID": 2
+      "roleName": "Parent"
     },
     {
       "id": 3,
@@ -141,7 +133,7 @@
       "email": "AssCoach@Game",
       "password": "AssCoach",
       "teamID": 1,
-      "roleID": 3
+      "roleName": "Assistant Coach"
     },
     {
       "id": 4,
@@ -151,7 +143,7 @@
       "email": "Coach@Game",
       "password": "Coach",
       "teamID": 1,
-      "roleID": 4
+      "roleName": "Head Coach"
     },
     {
       "id": 5,
@@ -161,7 +153,7 @@
       "email": "LeagueAdmin@Game",
       "password": "LeagueAdmin",
       "teamID": 1,
-      "roleID": 5
+      "roleName": "League Manager"
     },
     {
       "id": 6,
@@ -171,7 +163,8 @@
       "email": "AppAdmin@Game",
       "password": "AppAdmin",
       "teamID": 1,
-      "roleID": 6
+      "roleName": "Admin"
+
     }
   ]
 }
