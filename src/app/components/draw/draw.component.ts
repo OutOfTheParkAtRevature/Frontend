@@ -57,6 +57,7 @@ export class DrawComponent implements AfterViewInit {
     console.log(this.chosenPlaybook);
     this.getTeamPlayBook();
     this.getPlaybooks();
+    this.SetBackGroundWhite();
   }
 
   

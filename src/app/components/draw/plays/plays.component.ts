@@ -18,12 +18,13 @@ import { Playbook } from 'src/app/_models/Playbook';
 export class PlaysComponent implements OnInit 
 {
 
-  constructor(private drawService: DrawService,  private accountService: AccountService) { }
+  constructor(private drawService: DrawService,  public accountService: AccountService) { }
 
   
-  play: Play[] = [];
+  play: Play[] = [];// should view only plays that are visible
+  coachPlay: Play[] = []; // should view all team plays
   tempPlay: Play[] = [];
-  model: any = {};
+  //model: any = {};
   imageString: string;
   chosenplaybookId: number;
   teamId: number;
@@ -38,8 +39,8 @@ export class PlaysComponent implements OnInit
   //gets all the plays
   getPlays(){
     this.drawService.getPlays().subscribe(response => {
-      this.model = response;
-      this.tempPlay = this.model;
+      //this.model = reponse;
+      this.tempPlay = response;
       this.getCurrentPlays();
     }, err => {
       console.log(err)
