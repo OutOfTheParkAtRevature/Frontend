@@ -6,7 +6,8 @@ import { formatDate } from '@fullcalendar/angular';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import { Event } from 'src/app/_models/Event';
 import { CalendarService } from 'src/app/_services/calendar.service';
-import { NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
+import { NgbCalendar, NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
+import {NgbDateStruct, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-calendar',
@@ -19,10 +20,21 @@ export class CalendarComponent implements OnInit {
   selectedEvent: Event;
   removeEvent: boolean;
 
-  constructor( private _calendar : CalendarService, private modalService: NgbModal, config: NgbModalConfig ) {
+  EventStartTime: NgbTimeStruct;
+  EventEndTime: NgbTimeStruct;
+  EventStartDate: NgbDateStruct;
+  EventEndDate: NgbDateStruct;
+  hourStep: number = 1;
+  minuteStep: number = 15;
+  
+
+  
+  constructor( private _calendar : CalendarService, private modalService: NgbModal, config: NgbModalConfig, private calendar: NgbCalendar ) {
     config.backdrop = 'static';
     config.keyboard = false;
-   }
+  }
+  
+  
 
   ngOnInit(): void {
 
@@ -39,7 +51,6 @@ export class CalendarComponent implements OnInit {
       }
     );
   }
-
 
 
   calendarOptions: CalendarOptions = {
@@ -69,45 +80,92 @@ export class CalendarComponent implements OnInit {
   };
 
   
-
+  
   handleDateClick(arg): void {
     alert('date click! ' + arg.dateStr)
-
+    
     console.log(arg);
     // let str = formatDate(new Date(), {
-    //   month: 'long',
-    //   year: 'numeric',
-    //   day: 'numeric'
-    // });
+      //   month: 'long',
+      //   year: 'numeric',
+      //   day: 'numeric'
+      // });
+      
+      // console.log(str);
+    }
     
-    // console.log(str);
-  }
-
-  ///Display the events to FullCalendar.io
-  displayElementsIntoCalendar(): void {
-    let eventsFullCalendar = []
-
-    this.eventDTO.forEach(element => {
-      eventsFullCalendar.push( { 
+    ///Display the events to FullCalendar.io
+    displayElementsIntoCalendar(): void {
+      let eventsFullCalendar = []
+      
+      this.eventDTO.forEach(element => {
+        eventsFullCalendar.push( { 
         title: element.Name,
         date: element.StartTime,
         // start: element.StartTime,
         // end: element.EndTime
-       });
+      });
     });
-
+    
     this.calendarOptions.events = eventsFullCalendar;  
   }
 
+
+  InitializeDateTimeData():void {
+    this.EventStartTime = this.GetDefaultTime();
+    this.EventEndTime = this.GetDefaultTime();
+    this.EventStartDate = this.calendar.getToday();
+    this.EventEndDate = this.EventStartDate;
+  }
+
+  GetDefaultTime():NgbTimeStruct{
+    return {hour: 13, minute: 30, second: 0};
+  }
+  
+  createNewEventDialog(content): void{
+      this.selectedEvent = new Event();
+      this.InitializeDateTimeData();
+      this.modalService.open(content);
+  }
+  
   EditDialog(content, event : Event) :void {
     this.selectedEvent = event;
+    this.InitializeDateTimeData();
     this.removeEvent = false;
     this.modalService.open(content);
+  }
+  
+  
+  AddNewEvent(): void{
+    //Generate the correct Event
+    this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
+    this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime)
+    //Some Add logic to ws
+
+    //Add to the event table
+    this.eventDTO.push(this.selectedEvent);
+    this.CloseModal();
+
+  }
+
+  AssignDate(EventDate: NgbDateStruct, EventTime: NgbTimeStruct) : Date
+  {
+    return new Date(`${EventDate.year}-${EventDate.month}-${EventDate.day} ${EventTime.hour}:${EventTime.minute}`)
+  }
+
+  editEvent() :void {
+    //Do some update event logic
+    this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
+    this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime);
+
+    this.CloseModal();
   }
 
   RemoveEvent():void {
     //Do some remove event logic
-
+    
+    //Event ID for identifying the element. 
+    // this.selectedEvent.Name
     this.CloseModal();
   }
 

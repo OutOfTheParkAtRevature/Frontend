@@ -42,20 +42,120 @@
                 <input type="text" id="txtLocation" class="form-control" [(ngModel)]="selectedEvent.Location" >
                 <label for="txtMessage">Message</label>
                 <textarea id="txtMessage" class="form-control" [(ngModel)]="selectedEvent.Message"></textarea>
-                <label for="dtmStartTime">Start Time</label>
-                <!-- <input type="text" id="txtName" > -->
-                <label for="dtmEndTime">End Time</label>
-                <!-- <input type="text" id="txtName" > -->
+                <!-- Start Time -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="dtmStartTime">Start Time</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                   name="dp" [(ngModel)]="EventStartDate" ngbDatepicker #dStart="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary material-icons" (click)="dStart.toggle()" type="button">
+                                    calendar_today
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <ngb-timepicker [(ngModel)]="EventStartTime"
+                        [hourStep]="hourStep" [minuteStep]="minuteStep" ></ngb-timepicker>
+                    </div>
+                </div>
+                <!-- End Time -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="dtmStartTime">End Time</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                   name="dp" [(ngModel)]="EventEndDate" ngbDatepicker #dEnd="ngbDatepicker">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary material-icons" (click)="dEnd.toggle()" type="button">
+                                    calendar_today
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <ngb-timepicker [(ngModel)]="EventEndTime"
+                        [hourStep]="hourStep" [minuteStep]="minuteStep" ></ngb-timepicker>
+                    </div>
+                </div>
 
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-success" (click)="RemoveEvent()">Save Event</button>
+            <button type="button" class="btn btn-success" (click)="editEvent()" >Save Event</button>
             <button type="button" class="btn btn-light" (click)="CloseModal()">Close</button>
         </div>
     </ng-template>
 </ng-template>
 
+<ng-template #NewEvent let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Create new Event</h4>
+        <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="txtName">Display Name</label>
+            <input type="text" id="txtName" class="form-control" [(ngModel)]="selectedEvent.Name" >
+            <label for="txtLocation">Location</label>
+            <input type="text" id="txtLocation" class="form-control" [(ngModel)]="selectedEvent.Location" >
+            <label for="txtMessage">Message</label>
+            <textarea id="txtMessage" class="form-control" [(ngModel)]="selectedEvent.Message"></textarea>
+            <!-- Start Time -->
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="dtmStartTime">Start Time</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd"
+                               name="dp" [(ngModel)]="EventStartDate" ngbDatepicker #dStart="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary material-icons" (click)="dStart.toggle()" type="button">
+                                calendar_today
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6">
+                    <ngb-timepicker [(ngModel)]="EventStartTime"
+                    [hourStep]="hourStep" [minuteStep]="minuteStep" ></ngb-timepicker>
+                </div>
+            </div>
+            <!-- End Time -->
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="dtmStartTime">End Time</label>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd"
+                               name="dp" [(ngModel)]="EventEndDate" ngbDatepicker #dEnd="ngbDatepicker">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary material-icons" (click)="dEnd.toggle()" type="button">
+                                calendar_today
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6">
+                    <ngb-timepicker [(ngModel)]="EventEndTime"
+                    [hourStep]="hourStep" [minuteStep]="minuteStep" ></ngb-timepicker>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="AddNewEvent()" >Create Event</button>
+        <button type="button" class="btn btn-light" (click)="CloseModal()">Close</button>
+    </div>
+   
+</ng-template>
 
 
 <div class="container">
@@ -83,11 +183,12 @@
         </div>
         <div class="col-md-2"></div>
     </div>
-
+    
     <br>
     <hr>
     <div class="schedule-details">
         <h3 class="text-center">Schedule Details</h3>
+        <button class="btn btn-primary" (click)="createNewEventDialog(NewEvent)" >Create event</button>
         <div class="row">
             <div class="col-md-12">
                 
@@ -109,8 +210,8 @@
                             {{ event.Name }}
                         </td>
                         <td>{{ event.Location }}</td>
-                        <td>{{ event.StartTime | date }}</td>
-                        <td>{{ event.EndTime | date }}</td>
+                        <td>{{ event.StartTime | date:'short' }}</td>
+                        <td>{{ event.EndTime | date:'short' }}</td>
                         <td>
                             <div class="form-group">
                                 <button class="btn btn-success" (click)="EditDialog(content, event)">Edit</button>
@@ -125,4 +226,3 @@
         </div>
     </div>
 </div>
-
