@@ -17,7 +17,7 @@ import { Play } from '../../../_models/Play';
 export class PlaysComponent implements OnInit 
 {
 
-  constructor(private drawService: DrawService, private gamesService: GamesService, private accountService: AccountService) { }
+  constructor(private drawService: DrawService, private gamesService: GamesService, public accountService: AccountService) { }
 
   
   play: Play[] = [];

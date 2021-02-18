@@ -1,27 +1,35 @@
-<div class="container">
-  <h2 id="playsTitle">View Plays</h2>
-  <br>
-  <div class="parent flex-parent">
-    <div class="flex-child" style="text-align: right"><a class="nav-link" routerLink="/draw">Create Play</a></div>
-  </div>
-  <table class="table table-striped" style="text-align: center;">
+<div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+   <div class="container">
+    <h2 id="playsTitle">View Plays</h2>
+    <br>
+    <div class="parent flex-parent">
+        <div class="flex-child" style="text-align: right"><a class="nav-link" routerLink="/draw">Create Play</a></div>
+    </div>
+    <table class="table table-striped" style="text-align: center;">
 
-  <caption></caption>
-    <thead>
-      <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-        <th scope="col">Image</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let plays of play">
-        <td>{{plays.name}}</td>
-        <td>{{plays.description}}</td>
-        <td><img width="400" height="400" src="{{plays.imageString}}" alt="Image not found"/></td>
-        <td style="vertical-align: middle;"><button class="btn btn-danger" (click)="deletePlay(plays.playID)">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
+    <caption></caption>
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th *ngIf="accountService.isCoachAuthorized(loggedInUser)" scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let plays of play">
+            <td>{{plays.name}}</td>
+            <td>{{plays.description}}</td>
+            <td><img width="400" height="400" src="{{plays.imageString}}" alt="Image not found"/></td>
+            <td *ngIf="accountService.isCoachAuthorized(loggedInUser)" style="vertical-align: middle;"><button class="btn btn-danger" (click)="deletePlay(plays.playID)">Delete</button></td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+</div>
+
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
 </div>
