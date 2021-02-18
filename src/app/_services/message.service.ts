@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Inbox } from '../_models/inbox';
 import { Message } from '../_models/Message';
 import { RecipientList } from '../_models/RecipientList';
 import { UserInbox } from '../_models/UserInbox';
@@ -15,10 +16,10 @@ export class MessageService {
   baseUrl = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
-  getMessages(): Observable<Message[]>
+  getMessages(userID: number): Observable<any>
   {
     //return this.http.get(this.baseUrl + 'messages');
-    return this.http.get<Message[]>(this.baseUrl + 'messages');
+    return this.http.get<any>(this.baseUrl + `userInboxes/${userID}`);
   }
   
   sendMessage(message: Message): Observable<Message>

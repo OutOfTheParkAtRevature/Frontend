@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-// import { RecipientList } from 'src/app/_models/RecipientList';
-import { User } from 'src/app/_models/User';
+import { Inbox } from 'src/app/_models/inbox';
 import { MessageService } from 'src/app/_services/message.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { MessageService } from 'src/app/_services/message.service';
 })
 export class InboxMessageComponent implements OnInit {
 
-  @Input() recipientList : User;
+  @Input() Inbox : Inbox;
   constructor( private _message:MessageService ) { }
 
   ngOnInit(): void {

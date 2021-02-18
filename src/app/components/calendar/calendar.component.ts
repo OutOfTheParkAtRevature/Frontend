@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
 //Events from Calendar
 import { Calendar } from '@fullcalendar/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
 import { formatDate } from '@fullcalendar/angular';
 import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import { Event } from 'src/app/_models/Event';
+import { CalendarService } from 'src/app/_services/calendar.service';
+import { NgbCalendar, NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
+import {NgbDateStruct, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-calendar',
@@ -14,44 +16,41 @@ import { Event } from 'src/app/_models/Event';
 })
 export class CalendarComponent implements OnInit {
 
-  eventDTO:Event[] = [
-    {
-      Name: "Event 1",
-      Location: "Random Address 1",
-      Message: "Some random message",
-      StartTime: new Date(2021,1,8),
-      EndTime: new Date(2021,1,8)
-    },
-    {
-      Name: "Event 2",
-      Location: "Random Address 2",
-      Message: "Some random message #2",
-      StartTime: new Date(2021,1,3),
-      EndTime: new Date(2021,1,3)
-    }
-  ]
+  eventDTO:Event[];
+  selectedEvent: Event;
+  removeEvent: boolean;
 
-  constructor() { }
+  EventStartTime: NgbTimeStruct;
+  EventEndTime: NgbTimeStruct;
+  EventStartDate: NgbDateStruct;
+  EventEndDate: NgbDateStruct;
+  hourStep: number = 1;
+  minuteStep: number = 15;
+  
+
+  
+  constructor( private _calendar : CalendarService, private modalService: NgbModal, config: NgbModalConfig, private calendar: NgbCalendar ) {
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
+  
+  
 
   ngOnInit(): void {
 
-    let eventsFullCalendar = []
+    this._calendar.getCalendar().subscribe(
+      dataOnSuccess => {
+        console.log(dataOnSuccess);
+        this.eventDTO = dataOnSuccess.events;
 
-    this.eventDTO.forEach(element => {
-      eventsFullCalendar.push( {
-        title: element.Name,
-        date: element.StartTime,
-        // start: element.StartTime,
-        // end: element.EndTime
-       });
-    });
+        this.displayElementsIntoCalendar();
 
-    // { title: this.eventDTO, date: '2021-02-03' },
-    // { title: 'event 2', date: '2021-02-06' },
-
-    this.calendarOptions.events = eventsFullCalendar;
+      },
+      dataOnError => {
+        console.log("Error ", dataOnError);
+      }
+    );
   }
-
 
 
   calendarOptions: CalendarOptions = {
@@ -83,19 +82,111 @@ export class CalendarComponent implements OnInit {
     }
   };
 
-
-  handleDateClick(arg) {
+  
+  
+  handleDateClick(arg): void {
     alert('date click! ' + arg.dateStr)
-
+    
     console.log(arg);
     // let str = formatDate(new Date(), {
-    //   month: 'long',
-    //   year: 'numeric',
-    //   day: 'numeric'
-    // });
+      //   month: 'long',
+      //   year: 'numeric',
+      //   day: 'numeric'
+      // });
+      
+      // console.log(str);
+    }
 
-    // console.log(str);
+    
+    ///Display the events to FullCalendar.io
+    displayElementsIntoCalendar(): void {
+      let eventsFullCalendar = []
+      
+      this.eventDTO.forEach(element => {
+        eventsFullCalendar.push( { 
+          title: element.Name,
+          date: element.StartTime,
+          // start: element.StartTime,
+          // end: element.EndTime
+        });
+      });
+      
+      this.UpdateEventsInCalendar(eventsFullCalendar);
+    }
+    
+    UpdateEventsInCalendar( eventsFullCalendar: any[]): void {
+      this.calendarOptions.events = eventsFullCalendar;
+    }
+
+  InitializeDateTimeData():void {
+    this.EventStartTime = this.GetDefaultTime();
+    this.EventEndTime = this.GetDefaultTime();
+    this.EventStartDate = this.calendar.getToday();
+    this.EventEndDate = this.EventStartDate;
   }
 
+  GetDefaultTime():NgbTimeStruct{
+    return {hour: 13, minute: 30, second: 0};
+  }
+  
+  createNewEventDialog(content): void{
+      this.selectedEvent = new Event();
+      this.InitializeDateTimeData();
+      this.modalService.open(content);
+  }
+  
+  EditDialog(content, event : Event) :void {
+    this.selectedEvent = event;
+    this.InitializeDateTimeData();
+    this.removeEvent = false;
+    this.modalService.open(content);
+  }
+  
+  
+  AddNewEvent(): void{
+    //Generate the correct Event
+    this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
+    this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime)
+    //Some Add logic to ws
+
+    //Add to the event table
+    this.eventDTO.push(this.selectedEvent);
+    
+    this.displayElementsIntoCalendar()
+    this.CloseModal();
+
+  }
+
+  AssignDate(EventDate: NgbDateStruct, EventTime: NgbTimeStruct) : Date
+  {
+    return new Date(`${EventDate.year}-${EventDate.month}-${EventDate.day} ${EventTime.hour}:${EventTime.minute}`)
+  }
+
+  editEvent() :void {
+    //Do some update event logic
+    this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
+    this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime);
+
+    this.CloseModal();
+  }
+
+  RemoveEvent():void {
+    //Do some remove event logic
+    
+    //Event ID for identifying the element. 
+    // this.selectedEvent.Name
+    this.CloseModal();
+  }
+
+  DeleteDialog(content, event : Event) :void {
+    this.selectedEvent = event;
+    this.modalService.open(content);
+    this.removeEvent = true;
+  }
+
+  CloseModal () {
+    this.selectedEvent = new Event();
+    this.modalService.dismissAll('Close click') 
+  }
 
 }
