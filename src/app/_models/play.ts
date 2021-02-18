@@ -2,7 +2,6 @@ import { Byte } from "@angular/compiler/src/util";
 
 export class Play
 {
-    //public PlayId: number;
     public id: number;
     public PlaybookId: number;
     public Name: string;
