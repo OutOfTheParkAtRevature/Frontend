@@ -27,6 +27,7 @@ import { AuthenticationComponent } from './components/authentication/authenticat
 
 
 const routes: Routes = [
+  {path: 'draw/:id', component: DrawComponent},
   {path: '', component: HomeComponent},
   {path: 'players', component: PlayersComponent},
   {path: 'teams', component: TeamsComponent},
