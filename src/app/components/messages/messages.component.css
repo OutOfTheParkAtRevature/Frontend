@@ -116,3 +116,7 @@ li{
 li:not(:empty):not(:last-child)::after{
     content: ', ';
 }
+
+.UserNotReviewed{
+    font-weight: bolder;
+}

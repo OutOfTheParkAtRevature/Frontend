@@ -106,6 +106,7 @@ export class MessagesComponent implements OnInit {
     console.log("Selected!", inbox);
 
     this.InboxDescription = inbox;
+    inbox.isRead = false;
 
     this.allMessages = [];
 
@@ -136,6 +137,9 @@ export class MessagesComponent implements OnInit {
     let CarpoolInbox:Inbox = new Inbox();
     CarpoolInbox.userID = 1000;
     CarpoolInbox.recipients = [];
+
+    
+
     this.userInbox.push(CarpoolInbox);
     // console.log(this.userInbox);
   }
@@ -239,17 +243,16 @@ export class MessagesComponent implements OnInit {
     myMessage.date = new Date(); 
     myMessage.senderName = "Player" // Get user from user logged in
     myMessage.senderId = "1";
-    
     this.allMessages.push(myMessage);
     
-    //Some times this doesn't go to the last element inserted.
-    this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
-
+    
     //Clear the message
     this.userMessage = "";
     
-    // this.txtUserMessage.nati
     this.txtUserMessage.nativeElement.focus();
+
+    //Some times this doesn't go to the last element inserted.
+    this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
   }
 
 }

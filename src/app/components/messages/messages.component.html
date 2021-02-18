@@ -37,7 +37,8 @@
         <div class="col-md-3">
             <div class="user-container">
                 <div class="inboxes" *ngFor="let Inbox of userInbox" (click)="OpenInbox(Inbox)">
-                    <app-inbox-message [Inbox]="Inbox">
+                    <!-- [class.UserNotReviewed]="Inbox.isRead" -->
+                    <app-inbox-message [Inbox]="Inbox" [class.UserNotReviewed]="Inbox.isRead">
                     </app-inbox-message>
                 </div>
 

@@ -93,6 +93,7 @@ export class CalendarComponent implements OnInit {
       
       // console.log(str);
     }
+
     
     ///Display the events to FullCalendar.io
     displayElementsIntoCalendar(): void {
@@ -100,16 +101,19 @@ export class CalendarComponent implements OnInit {
       
       this.eventDTO.forEach(element => {
         eventsFullCalendar.push( { 
-        title: element.Name,
-        date: element.StartTime,
-        // start: element.StartTime,
-        // end: element.EndTime
+          title: element.Name,
+          date: element.StartTime,
+          // start: element.StartTime,
+          // end: element.EndTime
+        });
       });
-    });
+      
+      this.UpdateEventsInCalendar(eventsFullCalendar);
+    }
     
-    this.calendarOptions.events = eventsFullCalendar;  
-  }
-
+    UpdateEventsInCalendar( eventsFullCalendar: any[]): void {
+      this.calendarOptions.events = eventsFullCalendar;
+    }
 
   InitializeDateTimeData():void {
     this.EventStartTime = this.GetDefaultTime();
@@ -144,6 +148,8 @@ export class CalendarComponent implements OnInit {
 
     //Add to the event table
     this.eventDTO.push(this.selectedEvent);
+    
+    this.displayElementsIntoCalendar()
     this.CloseModal();
 
   }

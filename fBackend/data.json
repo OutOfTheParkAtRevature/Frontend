@@ -113,7 +113,7 @@
             }
           ],
           "messageID": 1,
-          "isRead": false
+          "isRead": true
         },
         {
           "id":2,
@@ -125,7 +125,7 @@
             }
           ],
           "messageID": 2,
-          "isRead": false
+          "isRead": true
         }
       ]
     }
