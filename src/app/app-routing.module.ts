@@ -30,6 +30,7 @@ import { CreateArticleComponent } from './components/news/create-article/create-
 
 
 const routes: Routes = [
+  {path: 'draw/:id', component: DrawComponent},
   {path: '', component: HomeComponent},
   {path: 'players', component: PlayersComponent},
   {path: 'teams', component: TeamsComponent},

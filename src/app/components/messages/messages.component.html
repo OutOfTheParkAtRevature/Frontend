@@ -1,8 +1,36 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Create new Group</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      
+        
+        <div class="form-check" *ngFor="let recipientList of users">
+            <input class="form-check-input" type="checkbox" name="{{recipientList.id}}" value="{{recipientList.id}}" 
+                id="flexCheckDefault_{{recipientList.id}}"
+                (change)="onChangeUser($event, recipientList)">
+            <label class="form-check-label" for="flexCheckDefault">
+              {{recipientList.fullName}}
+            </label>
+        </div>
+        
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="CreateNewInbox()">Create new group</button>
+        <button type="button" class="btn btn-light" (click)="CloseModal()">Close</button>
+    </div>
+  </ng-template>
+
+
 <div class="container">
     <h2 class="text-center">Messaging</h2>
     <div>
         <h5>Conversations</h5>
-        <button class="btn btn-primary btn-sm">Create Group</button>
+        <button class="btn btn-primary btn-sm" (click)="CreateNewInboxDialog(content)">Create Group</button>
     </div>
     <br>
     <div class="row">
@@ -10,6 +38,13 @@
             <div class="user-container">
                 <!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis ratione exercitationem sapiente ad debitis, ea numquam neque similique quia modi, obcaecati, aliquam eveniet. Illum autem temporibus officia alias enim natus. -->
                 <!-- <br> -->
+                <div class="inboxes" *ngFor="let recipientList of users" (click)="OpenInbox(recipientList)">
+                    <app-inbox-message [recipientList]="recipientList">
+                        <!-- send recipientList to inbox-message-Component -->
+                    </app-inbox-message>
+
+                </div>
+                
                 <div class="inboxes">
                     <p>some text</p>
                 </div>
@@ -19,28 +54,14 @@
                 <div class="inboxes">
                     <p>some text</p>
                 </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
+                
             </div>
         </div>
         <div class="col-md-9"> 
             <div class="chat-container">
+                <div class="chat-message" *ngFor="let conversation of allMessages">
+
+                </div>
                 <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorum debitis eius doloribus? Impedit voluptatibus ipsum nisi recusandae minus nostrum autem, inventore odit porro ab. Vitae id reprehenderit alias! Illum. -->
                 <div class="chat-message">
                     <span>Some text</span>

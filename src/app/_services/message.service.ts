@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Message } from '../_models/Message';
 import { RecipientList } from '../_models/RecipientList';
+import { UserInbox } from '../_models/UserInbox';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,11 @@ export class MessageService {
   {
     //return this.http.get(this.baseUrl + `messages/recipientlists/${id}`);
     return this.http.get<RecipientList>(this.baseUrl + 'recipientLists/'  + id);
+  }
+
+  getUserInboxes(): Observable<UserInbox>
+  {
+      return this.http.get<UserInbox>(this.baseUrl + `userinboxes`);
   }
 
 }
