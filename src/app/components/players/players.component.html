@@ -21,7 +21,7 @@
                     <td>{{user.roleName}}</td>
                     <td>
                         <a [routerLink]="['/players/details', user.id]">Details</a> &nbsp;
-                        <a [routerLink]="['/players/edit', user.id]" *ngIf="userService.isAssCoachAuthorized(loggedInUser) || loggedInUser.id === user.id">Edit</a>
+                        <a [routerLink]="['/players/edit', user.id]" *ngIf="accountService.isAssCoachAuthorized(loggedInUser) || loggedInUser.id === user.id">Edit</a>
                     </td>
                 </tr>
             </ng-container>

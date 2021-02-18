@@ -1,5 +1,5 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-  <ng-container *ngIf="userService.isParentAuthorized(loggedInUser)">
+  <ng-container *ngIf="accountService.isParentAuthorized(loggedInUser)">
   <h2 id="equipmentRequestTitle">Equipment Requests</h2>
   <a routerLink="/equipment/create" id="equipmentRequestTable">Create Request</a>
   <table class="table table-striped" >
@@ -46,7 +46,7 @@
     </table>
   </ng-container>
 
-  <ng-container *ngIf="!userService.isParentAuthorized(loggedInUser)">
+  <ng-container *ngIf="!accountService.isParentAuthorized(loggedInUser)">
     <h2 class="text-center">Not Authorized</h2>
     <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
   </ng-container>

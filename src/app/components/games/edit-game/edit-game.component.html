@@ -1,5 +1,5 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-    <ng-container *ngIf="userService.isLeagueAdminAuthorized(loggedInUser)"> 
+    <ng-container *ngIf="accountService.isLeagueAdminAuthorized(loggedInUser)"> 
     <h3 id="createGameTitle" id="editGameTitle">Edit Game</h3>   
     <a routerLink="/games" id="backToCreateGame">Back to Games</a><br>   
     <form #editGameForm="ngForm" (ngSubmit)="editGame()" id="editGame">
@@ -27,7 +27,7 @@
         <button type="submit" class="btn btn-outline-success" id="editGameButton">Submit</button>
     </form>
     </ng-container>
-    <ng-container *ngIf="!userService.isLeagueAdminAuthorized(loggedInUser)">
+    <ng-container *ngIf="!accountService.isLeagueAdminAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
       </ng-container>
