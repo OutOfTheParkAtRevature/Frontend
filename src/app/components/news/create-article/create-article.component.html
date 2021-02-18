@@ -1,5 +1,5 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-    <ng-container *ngIf="accountService.isLeagueAdminAuthorized(loggedInUser)">
+    <ng-container *ngIf="accountService.isLeagueAdminAuthorized(loggedInUser) || (isTeam && accountService.isCoachAuthorized(loggedInUser))">
       <h3 id="createArticleTitle">Create Article</h3>
       <!--
       <a routerLink="/games" id="backToCreateGame">Back to Games</a><br>
@@ -26,8 +26,6 @@
         -->
         <label for="isPinned">Is Pinned?</label>
         <input name="isPinned" [(ngModel)]="newArticle.Pinned" class="form-control me-2" type="checkbox">
-        <br>
-        <button type="submit" class="btn btn-outline-success" id="editArticleButton">Submit</button>
         <!--
         <label for="ItemId" id="homeTeamLabel">Home Team</label>
         <select name="HomeTeam" [(ngModel)]="newArticle.homeTeam" required id="homeTeamDropdown">
@@ -46,7 +44,7 @@
       </form>
     </ng-container>
 
-    <ng-container *ngIf="accountService.isLeagueAdminAuthorized(loggedInUser)">
+    <ng-container *ngIf="!(accountService.isLeagueAdminAuthorized(loggedInUser) || (isTeam && accountService.isCoachAuthorized(loggedInUser)))">
       <h2 class="text-center">Not Authorized</h2>
       <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>
