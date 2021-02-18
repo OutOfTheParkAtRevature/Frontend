@@ -1,6 +1,7 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -14,7 +15,7 @@ export class CalendarService {
   baseUrl = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
-  getCalendar() {
+  getCalendar(): Observable<any> {
     return this.http.get(this.baseUrl + 'calendar');
   }
 
