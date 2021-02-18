@@ -5,6 +5,13 @@
     <div class="parent flex-parent">
         <div class="flex-child" style="text-align: right"><a class="nav-link" routerLink="/draw">Create Play</a></div>
     </div>
+    <select (change)="selectPlayBook($event)"> 
+      <option value="0">--PlayBooks--</option>
+      <option  *ngFor="let booklist of TeamPlaybookList" value={{booklist.name}}>
+      {{booklist.name}}
+      </option>
+    </select>
+     
     <table class="table table-striped" style="text-align: center;">
 
     <caption></caption>
@@ -26,6 +33,7 @@
         </tbody>
     </table>
     </div>
+
 </div>
 
 

@@ -9,7 +9,7 @@ import interactionPlugin from '@fullcalendar/interaction'; // a plugin
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 /* Bootstrap Components */
-import { NgbModule, NgbRating } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule /*, NgbRating */, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -53,6 +53,7 @@ import { NewsService } from './_services/news.service';
 import { UserService } from './_services/user.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BearerAuthInterceptorService } from './_services/bearer-auth-interceptor.service';
+import { InboxMessageComponent } from './components/messages/inbox-message/inbox-message.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -83,6 +84,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     GamesComponent,
     CreateGameComponent,
     EditGameComponent,
+    InboxMessageComponent,
     //CreateEventComponent,
     //EditEventsComponent,
     TeamNewsComponent,
@@ -98,7 +100,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppRoutingModule,
     FullCalendarModule,
     NgbModule,
-    MatSlideToggleModule
+    // NgbModal
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptorService, multi:true },
@@ -109,17 +111,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
       GamesService,
       MessageService,
       NewsService,
-      UserService
+      UserService,
+      NgbModalConfig
   ],
-  bootstrap: [AppComponent,
-    MatSlideToggleModule,
-    BrowserAnimationsModule,
-    NgbModule,
-    NgbRating
-  ],
-  exports: [
-      NgbRating,
-      MatSlideToggleModule
-    ],
+  bootstrap: [AppComponent],
+  exports: [],
 })
 export class AppModule { }

@@ -82,3 +82,9 @@ div h5{
     width: 15%;
     position:absolute;
 }
+
+
+.modal-body{
+    max-height: 40vh;
+    overflow-y: auto;
+}
