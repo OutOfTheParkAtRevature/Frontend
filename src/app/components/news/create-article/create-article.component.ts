@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '@auth0/auth0-spa-js';
+//import { User } from '@auth0/auth0-spa-js';
 import { AccountService } from '../../../_services/account.service';
 import { NewsService } from '../../../_services/news.service';
 import { Article, LeagueArticle, TeamArticle } from '../../../_models/Article';
@@ -18,7 +18,7 @@ export class CreateArticleComponent implements OnInit {
   newArticle: Article | TeamArticle | LeagueArticle;
   isTeam: boolean = true;
   teamList: Array<Team> = new Array<Team>();
-  userLoggedIn: User;
+  //userLoggedIn: User;
 
 
 
@@ -49,11 +49,11 @@ export class CreateArticleComponent implements OnInit {
         });
     } 
   }
-
+/*
   getLoggedInUser() {
     this.accountService.currentUser$.subscribe( user$ => {
       this.userLoggedIn = user$;
     })
   }
-
+*/
 }
