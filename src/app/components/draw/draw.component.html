@@ -36,17 +36,13 @@
 
         </div>
     </ng-container>
-<<<<<<< HEAD
     <ng-container *ngIf="!accountService.isPlayerAuthorized(loggedInUser)">
-=======
-    <!--<ng-container *ngIf="!userService.isPlayerAuthorized(loggedInUser)">
->>>>>>> 1b60cae7b67c887dff6c55b4b05bb8a7980848c2
         <h2 class="text-center">Not Authorized</h2>
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>
-</div> -->
+</div>
 
-<!-- If the user is not logged in 
+<!-- If the user is not logged in -->
 <div *ngIf="(accountService.currentUser$ | async) === null">
     <app-home></app-home>
-</div>-->
+</div>

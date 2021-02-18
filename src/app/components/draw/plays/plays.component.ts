@@ -17,7 +17,7 @@ import { Playbook } from 'src/app/_models/Playbook';
 
 export class PlaysComponent implements OnInit 
 {
-  constructor(private drawService: DrawService,  public accountService: AccountService) { }\
+  constructor(private drawService: DrawService, public accountService: AccountService) { }
 
   
   play: Play[] = [];
