@@ -1,5 +1,7 @@
-<div style="position: relative;" class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-    <ng-container *ngIf="userService.isPlayerAuthorized(loggedInUser)"> 
+<div style="position: relative;" class="container" ><!--*ngIf="(accountService.currentUser$ | async) as loggedInUser">-->
+
+        <ng-container ><!--*ngIf="userService.isPlayerAuthorized(loggedInUser)"> -->
+
         <h2 id="drawPlayTitle" style="text-align: center;">Draw Play</h2>
         <a routerLink="/plays" style="margin-left: 44%;">Back to Play Book</a>
         <br>
@@ -13,16 +15,20 @@
             <button style="position: absolute; left: 16.5%; top: 130%; border-radius: 5px; background-color:red; color: white; width: 6.5%; height: 40%;" (click)="getRed()">Red</button>
             <button style="position: absolute; left: 16.5%; top: 180%; border-radius: 5px; background-color:black; color: white; width: 6.5%; height: 40%;" (click)="getBlack()">Black</button>
             <button style="position: absolute; left: 16.5%; top: 230%; border-radius: 5px; background-color: white; width: 6.5%; height: 40%;"  (click)="getWhite()">White</button>
-            <button style="position: absolute; left: 16.5%; top: 280%; border-radius: 5px; background-color:blue; color: white; width: 6.5%; height: 40%;" (click)="getBlue()">Blue</button>
+            <button style="position: absolute; left: 16.5%; top: 280%; border-radius: 5px; background-color:turquoise; color: white; width: 6.5%; height: 40%;" (click)="getBlue()">Cyan</button>
 
             <p style="position: absolute; left: 80%; top: 80%;">Background-color</p>
             <button style="position: absolute; left: 82%; top: 130%; border-radius: 5px; background-color:Black; color: white; width: 6.5%; height: 40%;" (click)="SetBackGroundBlack()">BlackB</button>
             <button style="position: absolute; left: 82%; top: 180%; border-radius: 5px; background-color:Green; color: white; width: 6.5%; height: 40%;" (click)="SetBackGroundGreen()">GreenB</button>
             <button style="position: absolute; left: 82%; top: 230%; border-radius: 5px; background-color:White; color: Black; width: 6.5%; height: 40%;" (click)="SetBackGroundWhite()">WhiteB</button>
-
+<button (click)="drawAOTrue()">PlaceO</button>
+<button (click)="drawALine()">Line</button>
+<button (click)="drawAXTrue()">PlaceX</button>
         </div>
+        
         <div>
-        <canvas #canvas (mousedown)="captureEvents()" id="drawCanvas" style="display: block; position: absolute; left: 25%;"></canvas> 
+        <canvas #canvas (mouseover)="captureEvents()" id="drawCanvas" style="display: block; position: absolute; left: 25%;"></canvas> 
+
 
             <form #createDrawingForm="ngForm" class="d-flex" (ngSubmit)="saveCanvas()" autocomplete="off">
                 <input name="Name" [(ngModel)]="model.Name" class="form-control me-2" type="text" placeholder="Name" aria-label="Name" style="position: absolute; top: 750%; left: 25%; width: 25%;">
@@ -32,13 +38,13 @@
 
         </div>
     </ng-container>
-    <ng-container *ngIf="!userService.isPlayerAuthorized(loggedInUser)">
+    <!--<ng-container *ngIf="!userService.isPlayerAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>
-</div>
+</div> -->
 
-<!-- If the user is not logged in -->
+<!-- If the user is not logged in 
 <div *ngIf="(accountService.currentUser$ | async) === null">
     <app-home></app-home>
-</div>
+</div>-->
