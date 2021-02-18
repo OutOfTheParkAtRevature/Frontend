@@ -19,26 +19,32 @@ export class PlaysComponent implements OnInit
 {
   constructor(private drawService: DrawService, public accountService: AccountService) { }
 
-  
-  play: Play[] = [];
+
+  newPlaybook: Playbook;
+  play: Play[] = [];// should view only plays that are visible
+  coachPlay: Play[] = []; // should view all team plays
   tempPlay: Play[] = [];
-  model: any = {};
   imageString: string;
   chosenplaybookId: number;
   teamId: number;
   myTeams: Team;
   TeamPlaybookList: Array<Playbook> = new Array<Playbook>() ;
   playbooks: any = {};
+  createNewPlaybook: boolean;
 
   ngOnInit(): void {
+    this.newPlaybook = new Playbook;
+    this.chosenplaybookId = 0;
+    this.createNewPlaybook = false;
     this.getTeamID(); 
+    
   }
 
   //gets all the plays
   getPlays(){
     this.drawService.getPlays().subscribe(response => {
-      this.model = response;
-      this.tempPlay = this.model;
+      //this.model = reponse;
+      this.tempPlay = response;
       this.getCurrentPlays();
     }, err => {
       console.log(err)
@@ -113,5 +119,30 @@ export class PlaysComponent implements OnInit
     this.getPlays(); 
   }
 
+  //true or false if the crate play view should appear
+  userWantsNewPlaybook(){
+    if(!this.createNewPlaybook){this.createNewPlaybook = true;}
+    else{this.createNewPlaybook = false};
+  }
+
+  //Saves the selected play with a name then calls the method to 
+  //get playbooks. New playbook should recieve ID from DB
+  savePlaybook(){
+    if(this.newPlaybook.name == null || !this.newPlaybook.name.replace(/\s/g, '').length ){
+      alert("You must choose a name for your playbook");
+    }
+    else{
+      this.newPlaybook.teamId = this.teamId;
+    
+    console.log(this.newPlaybook);
+    this.drawService.createPlaybooks(this.newPlaybook).subscribe(response => {
+      console.log(response);
+    }, err => {
+      console.log(err)
+    })
+    this.TeamPlaybookList.length = 0;
+    this.getTeamPlayBook();
+  }
+  }
 
 }
