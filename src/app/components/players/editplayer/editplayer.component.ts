@@ -39,9 +39,9 @@ export class EditplayerComponent implements OnInit {
       this.titleService.setTitle(`Edit - ${this.user.userName}`);
 
       this.editedUser = {
-        fullname: this.user.fullName,
+        fullName: this.user.fullName,
         password: this.user.password,
-        phonenumber: this.user.phoneNumber,
+        phoneNumber: this.user.phoneNumber,
         email: this.user.email
       };
     }, err => {
