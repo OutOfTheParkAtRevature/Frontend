@@ -1,4 +1,30 @@
-  {
+{
+  "articles": [
+    {
+      "id": 1,
+      "title": "TITLE",
+      "body": "BODY"
+    }
+  ],
+  "teamArticles": [
+    {
+      "title": "TITLE",
+      "body": "NEW BODY WITH A LOT OF TEXT",
+      "teamId": 1,
+      "isVisible": true,
+      "id": 1
+    }
+  ],
+  "leagueArticles": [
+    {
+      "id": 1,
+      "title": "TITLE",
+      "body": "BODY",
+      "isVisible": true,
+      "date": "1-1-1111",
+      "isPinned": false
+    }
+  ],
   "equipments": [
     {
       "id": 1,
@@ -55,7 +81,6 @@
       "id": 1
     }
   ],
-  
   "recipientLists": [
     {
       "id": 1,

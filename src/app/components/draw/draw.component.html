@@ -1,6 +1,6 @@
 <div style="position: relative;" class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
 
-        <ng-container *ngIf="userService.isPlayerAuthorized(loggedInUser)">
+    <ng-container *ngIf="accountService.isPlayerAuthorized(loggedInUser)"> 
 
         <h2 id="drawPlayTitle" style="text-align: center;">Draw Play</h2>
         <a routerLink="/plays" style="margin-left: 44%;">Back to Play Book</a>
@@ -38,11 +38,12 @@
 
         </div>
     </ng-container>
-    <ng-container *ngIf="!userService.isPlayerAuthorized(loggedInUser)">
+
+    <ng-container *ngIf="!accountService.isPlayerAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>
-</div> -->
+</div>
 
 <!-- If the user is not logged in -->
 <div *ngIf="(accountService.currentUser$ | async) === null">

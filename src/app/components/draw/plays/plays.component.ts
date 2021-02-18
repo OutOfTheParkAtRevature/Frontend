@@ -17,8 +17,12 @@ import { Playbook } from 'src/app/_models/Playbook';
 
 export class PlaysComponent implements OnInit 
 {
+<<<<<<< HEAD
 
   constructor(private drawService: DrawService,  public accountService: AccountService) { }
+=======
+  constructor(private drawService: DrawService, public accountService: AccountService) { }
+>>>>>>> 0cbbbfd2137260c89eca16124bf677cdecb46f65
 
   
   play: Play[] = [];// should view only plays that are visible
