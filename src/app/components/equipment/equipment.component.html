@@ -19,26 +19,26 @@
       <tbody>
         <!-- table if coach -->
         <ng-container *ngFor="let equipment of equipmentList">
-        <tr *ngIf="equipment.teamId === loggedInUser.teamID && loggedInUser.roleName == 'Head Coach'">
-          <td>{{equipment?.item?.description}}</td>
+        <tr *ngIf="equipment.teamId === loggedInUser.teamID && accountService.isCoachAuthorized(loggedInUser)">
+          <td>{{equipment?.item?.Description}}</td>
           <td>{{equipment?.user?.fullName}}</td>
           <td>{{equipment?.team?.name}}</td>
           <td>{{equipment.status}}</td>
           <td>
-              <a [routerLink]="['/equipment/details', equipment.requestId]">Details</a> - 
-              <a [routerLink]="['/equipment/edit', equipment.requestId]">Edit</a>
+              <a [routerLink]="['/equipment/details', equipment.id]">Details</a> - 
+              <a [routerLink]="['/equipment/edit', equipment.id]">Edit</a>
           </td>
         </tr>
 
         <!-- table if parent -->
-        <tr *ngIf="equipment.teamId === loggedInUser.teamID && loggedInUser.roleName == 'Parent' && equipment.userId === loggedInUser.userID">
-          <td>{{equipment?.item?.description}}</td>
+        <tr *ngIf="equipment.teamId === loggedInUser.teamID && equipment.userId === loggedInUser.userID && accountService.isParentAuthorized(loggedInUser) && !accountService.isCoachAuthorized(loggedInUser)">
+          <td>{{equipment?.item?.Description}}</td>
           <td>{{equipment?.user?.fullName}}</td>
           <td>{{equipment?.team?.name}}</td>
           <td>{{equipment.status}}</td>
           <td>
-              <a [routerLink]="['/equipment/details', equipment.requestId]">Details</a> - 
-              <a [routerLink]="['/equipment/edit', equipment.requestId]">Edit</a>
+              <a [routerLink]="['/equipment/details', equipment.id]">Details</a><!--  - 
+              <a [routerLink]="['/equipment/edit', equipment.id]">Edit</a> -->
           </td>
         </tr>
         </ng-container>

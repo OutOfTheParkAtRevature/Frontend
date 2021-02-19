@@ -63,11 +63,40 @@
       "Description": "Helmet"
     }
   ],
-  "equipmentRequests": [],
+  "equipmentRequests": [
+    {
+      "message": "I broke it",
+      "item": {
+        "id": 3,
+        "Description": "Helmet"
+      },
+      "teamId": 1,
+      "userId": "4",
+      "itemId": 3,
+      "status": "Approved",
+      "id": 1,
+      "team": {
+        "id": 1,
+        "name": "Barcelona",
+        "wins": 1,
+        "losses": 0
+      },
+      "user": {
+        "id": 4,
+        "userName": "Coach",
+        "fullName": "Coach",
+        "phoneNumber": "444-4444",
+        "email": "Coach@Game",
+        "password": "Coach",
+        "teamID": 1,
+        "roleName": "Head Coach"
+      }
+    }
+  ],
   "calendar": {
     "events": [
       {
-        "id":1,
+        "id": 1,
         "Name": "Event 1",
         "Location": "Random Address 1",
         "Message": "Some random message",
@@ -75,7 +104,7 @@
         "EndTime": "2021-02-08"
       },
       {
-        "id":2,
+        "id": 2,
         "Name": "Event 2",
         "Location": "Random Address 2",
         "Message": "Some random message #2",
@@ -175,7 +204,7 @@
       "id": 1,
       "inboxes": [
         {
-          "id":1,
+          "id": 1,
           "userID": 1,
           "recipients": [
             {
@@ -187,7 +216,7 @@
           "isRead": true
         },
         {
-          "id":2,
+          "id": 2,
           "userID": 1,
           "recipients": [
             {

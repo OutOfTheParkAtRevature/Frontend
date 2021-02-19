@@ -21,7 +21,7 @@ export class EquipmentService {
   getRequest(id: number): Observable<EquipmentRequest>
   {
     //return this.http.get(this.baseUrl + `equipment/${id}`);
-    return this.http.get<EquipmentRequest>(this.baseUrl + 'equipment/' + id);
+    return this.http.get<EquipmentRequest>(this.baseUrl + 'equipmentRequests/' + id);
   }
 
   getRequests(): Observable<EquipmentRequest[]>
@@ -39,7 +39,7 @@ export class EquipmentService {
   editRequest(id: string, model: EquipmentRequest): Observable<EquipmentRequest>
   {
     //return this.http.put(this.baseUrl + `equipment/edit/${id}`, model);
-    return this.http.put<EquipmentRequest>(this.baseUrl + 'equipment/' + id, model);
+    return this.http.put<EquipmentRequest>(this.baseUrl + 'equipmentRequests/' + id, model);
   }
 
   getTeam(teamId: number): Observable<Team>
