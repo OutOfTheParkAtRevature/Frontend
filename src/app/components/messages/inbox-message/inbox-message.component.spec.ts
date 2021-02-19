@@ -22,20 +22,6 @@ describe('InboxMessageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InboxMessageComponent);
     component = fixture.componentInstance;
-    component.recipientList = {
-      id: 1,
-      userName: 'synaodev',
-      fullName: 'synaodev',
-      phoneNumber: '888-888-8888',
-      email: 'synaodev@revature.net',
-      eVisible: false,
-      password: 'synaodev',
-      pVisible: false,
-      teamID: 1,
-      roleName: 'Coach',
-      team: {} as Team,
-      role: {} as Role,
-    };
     fixture.detectChanges();
   });
 
