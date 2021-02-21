@@ -44,3 +44,21 @@ stages:
             displayName: Run Code Analysis
           - task: SonarCloudPublish@1
             displayName: Publish Code Analysis
+  - stage:
+    displayName: Register
+    jobs:
+      - job: register
+        pool:
+          vmImage: ubuntu-latest
+        steps:
+          - task: Docker@2
+            inputs:
+              command: login
+              containerRegistry: 'Container Registry Connection'
+          - script: |
+              docker image build -t outofthepark15226.azurecr.io/frontend:latest .
+              docker image push outofthepark15226.azurecr.io/frontend:latest
+          - task: Docker@2
+            inputs:
+              command: logout
+              containerRegistry: 'Container Registry Connection'
