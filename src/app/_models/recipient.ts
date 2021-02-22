@@ -1,4 +1,4 @@
 export class Recipient {
-    userID: number;
+    userID: string;
     fullName: string;
 }

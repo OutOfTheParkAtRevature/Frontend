@@ -15,6 +15,27 @@ export class MessageService {
 
   //baseUrl = environment.apiUrl;
   baseUrl = "http://localhost:3000/";
+
+  private hubConnection: signalR.HubConnection;
+
+  //SignalR message gateway
+  // public startConnection = () => {
+  //   this.hubConnection = new signalR.HubConnectionBuilder()
+  //                           .withUrl('https://localhost:5001/chart')
+  //                           .build();
+  //   this.hubConnection
+  //     .start()
+  //     .then(() => console.log('Connection started'))
+  //     .catch(err => console.log('Error while starting connection: ' + err))
+  // }
+
+  // public addTransferChartDataListener = () => {
+  //   this.hubConnection.on('transferchartdata', (data) => {
+  //     this.data = data;
+  //     console.log(data);
+  //   });
+  // }
+
   constructor(private http: HttpClient) { }
 
   getMessages(userID: number): Observable<any>
