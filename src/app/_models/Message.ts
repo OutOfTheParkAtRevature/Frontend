@@ -2,14 +2,10 @@
 
 export class Message
 {
-    //messageId: number;
-    id: number;
+    id: string;
     senderId: string;
     senderName: string;
-    recipientListId: number;
-    //recipientList: Array<string>;
+    recipientListId: string;
     date: Date;
     body: string;
-    //recipient: User;
-    //state: string;
 }

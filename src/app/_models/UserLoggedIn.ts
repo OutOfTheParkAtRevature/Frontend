@@ -1,11 +1,11 @@
 export interface UserLoggedIn {
-    id: number;
+    id: string;
     token: string;
     userName: string;
     fullName: string;
     phoneNumber: string;
     email: string;
-    teamID: number;
+    teamID: string;
     //roleID: number;
     roleName: string;
 }
