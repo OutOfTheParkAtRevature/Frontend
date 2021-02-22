@@ -1,24 +1,39 @@
-<div class="container" style="text-align: center;">
-    <h2>League Standings</h2>
-    <br>
-    <table matSort class="table table-striped">
-      <caption></caption>
-        <thead>
-          <tr>
-            <th scope="col">Team Name</th>
-            <th scope="col">Wins</th>
-            <th scope="col">Losses</th>
-            <th scope="col" mat-sort-header="winning%">PCT</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let team of teams">
-            <td>{{team.name}}</td>
-            <td>{{team.wins}}</td>
-            <td>{{team.losses}}</td>
-            <td><p *ngIf="team.winningPct || team.winningPct === 0">{{team.winningPct}}</p></td>
-          </tr>
-        </tbody>
-      </table>
+<div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+    <ng-container *ngIf="accountService.isPlayerAuthorized(loggedInUser)">
+        <div class="container" style="text-align: center;">
+            <h2>League Standings</h2>
+            <br>
+            <table matSort class="table table-striped">
+            <caption></caption>
+                <thead>
+                <tr>
+                    <th scope="col">Team Name</th>
+                    <th scope="col">Wins</th>
+                    <th scope="col">Losses</th>
+                    <th scope="col" mat-sort-header="winning%">PCT</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let team of teams">
+                    <td>{{team.name}}</td>
+                    <td>{{team.wins}}</td>
+                    <td>{{team.losses}}</td>
+                    <td><p *ngIf="team.winningPct || team.winningPct === 0">{{team.winningPct}}</p></td>
+                </tr>
+                </tbody>
+            </table> 
+        </div>
+    </ng-container>
 
+    <!-- If the user is not authorized to view  -->
+    <ng-container *ngIf="!accountService.isPlayerAuthorized(loggedInUser)">
+        <h2 class="text-center">Not Authorized</h2>
+        <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
+    </ng-container>
 </div>
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
+</div>
+  

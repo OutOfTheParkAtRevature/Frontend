@@ -1,5 +1,4 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-
     <div>
         <h2 id="newsTitle">League Articles</h2>
         <button [routerLink]="['/teamNews']"> Team News </button>

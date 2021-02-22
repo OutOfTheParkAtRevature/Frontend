@@ -27,7 +27,7 @@ import { TeamNewsComponent } from './components/news/team-news/team-news.compone
 import { LeagueNewsComponent } from './components/news/league-news/league-news.component';
 import { EditArticleComponent } from './components/news/edit-article/edit-article.component';
 import { CreateArticleComponent } from './components/news/create-article/create-article.component';
-
+import { RegisterComponent } from './components/home/register/register.component';
 
 
 const routes: Routes = [
@@ -56,6 +56,7 @@ const routes: Routes = [
   {path: "leagueNews", component: LeagueNewsComponent},
   {path: "article/edit/:id/:isTeam", component: EditArticleComponent},
   {path: "article/create/:isTeam", component: CreateArticleComponent},
+  {path: "register", component: RegisterComponent},
   {path: "auth", component: AuthenticationComponent},
 ];
 

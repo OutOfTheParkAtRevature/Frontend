@@ -1,7 +1,7 @@
 import { Role } from "./Role";
 import { Team } from "./Team";
 
-export interface User {
+export class User {
   //userID: string;
   id: number;
   userName: string;
@@ -17,4 +17,5 @@ export interface User {
   
   team: Team;
   role: Role;
+  unconfirmed: boolean;
 }

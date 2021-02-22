@@ -295,6 +295,47 @@
       "password": "AppAdmin",
       "teamID": 1,
       "roleName": "Admin"
+    },
+    {
+      "team": "Barcelona",
+      "userName": "ApproveMe",
+      "password": "Me",
+      "fullName": "MyFullName",
+      "phoneNumber": "1111111111",
+      "email": "abc@efg",
+      "roleName": "Unassigned",
+      "id": 7
+    },
+    {
+      "userName": "Me",
+      "password": "Me",
+      "fullName": "MYFULLNAME",
+      "phoneNumber": "1111111",
+      "email": "abc@efg",
+      "team": "Barcelona",
+      "roleName": "Unconfirmed User",
+      "id": 8
+    },
+    {
+      "userName": "My",
+      "password": "My",
+      "fullName": "MyFullName",
+      "phoneNumber": "1231243",
+      "email": "abc@efg",
+      "team": "Barcelona",
+      "roleName": "Unconfirmed User",
+      "id": 9
+    },
+    {
+      "fullName": "MyFullName",
+      "password": "Me",
+      "phoneNumber": "123456789",
+      "email": "abc@efg",
+      "role": "Player",
+      "id": 10,
+      "userName": "Me",
+      "teamID": 1,
+      "roleName": "Player"
     }
   ]
 }

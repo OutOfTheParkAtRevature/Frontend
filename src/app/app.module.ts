@@ -44,6 +44,7 @@ import { TeamNewsComponent } from './components/news/team-news/team-news.compone
 import { LeagueNewsComponent } from './components/news/league-news/league-news.component';
 import { EditArticleComponent } from './components/news/edit-article/edit-article.component';
 import { CreateArticleComponent } from './components/news/create-article/create-article.component';
+import { RegisterComponent } from './components/home/register/register.component';
 import { AccountService } from './_services/account.service';
 import { CalendarService } from './_services/calendar.service';
 import { DrawService } from './_services/draw.service';
@@ -92,7 +93,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     TeamNewsComponent,
     LeagueNewsComponent,
     EditArticleComponent,
-    CreateArticleComponent
+    CreateArticleComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

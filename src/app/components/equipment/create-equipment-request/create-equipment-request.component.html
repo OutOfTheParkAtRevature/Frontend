@@ -1,22 +1,31 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-  <h3 id="requestTitle">Request Equipment</h3>
-  <br>
-  <a id="backToRequest" routerLink="/equipment" >Back to Requests</a>
-  <br>
-  <br>
-  <form #createEquipmentRequestForm="ngForm"  (ngSubmit)="createEquipmentRequest()" ngNativeValidate  autocomplete="off">
-    <label for="Message" id="messageLabel">Message</label>
-    <input id="messageInput" name="Message" [(ngModel)]="model.message" class="form-control me-2" type="text" placeholder="Message">
-    <br>
-    <label id="dropdownLabel" for="ItemId">Item</label>
-    <select name="Status" [(ngModel)]="model.item" required>
-      <option selected></option>
-      <option *ngFor="let item of itemList">{{item.Description}}</option>
-    </select>
-    <br>
-    <br>
-    <button id="createRequestButton" class="btn btn-outline-success" type="submit">Create</button>
-  </form>
+    <ng-container *ngIf="accountService.isPlayerAuthorized(loggedInUser)">
+        <h3 id="requestTitle">Request Equipment</h3>
+        <br>
+        <a id="backToRequest" routerLink="/equipment" >Back to Requests</a>
+        <br>
+        <br>
+        <form #createEquipmentRequestForm="ngForm"  (ngSubmit)="createEquipmentRequest()" ngNativeValidate  autocomplete="off">
+            <label for="Message" id="messageLabel">Message</label>
+            <input id="messageInput" name="Message" [(ngModel)]="model.message" class="form-control me-2" type="text" placeholder="Message">
+            <br>
+            <label id="dropdownLabel" for="ItemId">Item</label>
+            <select name="Status" [(ngModel)]="model.item" required>
+            <option selected></option>
+            <option *ngFor="let item of itemList">{{item.Description}}</option>
+            </select>
+            <br>
+            <br>
+            <button id="createRequestButton" class="btn btn-outline-success" type="submit">Create</button>
+        </form>
+    </ng-container>
+    
+
+    <!-- If the user is not authorized to view  -->
+    <ng-container *ngIf="!accountService.isPlayerAuthorized(loggedInUser)">
+        <h2 class="text-center">Not Authorized</h2>
+        <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
+    </ng-container>
 </div>
 
 <!-- If the user is not logged in -->
