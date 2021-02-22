@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { CreateUser } from '../_models/create-user';
 import { User } from '../_models/User';
 import { UserLoggedIn } from '../_models/UserLoggedIn';
 import { UserLoggingIn } from '../_models/UserLoggingIn';
@@ -13,7 +14,7 @@ import { UserLoggingIn } from '../_models/UserLoggingIn';
 export class AccountService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = "http://localhost:3000/api/";
   private currentUserSource = new ReplaySubject<UserLoggedIn>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
@@ -41,10 +42,10 @@ export class AccountService {
     this.currentUserSource.next(null);
   }
 
-  registerUser(model: any) : Observable<User>
+  registerUser(model: CreateUser) : Observable<User>
   {
-    //return this.http.post(this.baseUrl + 'account/register', model)
-    return this.http.post<User>(this.baseUrl + "users", model);
+    return this.http.post<User>(this.baseUrl + 'account/create', model);
+    //return this.http.post<User>(this.baseUrl + "users", model);
   }
 
 
