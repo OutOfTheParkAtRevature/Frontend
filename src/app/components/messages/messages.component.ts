@@ -120,12 +120,14 @@ export class MessagesComponent implements OnInit {
     Message1.id = "2";
     Message1.recipientListId = "1";
     Message1.senderId = "1";
+    Message1.senderName = "Player";
     Message1.body = "This is the user conversation";
 
     let Message2:Message = new Message();
     Message2.id = "3";
     Message2.recipientListId = "1";
     Message2.senderId = "2";
+    Message2.senderName = "Full Name";
     Message2.body = "This is the other user response";
 
     this.allMessages.push(Message1);
@@ -149,6 +151,7 @@ export class MessagesComponent implements OnInit {
     this.allMessages.push(Message1);
     this.allMessages.push(Message2);
 
+    // The first time it doesn't work, because the div element is not created at the moment.
     this.AutoFocusOnBottom();
 
     this.userMessage = "";

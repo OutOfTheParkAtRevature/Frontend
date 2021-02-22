@@ -164,16 +164,39 @@ export class CalendarComponent implements OnInit {
   
   AddNewEvent( eventForm): void{
     //Generate the correct Event
-    this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
-    this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime)
-    //Some Add logic to ws
-
-    //Add to the event table
-    this.eventDTO.push(this.selectedEvent);
     
-    this.displayElementsIntoCalendar()
-    this.CloseModal();
+    
+    //Force the form to be valid
+    if (eventForm.valid )
+    {
+      
+      this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
+      this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime)
+      
+      if ( 
+          (this.selectedEvent.StartTime.toDateString() === this.selectedEvent.EndTime.toDateString())
+            &&
+          ( this.selectedEvent.StartTime.getHours() < this.selectedEvent.EndTime.getHours() )
+         )
+      {
+        //Some Add logic to ws
+    
+        //Add to the event table
+        this.eventDTO.push(this.selectedEvent);
+        
+        this.displayElementsIntoCalendar()
+        this.CloseModal();
+      }
+      else{
+        //some edit label in red if not valid..
+        console.log("Input diferent time from start to end.");
+        }
 
+      }
+      else{
+        //some edit label in red if not valid..
+        console.log("Requested info not valid.");
+      }
   }
 
   AssignDate(EventDate: NgbDateStruct, EventTime: NgbTimeStruct) : Date
@@ -189,9 +212,10 @@ export class CalendarComponent implements OnInit {
     //Force the form to be valid
     if (eventForm.valid)
     {
-      //do stuff
       this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
       this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime);
+
+      //Some Add logic to ws
 
       this.CloseModal();
     }
