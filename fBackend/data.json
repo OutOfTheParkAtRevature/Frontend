@@ -21,16 +21,16 @@
         "Name": "Event 1",
         "Location": "Random Address 1",
         "Message": "Some random message",
-        "StartTime": "2021-02-08",
-        "EndTime": "2021-02-08"
+        "StartTime": "2021-02-08 12:00:00",
+        "EndTime": "2021-02-08 13:00:00"
       },
       {
         "id":2,
         "Name": "Event 2",
         "Location": "Random Address 2",
         "Message": "Some random message #2",
-        "StartTime": "2021-02-03",
-        "EndTime": "2021-02-03"
+        "StartTime": "2021-02-03 12:00:00",
+        "EndTime": "2021-02-03 13:00:00"
       }
     ]
   },

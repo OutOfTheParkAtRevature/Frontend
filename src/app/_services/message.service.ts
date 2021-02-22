@@ -6,6 +6,7 @@ import { Inbox } from '../_models/inbox';
 import { Message } from '../_models/Message';
 import { RecipientList } from '../_models/RecipientList';
 import { UserInbox } from '../_models/UserInbox';
+import * as signalR from "@aspnet/signalr";
 
 @Injectable({
   providedIn: 'root'

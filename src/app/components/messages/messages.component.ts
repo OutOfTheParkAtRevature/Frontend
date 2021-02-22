@@ -126,9 +126,34 @@ export class MessagesComponent implements OnInit {
 
     this.allMessages.push(Message1);
     this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+
+    this.AutoFocusOnBottom();
 
     this.userMessage = "";
 
+  }
+
+  AutoFocusOnBottom(): void {
+    //Some times this doesn't go to the last element inserted.
+    this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
   }
 
   GetCarpoolInbox(): void{
@@ -251,8 +276,7 @@ export class MessagesComponent implements OnInit {
     
     this.txtUserMessage.nativeElement.focus();
 
-    //Some times this doesn't go to the last element inserted.
-    this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
+    this.AutoFocusOnBottom();
   }
 
 }
