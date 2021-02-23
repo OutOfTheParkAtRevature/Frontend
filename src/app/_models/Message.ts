@@ -3,10 +3,10 @@
 export class Message
 {
     //messageId: number;
-    id: number;
+    id: string;
     senderId: string;
     senderName: string;
-    recipientListId: number;
+    recipientListId: string;
     //recipientList: Array<string>;
     date: Date;
     body: string;

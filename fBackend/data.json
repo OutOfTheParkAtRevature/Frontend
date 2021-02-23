@@ -96,20 +96,24 @@
   "calendar": {
     "events": [
       {
-        "id": 1,
+
+        "id":"1",
+
         "Name": "Event 1",
         "Location": "Random Address 1",
         "Message": "Some random message",
-        "StartTime": "2021-02-08",
-        "EndTime": "2021-02-08"
+        "StartTime": "2021-02-08 12:00:00",
+        "EndTime": "2021-02-08 13:00:00"
       },
       {
-        "id": 2,
+
+        "id":"2",
+
         "Name": "Event 2",
         "Location": "Random Address 2",
         "Message": "Some random message #2",
-        "StartTime": "2021-02-03",
-        "EndTime": "2021-02-03"
+        "StartTime": "2021-02-03 12:00:00",
+        "EndTime": "2021-02-03 13:00:00"
       }
     ]
   },
@@ -210,30 +214,34 @@
   ],
   "userInboxes": [
     {
-      "id": 1,
+      "id": "1",
       "inboxes": [
         {
-          "id": 1,
-          "userID": 1,
+
+          "id":"1",
+          "userID": "1",
+
           "recipients": [
             {
-              "userID": 2,
+              "userID": "2",
               "fullName": "haha I changed your name"
             }
           ],
-          "messageID": 1,
+          "messageID": "1",
           "isRead": true
         },
         {
-          "id": 2,
-          "userID": 1,
+
+          "id":"2",
+          "userID": "1",
+
           "recipients": [
             {
-              "userID": 3,
-              "fullName": "AssCoach"
+              "userID": "4",
+              "fullName": "Coach"
             }
           ],
-          "messageID": 2,
+          "messageID": "2",
           "isRead": true
         }
       ]

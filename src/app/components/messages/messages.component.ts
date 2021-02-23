@@ -29,14 +29,6 @@ export class MessagesComponent implements OnInit {
   @ViewChild('txtUserMessage') txtUserMessage: ElementRef;
   @ViewChild('divChatMessage') divChatMessage: ElementRef;
 
-  
-  userLoggedIn:any;
-  messagesSent:any[] = [];
-  messagesRecieved:any[] = [];
-
-
-  messagesArr: any;
-
   selectedUserId: string;
 
   constructor( private _message: MessageService, private _users: UserService, private modalService: NgbModal, config: NgbModalConfig) 
@@ -69,12 +61,24 @@ export class MessagesComponent implements OnInit {
 
      // Gets a list of all users in the app
   // Then creates a list of all players that are on the same team as the logged in user
+
+    /* SignalR Http setup from Service...*/
+  // this._message.startConnection();
+  // this._message.addTransferChartDataListener();   
+  // this.startHttpRequest()
 }
+// // SignalR http
+// private startHttpRequest = () => {
+//   this.http.get('https://localhost:5001/api/chart')
+//     .subscribe(res => {
+//       console.log(res);
+//     })
+// }
 
   getInboxFromUser() {
 
     this._message.getMessages(1).subscribe( UserInboxes => {
-      console.log(UserInboxes); 
+      // console.log(UserInboxes); 
 
       this.userInbox = UserInboxes.inboxes;
       
@@ -113,29 +117,60 @@ export class MessagesComponent implements OnInit {
     //Load conversation when user clicks... 
     //User comments display at rigth...
     let Message1:Message = new Message();
-    Message1.id = 2;
-    Message1.recipientListId = 1;
+    Message1.id = "2";
+    Message1.recipientListId = "1";
     Message1.senderId = "1";
+    Message1.senderName = "Player";
     Message1.body = "This is the user conversation";
 
     let Message2:Message = new Message();
-    Message2.id = 3;
-    Message2.recipientListId = 1;
+    Message2.id = "3";
+    Message2.recipientListId = "1";
     Message2.senderId = "2";
+    Message2.senderName = "Full Name";
     Message2.body = "This is the other user response";
 
     this.allMessages.push(Message1);
     this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+    this.allMessages.push(Message1);
+    this.allMessages.push(Message2);
+
+    // The first time it doesn't work, because the div element is not created at the moment.
+    this.AutoFocusOnBottom();
 
     this.userMessage = "";
 
+  }
+
+  AutoFocusOnBottom(): void {
+    //Some times this doesn't go to the last element inserted.
+    try{
+      this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
+    }
+    catch{}
   }
 
   GetCarpoolInbox(): void{
     console.log("Get carpool inbox");
 
     let CarpoolInbox:Inbox = new Inbox();
-    CarpoolInbox.userID = 1000;
+    CarpoolInbox.userID = "1000";
     CarpoolInbox.recipients = [];
 
     
@@ -182,7 +217,7 @@ export class MessagesComponent implements OnInit {
 
     //Create new inbox logic
     let newGroup: Inbox = new Inbox();
-    newGroup.userID = 1; //Later review userID
+    newGroup.userID = "1"; //Later review userID
 
     this.userNewGroup.recipients.forEach(user => {
 
@@ -227,7 +262,7 @@ export class MessagesComponent implements OnInit {
     if (event.key === "Enter")
     {
       event.preventDefault();
-      console.log(event);
+      // console.log(event);
 
       this.UploadMessage();
     }
@@ -251,8 +286,7 @@ export class MessagesComponent implements OnInit {
     
     this.txtUserMessage.nativeElement.focus();
 
-    //Some times this doesn't go to the last element inserted.
-    this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
+    this.AutoFocusOnBottom();
   }
 
 }

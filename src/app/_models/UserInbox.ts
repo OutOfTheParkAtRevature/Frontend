@@ -2,8 +2,8 @@
 
 export class UserInbox
 {
-    id: number
-    userId: number;
-    messageId: number;
+    id: string
+    userId: string;
+    messageId: string;
     isRead: boolean;    //Stored in DB as a bit
 }
