@@ -78,7 +78,7 @@ export class MessagesComponent implements OnInit {
   getInboxFromUser() {
 
     this._message.getMessages(1).subscribe( UserInboxes => {
-      console.log(UserInboxes); 
+      // console.log(UserInboxes); 
 
       this.userInbox = UserInboxes.inboxes;
       
@@ -160,7 +160,10 @@ export class MessagesComponent implements OnInit {
 
   AutoFocusOnBottom(): void {
     //Some times this doesn't go to the last element inserted.
-    this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
+    try{
+      this.divChatMessage.nativeElement.scrollTop = this.divChatMessage.nativeElement.scrollHeight;
+    }
+    catch{}
   }
 
   GetCarpoolInbox(): void{
@@ -259,7 +262,7 @@ export class MessagesComponent implements OnInit {
     if (event.key === "Enter")
     {
       event.preventDefault();
-      console.log(event);
+      // console.log(event);
 
       this.UploadMessage();
     }

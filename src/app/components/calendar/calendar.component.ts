@@ -9,7 +9,6 @@ import { CalendarService } from 'src/app/_services/calendar.service';
 import { NgbCalendar, NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
 import {NgbDateStruct, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 import { NgbTime } from '@ng-bootstrap/ng-bootstrap/timepicker/ngb-time';
-import { Console, debug } from 'console';
 
 
 @Component({
@@ -42,7 +41,7 @@ export class CalendarComponent implements OnInit {
 
     this._calendar.getCalendar().subscribe(
       dataOnSuccess => {
-        console.log(dataOnSuccess);
+        // console.log(dataOnSuccess);
         this.eventDTO = dataOnSuccess.events;
 
         this.displayElementsIntoCalendar();
@@ -75,7 +74,7 @@ export class CalendarComponent implements OnInit {
     // weekends: false
     eventClick : (args) => {
       // opens events in a popup window
-      console.log(args);
+      // console.log(args);
       window.open(args.event.url, '_blank', 'width=700,height=600');
       // prevents current tab from navigating
       args.jsEvent.preventDefault();
@@ -151,11 +150,11 @@ export class CalendarComponent implements OnInit {
     this.selectedEvent = event;
     //Set the date and time from the DateTime...
     this.EventStartTime = this.GetTimeFromEvent(event.StartTime);
-    console.log(this.EventStartTime)
+    // console.log(this.EventStartTime)
     this.EventEndTime = this.GetTimeFromEvent(event.EndTime);
     this.EventStartDate = this.GetDateFromNgDateStruct(event.StartTime);
     this.EventEndDate = this.GetDateFromNgDateStruct(event.EndTime);
-    console.log(event, this.EventStartDate);
+    // console.log(event, this.EventStartDate);
     
     this.removeEvent = false;
     this.modalService.open(content);
@@ -207,7 +206,7 @@ export class CalendarComponent implements OnInit {
   editEvent( eventForm ) :void {
     //Do some update event logic
     // event.preventDefault();
-    console.log(eventForm.value, eventForm.valid);
+    // console.log(eventForm.value, eventForm.valid);
 
     //Force the form to be valid
     if (eventForm.valid)
@@ -226,7 +225,12 @@ export class CalendarComponent implements OnInit {
 
   RemoveEvent():void {
     //Do some remove event logic
-    
+
+
+    let eventIndex = this.eventDTO.indexOf(this.selectedEvent);
+    if (eventIndex > -1) {
+      this.eventDTO.splice(eventIndex, 1);
+    }
     //Event ID for identifying the element. 
     // this.selectedEvent.Name
     this.CloseModal();
