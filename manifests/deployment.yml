@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 3
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: outofthepark15226.azurecr.io/frontend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              name: frontend-http
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-deployment
+spec:
+  ports:
+    - name: frontend
+      port: 80
+      targetPort: frontend-http
+  selector:
+    app: frontend
+  type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+spec:
+  rules:
+  - host: frontend.1c50b018f5784721b39b.eastus.aksapp.io
+    http:
+      paths:
+      - pathType: Prefix
+        backend:
+          serviceName: frontend-deployment
+          servicePort: 80
+        path: /
