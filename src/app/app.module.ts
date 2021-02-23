@@ -96,7 +96,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     EditArticleComponent,
     CreateArticleComponent,
 
-    RegisterComponent
+    RegisterComponent,
     StatsComponent
 
   ],
