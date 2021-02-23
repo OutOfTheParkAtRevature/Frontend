@@ -36,6 +36,7 @@ export class PlayersComponent implements OnInit {
 
   getTeams() {
     this.users.forEach(element => {
+        element.unconfirmed = (element.roleName == "Unconfirmed User");
       this.userService.getTeam(element.teamID).subscribe( response => {
         element.team = response;
       }, err => {

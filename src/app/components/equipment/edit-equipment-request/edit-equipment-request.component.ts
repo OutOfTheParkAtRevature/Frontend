@@ -39,6 +39,7 @@ export class EditEquipmentRequestComponent implements OnInit {
   getRequest(id) {
     this.equipmentService.getRequest(id).subscribe(res => {
       this.equipmentRequest = res;
+      this.editedEquipmentRequest = res;
 
       // getting more information about the request
       this.getTeam();
@@ -49,7 +50,7 @@ export class EditEquipmentRequestComponent implements OnInit {
       //this.editedEquipmentRequest = {
       //  status: this.equipmentRequest.status
       //};
-      this.editedEquipmentRequest.status = this.equipmentRequest.status;
+      this.editedEquipmentRequest.status = res.status;
     }, err => {
       console.log(err);
     })
@@ -71,11 +72,12 @@ export class EditEquipmentRequestComponent implements OnInit {
     })
   }
 
-  editRequest() {
-    console.log(this.editedEquipmentRequest)
+  editRequest() : void
+  {
+    console.log(this.editedEquipmentRequest);
     this.equipmentService.editRequest(this.equipmentRequestId, this.editedEquipmentRequest).subscribe(res =>{
-      console.log(res);
-      this.router.navigate([`/equipment/details/${this.equipmentRequestId}`])
+        console.log(res);
+        this.router.navigate([`/equipment/details/${this.equipmentRequestId}`])
     })
   }
 

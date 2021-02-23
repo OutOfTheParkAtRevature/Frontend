@@ -8,37 +8,31 @@ import { Team } from '../../../_models/Team';
 import { User } from '../../../_models/User';
 
 @Component({
-  selector: 'app-create-player',
-  templateUrl: './create-player.component.html',
-  styleUrls: ['./create-player.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class CreatePlayerComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
-  //model:any = {};
-  //teamList:any;
-  //roleList: any;
   model: User;
   teamList: Array<Team> = new Array<Team>();
-  roleList: Array<Role> = new Array<Role>();
 
   constructor(public accountService: AccountService, public userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.getTeamList();
-    //this.getRoleList();
+    //this.model.team = new Team();
+    this.model = new User();
   }
 
   createUser() {
-    this.accountService.currentUser$.subscribe(user => {
-      //this.model.teamID = user.roleID;    //Is this a bug?
-      this.model.teamID = user.teamID;
-    })
-
+      this.getTeam();
     this.getRole();
     console.log(this.model);
     this.accountService.registerUser(this.model).subscribe(res => {
-      console.log(res)
-      this.router.navigate(['/players'])
+      console.log(res);
+      this.router.navigate(['/leagueNews']);
+      //Login this player
     }, err => {
       console.log(err);
     });
@@ -47,25 +41,21 @@ export class CreatePlayerComponent implements OnInit {
   getTeamList() {
     this.userService.getTeams().subscribe( teams => {
       this.teamList = teams;
+      console.log(this.teamList);
     }, err => {
       console.log(err);
     })
   }
 
   getTeam() {
+      console.log(this.model.team);
+      let temp: any = this.model.team;
     for (let i = 0; i < this.teamList.length; i++) {
-      if (this.teamList[i].name == this.model.team.name) {
+      if (this.teamList[i].name == temp) {
         this.model.teamID = this.teamList[i].id;
       }
     }
-  }
-
-  getRoleList() {
-    this.userService.getRoles().subscribe( roles => {
-      this.roleList = roles;
-    }, err => {
-      console.log(err);
-    })
+    this.model.team = null;
   }
 
   getRole() {
@@ -73,8 +63,7 @@ export class CreatePlayerComponent implements OnInit {
     //this.model.roleName = this.model.role.roleName;
     this.model.roleName = "Unconfirmed User";
 
-
-      /*
+    /*
       //Do we need this?
     for (let i = 0; i < this.roleList.length; i++) {
       if (this.roleList[i].roleName == this.model.role.roleName) {

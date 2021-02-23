@@ -1,32 +1,52 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser" id="players">
-    <h2 id="playersTitle">Players Details</h2>
-    <a routerLink="/players/create">Create User</a><br>
-    <table class="table table-striped">
-        <caption></caption>
-        <thead>
-        <tr>
-            <th scope="col">Full Name</th>
-            <th scope="col">Username</th>
-            <th scope="col">Team</th>
-            <th scope="col">Role</th>
-            <th scope="col">Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngFor="let user of users">
-                <tr *ngIf="user.teamID === loggedInUser.teamID">
-                    <td>{{user.fullName}}</td>
-                    <td>{{user.userName}}</td>
-                    <td>{{user?.team?.name}}</td>
-                    <td>{{user.roleName}}</td>
-                    <td>
-                        <a [routerLink]="['/players/details', user.id]">Details</a> &nbsp;
-                        <a [routerLink]="['/players/edit', user.id]" *ngIf="accountService.isAssCoachAuthorized(loggedInUser) || loggedInUser.id === user.id">Edit</a>
-                    </td>
-                </tr>
-            </ng-container>
-        </tbody>
-    </table>
+    <ng-container *ngIf="accountService.isPlayerAuthorized(loggedInUser)">
+        <h2 id="playersTitle">Players Details</h2>
+        <a routerLink="/players/create">Create User</a><br>
+        <table class="table table-striped">
+            <caption></caption>
+            <thead>
+            <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Username</th>
+                <th scope="col">Team</th>
+                <th scope="col">Role</th>
+                <th scope="col">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngFor="let user of users">
+                    <!-- The class unconfirmed is not working for some reason -->
+                    <tr *ngIf="user.teamID === loggedInUser.teamID && user.team.name && !user.unconfirmed">
+                        <td>{{user.fullName}}</td>
+                        <td>{{user.userName}}</td>
+                        <td>{{user?.team?.name}}</td>
+                        <td>{{user.roleName}}</td>
+                        <td>
+                            <a [routerLink]="['/players/details', user.id]">Details</a> &nbsp;
+                            <a [routerLink]="['/players/edit', user.id]" *ngIf="accountService.isAssCoachAuthorized(loggedInUser) || loggedInUser.id === user.id">Edit</a>
+                        </td>
+                    </tr>
+
+                    <tr *ngIf="user.teamID === loggedInUser.teamID && user.team.name && user.unconfirmed && accountService.isCoachAuthorized(loggedInUser)" style="background-color: red;">
+                        <td>{{user.fullName}}</td>
+                        <td>{{user.userName}}</td>
+                        <td>{{user?.team?.name}}</td>
+                        <td>{{user.roleName}}</td>
+                        <td>
+                            <a [routerLink]="['/players/details', user.id]">Details</a> &nbsp;
+                            <a [routerLink]="['/players/edit', user.id]" *ngIf="accountService.isAssCoachAuthorized(loggedInUser) || loggedInUser.id === user.id">Edit</a>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </ng-container>
+
+    <!-- If the user is not authorized to view  -->
+    <ng-container *ngIf="!accountService.isPlayerAuthorized(loggedInUser)">
+        <h2 class="text-center">Not Authorized</h2>
+        <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
+    </ng-container>
 </div>
 
 <!-- If the user is not logged in -->
