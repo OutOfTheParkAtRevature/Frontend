@@ -33,28 +33,28 @@ describe('MessageService', () => {
     beforeEach(() => {
       dummyMessages = [
         {
-          id: 1,
+          id: '6a15373f-6b2a-4711-bd6e-32f75750714d',
           body: '',
           date: new Date(),
-          recipientListId: 1,
-          senderId: '',
+          recipientListId: '27c63ab2-18cc-4161-ad9d-f36146f69efa',
+          senderId: 'fa3c9e1d-d2ef-4d0f-801b-a7a3842ffae8',
           senderName: ''
         },
         {
-          id: 2,
+          id: 'adc78472-82c3-40db-8357-770da25644bd',
           body: '',
           date: new Date(),
-          recipientListId: 2,
-          senderId: '',
+          recipientListId: 'ba7cf833-cf39-48c1-b9e5-867deedb7548',
+          senderId: 'e4a47152-e370-4d81-a1b7-1bed486e800e',
           senderName: ''
         }
       ] as Message[];
 
       dummyUserInbox = {
-        id: 1,
+        id: '8586dda6-fdc3-4603-8e37-29395a08d6d4',
         isRead: false,
-        messageId: 1,
-        userId: 1
+        messageId: 'adc78472-82c3-40db-8357-770da25644bd',
+        userId: 'fa3c9e1d-d2ef-4d0f-801b-a7a3842ffae8'
       } as UserInbox;
     });
 

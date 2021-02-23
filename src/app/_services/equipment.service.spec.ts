@@ -74,7 +74,7 @@ describe('EquipmentService', () => {
         expect(request).toBeTruthy(),
         fail
       );
-      const req = controller.expectOne(service.baseUrl + 'equipment/1');
+      const req = controller.expectOne(service.baseUrl + 'equipmentRequests/1');
       expect(req.request.method).toBe('GET');
       req.flush(dummyRequests);
     });
@@ -94,7 +94,7 @@ describe('EquipmentService', () => {
         expect(request).toBeTruthy(),
         fail
       );
-      const req = controller.expectOne(service.baseUrl + 'equipment/8deee219-204b-4772-bfc5-c03a267ad1da');
+      const req = controller.expectOne(service.baseUrl + 'equipmentRequests/8deee219-204b-4772-bfc5-c03a267ad1da');
       expect(req.request.method).toBe('PUT');
       req.flush(dummyRequests[1]);
     });
