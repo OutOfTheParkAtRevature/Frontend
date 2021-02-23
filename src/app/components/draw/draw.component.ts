@@ -50,6 +50,7 @@ export class DrawComponent implements AfterViewInit {
     this.canvasEl.width = this.width;
     this.canvasEl.height = this.height;
     this.cx.lineCap = 'round';
+     this.SetBackGroundWhite();
   }
 
   public ngOnInit() {

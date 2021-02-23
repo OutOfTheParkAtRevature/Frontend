@@ -85,6 +85,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CreateGameComponent,
     EditGameComponent,
     InboxMessageComponent,
+    AuthenticationComponent,
     //CreateEventComponent,
     //EditEventsComponent,
     TeamNewsComponent,
@@ -92,15 +93,14 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CreateArticleComponent
   ],
   imports: [
-    MatSlideToggleModule,
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    NgbModule,
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     FullCalendarModule,
-    NgbModule,
-    // NgbModal
+    MatSlideToggleModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptorService, multi:true },

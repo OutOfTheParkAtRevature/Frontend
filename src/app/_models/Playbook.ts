@@ -7,8 +7,8 @@ export class Playbook
     teamId: number;
     name: string;
 
-    constructor(id: number)
-    {
-        this.teamId = id;
-    }
+    //constructor(id: number)
+    //{
+    //    this.teamId = id;
+    //}
 }
