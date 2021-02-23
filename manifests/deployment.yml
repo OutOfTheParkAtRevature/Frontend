@@ -51,8 +51,7 @@ spec:
   - host: frontend.1c50b018f5784721b39b.eastus.aksapp.io
     http:
       paths:
-      - pathType: Prefix
-        backend:
+      - backend:
           serviceName: frontend-deployment
           servicePort: 80
-        path: /
+        path: /frontend(/|$)(.*)
