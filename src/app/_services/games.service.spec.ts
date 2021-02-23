@@ -56,7 +56,7 @@ describe('GamesServiceService', () => {
       req.flush(dummyGames);
     });
 
-    it('should call getGames()', () => {
+    it('should call getGame()', () => {
       service.getGame(1).subscribe(game =>
         expect(game).toBeTruthy(),
         fail
@@ -84,6 +84,59 @@ describe('GamesServiceService', () => {
       const req = controller.expectOne(service.baseUrl + 'games/2');
       expect(req.request.method).toBe('PUT');
       req.flush(dummyGames[1]);
+    });
+  });
+
+  describe('#teams', () => {
+    let dummyTeams: Team[];
+
+    beforeEach(() => {
+      dummyTeams = [
+        {
+          id: 1,
+          name: '',
+          wins: 0,
+          losses: 0,
+          winningPct: ''
+        },
+        {
+          id: 2,
+          name: '',
+          wins: 0,
+          losses: 0,
+          winningPct: ''
+        }
+      ] as Team[];
+    });
+
+    it('should call getTeams()', () => {
+      service.getTeams().subscribe(teams =>
+        expect(teams.length).toBeGreaterThan(0),
+        fail
+      );
+      const req = controller.expectOne(service.baseUrl + 'teams');
+      expect(req.request.method).toBe('GET');
+      req.flush(dummyTeams);
+    });
+
+    it('should call getTeam()', () => {
+      service.getTeam(1).subscribe(team =>
+        expect(team).toBeTruthy(),
+        fail
+      );
+      const req = controller.expectOne(service.baseUrl + 'teams/1');
+      expect(req.request.method).toBe('GET');
+      req.flush(dummyTeams[0]);
+    });
+
+    it('should call updateTeam()', () => {
+      service.updateTeam(dummyTeams[1], dummyTeams[1].id).subscribe(team =>
+        expect(team).toBeTruthy(),
+        fail
+      );
+      const req = controller.expectOne(service.baseUrl + 'teams/2');
+      expect(req.request.method).toBe('PUT');
+      req.flush(dummyTeams[1]);
     });
   });
 });
