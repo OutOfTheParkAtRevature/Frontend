@@ -56,6 +56,7 @@ import { UserService } from './_services/user.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BearerAuthInterceptorService } from './_services/bearer-auth-interceptor.service';
 import { InboxMessageComponent } from './components/messages/inbox-message/inbox-message.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -94,7 +95,10 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     LeagueNewsComponent,
     EditArticleComponent,
     CreateArticleComponent,
+
     RegisterComponent
+    StatsComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
