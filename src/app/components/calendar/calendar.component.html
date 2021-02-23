@@ -1,5 +1,5 @@
 <div style="position: relative;" class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-    
+
     <ng-template #content let-modal>
         <!-- Remove Modal Message -->
         <div *ngIf="removeEvent; else EditEvent">
@@ -223,8 +223,7 @@
             <button class="btn btn-primary" (click)="createNewEventDialog(NewEvent)" >Create event</button>
             <div class="row">
                 <div class="col-md-12">
-                    
-                    <table class="table table-striped">
+                    <table class="table table-striped" summary="">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
