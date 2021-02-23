@@ -7,7 +7,7 @@ pr:
 variables:
   frontendRepository: 'frontend'
   tag: 'latest'
-  imagePullSecret: 'user'
+  imagePullSecret: 'frontend'
 
 
 stages:
@@ -62,7 +62,7 @@ stages:
             inputs:
               command: buildAndPush
               buildContext: $(Build.Repository.LocalPath)
-              repository: $(userRepository)
+              repository: $(frontendRepository)
               dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
               containerRegistry: 'Container Registry Connection'
               tags: |
@@ -118,7 +118,7 @@ stages:
                 imagePullSecrets: |
                   $(imagePullSecret)
                 containers: |
-                  $(RegistryName)/$(userRepository):$(tag)
+                  $(RegistryName)/$(frontendRepository):$(tag)
             - task: Kubernetes@1
               inputs:
                 command: 'logout'
