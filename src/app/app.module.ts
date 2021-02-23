@@ -95,10 +95,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     LeagueNewsComponent,
     EditArticleComponent,
     CreateArticleComponent,
-
-    RegisterComponent
-    StatsComponent
-
+    RegisterComponent,
+    StatsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
