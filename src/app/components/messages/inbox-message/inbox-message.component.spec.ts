@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { InboxMessageComponent } from './inbox-message.component';
+import { MessageService } from 'src/app/_services/message.service';
+import { User } from 'src/app/_models/User';
+import { Role } from "src/app/_models/Role";
+import { Team } from "src/app/_models/Team";
+import { Inbox } from 'src/app/_models/inbox';
+import { Recipient } from 'src/app/_models/recipient';
 
 describe('InboxMessageComponent', () => {
   let component: InboxMessageComponent;
@@ -8,7 +14,9 @@ describe('InboxMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InboxMessageComponent ]
+      imports: [HttpClientTestingModule],
+      providers: [MessageService],
+      declarations: [InboxMessageComponent]
     })
     .compileComponents();
   });
@@ -16,6 +24,11 @@ describe('InboxMessageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(InboxMessageComponent);
     component = fixture.componentInstance;
+    component.Inbox = {
+      isRead: false,
+      recipients: [],
+      userID: 1
+    } as Inbox;
     fixture.detectChanges();
   });
 

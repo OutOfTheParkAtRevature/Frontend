@@ -14,6 +14,7 @@ export class EquipmentRequestDetailsComponent implements OnInit {
 
   constructor(private equipmentService: EquipmentService, private route: ActivatedRoute, public accountService: AccountService
                 , public userService: UserService) { }
+                
   equipmentRequestId: string;
   //equipmentRequest: any = {};
   equipmentRequest: EquipmentRequest;

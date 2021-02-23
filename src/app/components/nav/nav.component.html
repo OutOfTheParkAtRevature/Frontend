@@ -40,7 +40,14 @@
               <!-- *ngIf="accountService.currentUser$ | async" -->
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/auth">Login / Register</a>
+              <a class="nav-link" routerLink="/teamNews">News</a>
+              <!-- *ngIf="accountService.currentUser$ | async" -->
+            </li>
+            <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
+              <a class="nav-link" (click)="logout()">Logout</a>
+            </li>
+            <li *ngIf="!(accountService.currentUser$ | async)" class="nav-item">
+              <a class="nav-link" routerLink="/">Login / Register</a>
             </li>
           </ul>
           <!-- <div class="login">

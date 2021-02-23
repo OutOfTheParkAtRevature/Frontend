@@ -40,16 +40,23 @@ import { CreateGameComponent } from './components/games/create-game/create-game.
 import { EditGameComponent } from './components/games/edit-game/edit-game.component';
 //import { CreateEventComponent } from './components/calendar/create-event/create-event.component';
 //import { EditEventsComponent } from './components/calendar/edit-events/edit-events.component';
+import { TeamNewsComponent } from './components/news/team-news/team-news.component';
+import { LeagueNewsComponent } from './components/news/league-news/league-news.component';
+import { EditArticleComponent } from './components/news/edit-article/edit-article.component';
+import { CreateArticleComponent } from './components/news/create-article/create-article.component';
+import { RegisterComponent } from './components/home/register/register.component';
 import { AccountService } from './_services/account.service';
 import { CalendarService } from './_services/calendar.service';
 import { DrawService } from './_services/draw.service';
 import { EquipmentService } from './_services/equipment.service';
 import { GamesService } from './_services/games.service';
 import { MessageService } from './_services/message.service';
+import { NewsService } from './_services/news.service';
 import { UserService } from './_services/user.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BearerAuthInterceptorService } from './_services/bearer-auth-interceptor.service';
 import { InboxMessageComponent } from './components/messages/inbox-message/inbox-message.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -84,6 +91,14 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AuthenticationComponent,
     //CreateEventComponent,
     //EditEventsComponent,
+    TeamNewsComponent,
+    LeagueNewsComponent,
+    EditArticleComponent,
+    CreateArticleComponent,
+
+    RegisterComponent
+    StatsComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -104,6 +119,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
       EquipmentService,
       GamesService,
       MessageService,
+      NewsService,
       UserService,
       NgbModalConfig
   ],

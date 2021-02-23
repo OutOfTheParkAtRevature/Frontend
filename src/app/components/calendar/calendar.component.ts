@@ -57,7 +57,10 @@ export class CalendarComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    dateClick: this.handleDateClick.bind(this), // bind is important!
+
+    /* This throws an error during tests (- Tyler) */
+    // dateClick: this.handleDateClick.bind(this), // bind is important!
+
     // /* Connect directly into Google Calendar */
     // eventSources: [
     //   {
@@ -69,7 +72,7 @@ export class CalendarComponent implements OnInit {
     // // To make your own Google API key, follow the directions here:
     // // http://fullcalendar.io/docs/google_calendar/
     // googleCalendarApiKey: 'AIzaSyD1uF6AYdObDeTd6_ZdXivQ8ONR0_397aU',
-    
+
     // //Toggle the weekend option on and off
     // weekends: false
     eventClick : (args) => {

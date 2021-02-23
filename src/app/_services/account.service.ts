@@ -47,4 +47,43 @@ export class AccountService {
     return this.http.post<User>(this.baseUrl + "users", model);
   }
 
+
+  //Role Authorization Methods
+  isPlayerAuthorized(user: any): boolean
+  {
+    //return user.roleID >= 1;
+    return user.roleName == "Player" || user.roleName == "Parent" || user.roleName == "AssistantCoach" || user.roleName == "Head Coach"
+            || user.roleName == "League Manager" || user.roleName == "Admin";
+  }
+
+  isParentAuthorized(user: any): boolean
+  {
+    //return user.roleID >= 2;
+    return user.roleName == "Parent" || user.roleName == "AssistantCoach" || user.roleName == "Head Coach"
+            || user.roleName == "League Manager" || user.roleName == "Admin";
+  }
+
+  isAssCoachAuthorized(user: any): boolean
+  {
+    //return user.roleID >= 3;
+    return user.roleName == "AssistantCoach" || user.roleName == "Head Coach" || user.roleName == "League Manager" || user.roleName == "Admin";
+  }
+
+  isCoachAuthorized(user: any): boolean
+  {
+    //return user.roleID >= 4;
+    return user.roleName == "Head Coach" || user.roleName == "League Manager" || user.roleName == "Admin";
+  }
+
+  isLeagueAdminAuthorized(user: any): boolean
+  {
+    //return user.roleID >= 5;
+    return user.roleName == "League Manager" || user.roleName == "Admin";
+  }
+
+  isAppAdminAuthorized(user: any): boolean
+  {
+    //return user.roleID >= 6;
+    return user.roleName == "Admin";
+  }
 }

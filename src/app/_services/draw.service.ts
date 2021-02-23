@@ -27,13 +27,18 @@ export class DrawService {
     return this.http.get<Play[]>(this.baseUrl + 'plays');
   }
 
+  createPlaybooks(model: Playbook): Observable<Playbook>
+  {
+    return this.http.post<Playbook>(this.baseUrl + 'playbooks', model);
+  }
+
   getPlaybooks(): Observable<Playbook[]>
   {
     //return this.http.get(this.baseUrl + 'playbooks');
     return this.http.get<Playbook[]>(this.baseUrl + 'playbooks');
   }
 
- getPlaybookByID(teamId: number): Observable<Playbook>
+ getPlaybooksByID(teamId: number): Observable<Playbook>
  {
     //return this.http.get(this.baseUrl + `playbooks/${teamId}`);
     return this.http.get<Playbook>(this.baseUrl + 'playbooks/' + teamId);
@@ -42,8 +47,13 @@ export class DrawService {
   deletePlay(playId: number): Observable<Play>
   {
     //return this.http.delete(this.baseUrl + `playbooks/plays/delete/${playId}`);
-    return this.http.delete<Play>(this.baseUrl + 'playbooks/' + playId);
+    return this.http.delete<Play>(this.baseUrl + 'plays/' + playId);
   }
 
+  editPlay(id:number, model: Play): Observable<Play>
+  {
+    //Need a CONTROLLER METHOD HERE
+    return this.http.put<Play>(this.baseUrl + 'plays/' + id, model);
+  }
  
 }

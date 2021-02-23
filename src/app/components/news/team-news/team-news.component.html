@@ -1,0 +1,39 @@
+<div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+
+    <div>
+        <h2 id="newsTitle">Team Articles</h2>
+        <button [routerLink]="['/leagueNews']"> League News </button>
+        <a *ngIf="accountService.isCoachAuthorized(loggedInUser)" routerLink="/article/create/1">Create Article</a>
+    </div>
+
+    <!-- I would like to color articles differently if they are not visible but the coach can see them -->
+
+    <ng-container *ngIf="accountService.isPlayerAuthorized(loggedInUser)">
+        <ng-container *ngFor="let article of articles; let o = odd;">
+            <div *ngIf="article.isVisible || accountService.isCoachAuthorized(loggedInUser)" [ngClass]="{'pinned': article.Pinned == true}">
+                <h6> {{article.title}} </h6>
+                <p style="color: red;" *ngIf="!article.isVisible && accountService.isCoachAuthorized(loggedInUser)">
+                    THIS ARTICLE IS MARKED AS INVISIBLE, AND SO YOUR PLAYERS WILL BE UNABLE TO SEE IT.
+                </p>
+                <p> 
+                    {{article.date}}  
+                    <a [routerLink]="['/article/edit', article.id, 1]" *ngIf="accountService.isCoachAuthorized(loggedInUser)">Edit</a>
+                    <a> PIN </a>
+                </p>
+                <p> {{article.body}} </p>
+                <br/>
+            </div>
+        </ng-container>
+    </ng-container>
+
+     <!-- If the user is not authorized to view  -->
+     <ng-container *ngIf="!accountService.isPlayerAuthorized(loggedInUser)">
+        <h2 class="text-center">Not Authorized to view team news</h2>
+        <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
+    </ng-container>
+</div>
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
+</div>

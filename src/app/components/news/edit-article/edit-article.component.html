@@ -1,0 +1,46 @@
+<div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+    <ng-container *ngIf="accountService.isCoachAuthorized(loggedInUser)"> 
+    <h3 id="createArticleTitle" id="editArticleTitle">Edit Article</h3>   
+    <span *ngIf="isTeam; else elseblock">
+        <a routerLink="/teamArticles" id="backToCreateArticle">Back to Articles</a><br>   
+    </span>
+    <ng-template #elseblock>
+        <a routerLink="/leagueArticles" id="backToCreateArticle">Back to Articles</a><br>   
+    </ng-template>
+    <form *ngIf="editedArticle && editedArticle.title" #editArticleForm="ngForm" (ngSubmit)="editArticle()" id="editArticle">
+        <label for="title">Title</label>
+        <input name="title" [(ngModel)]="editedArticle.title" class="form-control me-2" type="text">
+        <br>
+        <label for="body">Body</label>
+        <input name="body" [(ngModel)]="editedArticle.body" class="form-control me-2" type="text">
+        <br>
+        <div *ngIf="isTeam">
+            <label for="teamId">Team Id</label>
+            <input name="teamId" [(ngModel)]="editedArticle.teamId" class="form-control me-2" type="number" min="0" >
+            <br>
+        </div>
+        <label for="isVisible">Is Visible?</label>
+        <input name="isVisible" [(ngModel)]="editedArticle.isVisible" class="form-control me-2" type="checkbox">
+        <br>
+        <!-- Should not be changeable?
+        <label for="date">Date (Needs Validation)</label>
+        <input name="date" [(ngModel)]="editedArticle.date" class="form-control me-2" type="text" >
+        <br>
+        -->
+        <label for="isPinned">Is Pinned?</label>
+        <input name="isPinned" [(ngModel)]="editedArticle.Pinned" class="form-control me-2" type="checkbox">
+        <br>
+        <button type="submit" class="btn btn-outline-success" id="editArticleButton">Submit</button>
+    </form>
+    </ng-container>
+    <ng-container *ngIf="!accountService.isCoachAuthorized(loggedInUser)">
+        <h2 class="text-center">Not Authorized</h2>
+        <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
+      </ng-container>
+</div>
+
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
+</div>

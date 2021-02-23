@@ -1,46 +1,48 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
-  <ng-container *ngIf="userService.isParentAuthorized(loggedInUser)">  
-  <h2 id="detailsRequestTitle">Equipment Request #{{equipmentRequest.requestID}}</h2>
-    <a routerLink="/equipment">Back to Requests</a><br>
-    <a routerLink="/equipment/edit/{{equipmentRequest.requestID}}">Edit Request</a>
-    <table class="table table-striped" id="detailsRequestsTable">
-      <caption></caption>
-        <thead>
-          <tr>
-            <th scope="col">Detail</th>
-            <th scope="col">Value</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>ID</td>
-            <td>{{equipmentRequest.requestID}}</td>
-          </tr>
-          <tr>
-            <td>Item</td>
-            <td>{{equipmentRequest?.item?.description}}</td>
-          </tr>
-          <tr>
-            <td>User</td>
-            <td>{{equipmentRequest?.user?.fullName}}</td>
-          </tr>
-          <tr>
-            <td>Team</td>
-            <td>{{equipmentRequest?.team?.name}}</td>
-          </tr>
-          <tr>
-            <td>Message</td>
-            <td>{{equipmentRequest.message}}</td>
-          </tr>
-          <tr>
-            <td>Status</td>
-            <td>{{equipmentRequest.status}}</td>
-          </tr>
-        </tbody>
-      </table>
+  <ng-container *ngIf="accountService.isParentAuthorized(loggedInUser)">  
+      <div *ngIf="equipmentRequest && equipmentRequest.id">
+        <h2 id="detailsRequestTitle">Equipment Request #{{equipmentRequest.id}}</h2>
+        <a routerLink="/equipment">Back to Requests</a><br>
+        <a routerLink="/equipment/edit/{{equipmentRequest.id}}">Edit Request</a>
+        <table class="table table-striped" id="detailsRequestsTable">
+        <caption></caption>
+            <thead>
+            <tr>
+                <th scope="col">Detail</th>
+                <th scope="col">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>ID</td>
+                <td>{{equipmentRequest.id}}</td>
+            </tr>
+            <tr>
+                <td>Item</td>
+                <td>{{equipmentRequest?.item?.Description}}</td>
+            </tr>
+            <tr>
+                <td>User</td>
+                <td>{{equipmentRequest?.user?.fullName}}</td>
+            </tr>
+            <tr>
+                <td>Team</td>
+                <td>{{equipmentRequest?.team?.name}}</td>
+            </tr>
+            <tr>
+                <td>Message</td>
+                <td>{{equipmentRequest.message}}</td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>{{equipmentRequest.status}}</td>
+            </tr>
+            </tbody>
+        </table>
+      </div>
     </ng-container>
 
-      <ng-container *ngIf="!userService.isParentAuthorized(loggedInUser)">
+      <ng-container *ngIf="!accountService.isParentAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
       </ng-container>

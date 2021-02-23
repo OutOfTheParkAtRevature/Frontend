@@ -1,0 +1,11 @@
+#gamesTitle {
+    text-align: center;
+}
+
+.pinned{
+    background-color: #aaaaaa;
+}
+
+.oddRow{
+    background-color: #cccccc;
+}

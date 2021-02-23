@@ -25,7 +25,7 @@ export class CreatePlayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeamList();
-    this.getRoleList();
+    //this.getRoleList();
   }
 
   createUser() {
@@ -70,7 +70,10 @@ export class CreatePlayerComponent implements OnInit {
 
   getRole() {
       
-    this.model.roleName = this.model.role.roleName;
+    //this.model.roleName = this.model.role.roleName;
+    this.model.roleName = "Unconfirmed User";
+
+
       /*
       //Do we need this?
     for (let i = 0; i < this.roleList.length; i++) {
