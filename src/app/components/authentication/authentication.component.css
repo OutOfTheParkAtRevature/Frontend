@@ -32,7 +32,6 @@
     margin:auto;
     margin-top: 2%;
     width: 65%;
-    padding: 10px;
     background-color: #d4cccf;
     overflow: auto;
     padding: 1em 2em;
@@ -79,7 +78,7 @@
        padding-left: 10%;
      }
    }
-   @media screen and (max-width:390xpx){
+   @media screen and (max-width:390px){
      h5 {
        font-size: 13px;
      }
