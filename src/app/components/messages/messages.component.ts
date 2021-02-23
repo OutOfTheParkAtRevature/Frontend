@@ -9,6 +9,7 @@ import { Inbox } from 'src/app/_models/inbox';
 import { Recipient } from 'src/app/_models/recipient';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Message } from 'src/app/_models/Message';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-messages',
@@ -31,7 +32,7 @@ export class MessagesComponent implements OnInit {
 
   selectedUserId: string;
 
-  constructor( private _message: MessageService, private _users: UserService, private modalService: NgbModal, config: NgbModalConfig) 
+  constructor( private _message: MessageService, private _users: UserService, private modalService: NgbModal, config: NgbModalConfig, public accountService: AccountService) 
   {
     config.backdrop = 'static';
     config.keyboard = false;

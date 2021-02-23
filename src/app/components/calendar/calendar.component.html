@@ -1,43 +1,126 @@
-<ng-template #content let-modal>
-    <!-- Remove Modal Message -->
-    <div *ngIf="removeEvent; else EditEvent">
-        <div class="modal-header">
-            <h4 class="modal-title">Remove event</h4>
-            <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <span>{{selectedEvent.Name}}</span>
-                <br>
-                <span>{{selectedEvent.Location}}</span>
-                <br>
-                <span>{{selectedEvent.Message}}</span>
-                <br>
-                <!-- <label for="dtmStartTime">Start Time</label>
-                <label for="dtmEndTime">End Time</label> -->
-                
+<div style="position: relative;" class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+    
+    <ng-template #content let-modal>
+        <!-- Remove Modal Message -->
+        <div *ngIf="removeEvent; else EditEvent">
+            <div class="modal-header">
+                <h4 class="modal-title">Remove event</h4>
+                <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <span>{{selectedEvent.Name}}</span>
+                    <br>
+                    <span>{{selectedEvent.Location}}</span>
+                    <br>
+                    <span>{{selectedEvent.Message}}</span>
+                    <br>
+                    <!-- <label for="dtmStartTime">Start Time</label>
+                    <label for="dtmEndTime">End Time</label> -->
+                    
 
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="RemoveEvent()">Delete Event</button>
+                <button type="button" class="btn btn-light" (click)="CloseModal()">Close</button>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-danger" (click)="RemoveEvent()">Delete Event</button>
-            <button type="button" class="btn btn-light" (click)="CloseModal()">Close</button>
-        </div>
-    </div>
-    <!-- Edit Modal Message -->
-    <ng-template #EditEvent>
+        <!-- Edit Modal Message -->
+        <ng-template #EditEvent>
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Event</h4>
+                <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <form #editForm="ngForm" (ngSubmit)="editEvent(editForm)">
+                        <label for="txtName">Display Name</label>
+                        <input type="text" id="txtName" class="form-control" name="Name" [(ngModel)]="selectedEvent.Name" required #ctrlName="ngModel" placeholder="Event Name">
+                        <div class="alert alert-danger" *ngIf="ctrlName.invalid && (ctrlName.touched || ctrlName.dirty) ">
+                            <label >Display Name is required.</label>
+                        </div>
+                        <label for="txtLocation">Location</label>
+                        <input type="text" id="txtLocation" class="form-control" name="Location" [(ngModel)]="selectedEvent.Location" required #ctrlLocation="ngModel" placeholder="Location" >
+                        <div class="alert alert-danger" *ngIf="ctrlLocation.invalid && (ctrlLocation.touched || ctrlLocation.dirty) ">
+                            <label >The location is required.</label>
+                        </div>
+                        <label for="txtMessage">Message</label>
+                        <textarea id="txtMessage" class="form-control" name="Message" [(ngModel)]="selectedEvent.Message" required placeholder="Description..."></textarea>
+                        <div class="alert alert-danger" *ngIf="ctrlLocation.invalid && (ctrlLocation.touched || ctrlLocation.dirty) ">
+                            <label >The location is required.</label>
+                        </div>
+                        <!-- Start Time -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="dtmStartTime">Start Time</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd"
+                                        name="EventStartDate" [(ngModel)]="EventStartDate" ngbDatepicker #dStart="ngbDatepicker" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary material-icons" (click)="dStart.toggle()" type="button">
+                                            calendar_today
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <ngb-timepicker [(ngModel)]="EventStartTime"
+                                [hourStep]="hourStep" [minuteStep]="minuteStep" name="EventStartTime"></ngb-timepicker>
+                            </div>
+                        </div>
+                        <!-- End Time -->
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="dtmStartTime">End Time</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="yyyy-mm-dd"
+                                        name="EventEndDate" [(ngModel)]="EventEndDate" ngbDatepicker #dEnd="ngbDatepicker" required>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary material-icons" (click)="dEnd.toggle()" type="button">
+                                            calendar_today
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-6">
+                                <ngb-timepicker [(ngModel)]="EventEndTime"
+                                [hourStep]="hourStep" [minuteStep]="minuteStep" name="EventEndTime"></ngb-timepicker>
+                            </div>
+                        </div>
+
+                        <hr>
+                        <button type="button" class="btn btn-success" type="submit" [disabled]="!editForm.valid">Save Event</button>
+                        <!-- (click)="editEvent()" -->
+                        <button type="button" class="btn btn-light" (click)="CloseModal()">Close</button>
+                        
+                    </form>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+            </div> -->
+                
+        </ng-template>
+    </ng-template>
+
+    <ng-template #NewEvent let-modal>
         <div class="modal-header">
-            <h4 class="modal-title">Edit Event</h4>
+            <h4 class="modal-title">Create new Event</h4>
             <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
-                <span aria-hidden="true">&times;</span>
+            <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <form #editForm="ngForm" (ngSubmit)="editEvent(editForm)">
-                    <label for="txtName">Display Name</label>
+                <!-- #AddNewEvent="ngForm" -->
+                <form #addNewEventForm="ngForm" (ngSubmit)="AddNewEvent(addNewEventForm)">
+                    <label for="txtName_add">Display Name</label>
                     <input type="text" id="txtName" class="form-control" name="Name" [(ngModel)]="selectedEvent.Name" required #ctrlName="ngModel" placeholder="Event Name">
                     <div class="alert alert-danger" *ngIf="ctrlName.invalid && (ctrlName.touched || ctrlName.dirty) ">
                         <label >Display Name is required.</label>
@@ -52,13 +135,12 @@
                     <div class="alert alert-danger" *ngIf="ctrlLocation.invalid && (ctrlLocation.touched || ctrlLocation.dirty) ">
                         <label >The location is required.</label>
                     </div>
-                    <!-- Start Time -->
                     <div class="row">
                         <div class="col-md-6">
                             <label for="dtmStartTime">Start Time</label>
                             <div class="input-group">
                                 <input class="form-control" placeholder="yyyy-mm-dd"
-                                       name="EventStartDate" [(ngModel)]="EventStartDate" ngbDatepicker #dStart="ngbDatepicker" required>
+                                        name="EventStartDate" [(ngModel)]="EventStartDate" ngbDatepicker #dStart="ngbDatepicker" required>
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary material-icons" (click)="dStart.toggle()" type="button">
                                         calendar_today
@@ -72,13 +154,13 @@
                             [hourStep]="hourStep" [minuteStep]="minuteStep" name="EventStartTime"></ngb-timepicker>
                         </div>
                     </div>
-                    <!-- End Time -->
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <label for="dtmStartTime">End Time</label>
                             <div class="input-group">
                                 <input class="form-control" placeholder="yyyy-mm-dd"
-                                       name="EventEndDate" [(ngModel)]="EventEndDate" ngbDatepicker #dEnd="ngbDatepicker" required>
+                                        name="EventEndDate" [(ngModel)]="EventEndDate" ngbDatepicker #dEnd="ngbDatepicker" required>
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary material-icons" (click)="dEnd.toggle()" type="button">
                                         calendar_today
@@ -94,165 +176,92 @@
                     </div>
 
                     <hr>
-                    <button type="button" class="btn btn-success" type="submit" [disabled]="!editForm.valid">Save Event</button>
-                    <!-- (click)="editEvent()" -->
+                    <button type="submit" class="btn btn-primary" [disabled]="!addNewEventForm.valid">Create Event</button>
                     <button type="button" class="btn btn-light" (click)="CloseModal()">Close</button>
-                    
+
+                    <!-- <button type="button" class="btn btn-success" type="submit" >Save Event</button>
+                    <button type="button" class="btn btn-light" (click)="CloseModal()" [disabled]="!editForm.valid">Close</button> -->
                 </form>
+
             </div>
         </div>
-        <!-- <div class="modal-footer">
-        </div> -->
-            
+
+    
     </ng-template>
-</ng-template>
 
-<ng-template #NewEvent let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title">Create new Event</h4>
-        <button type="button" class="close" aria-label="Close" (click)="CloseModal()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body">
-        <div class="form-group">
-            <!-- #AddNewEvent="ngForm" -->
-             <form #addNewEventForm="ngForm" (ngSubmit)="AddNewEvent(addNewEventForm)">
-                <label for="txtName_add">Display Name</label>
-                <input type="text" id="txtName" class="form-control" name="Name" [(ngModel)]="selectedEvent.Name" required #ctrlName="ngModel" placeholder="Event Name">
-                <div class="alert alert-danger" *ngIf="ctrlName.invalid && (ctrlName.touched || ctrlName.dirty) ">
-                    <label >Display Name is required.</label>
-                </div>
-                <label for="txtLocation">Location</label>
-                <input type="text" id="txtLocation" class="form-control" name="Location" [(ngModel)]="selectedEvent.Location" required #ctrlLocation="ngModel" placeholder="Location" >
-                <div class="alert alert-danger" *ngIf="ctrlLocation.invalid && (ctrlLocation.touched || ctrlLocation.dirty) ">
-                    <label >The location is required.</label>
-                </div>
-                <label for="txtMessage">Message</label>
-                <textarea id="txtMessage" class="form-control" name="Message" [(ngModel)]="selectedEvent.Message" required placeholder="Description..."></textarea>
-                <div class="alert alert-danger" *ngIf="ctrlLocation.invalid && (ctrlLocation.touched || ctrlLocation.dirty) ">
-                    <label >The location is required.</label>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="dtmStartTime">Start Time</label>
-                        <div class="input-group">
-                            <input class="form-control" placeholder="yyyy-mm-dd"
-                                    name="EventStartDate" [(ngModel)]="EventStartDate" ngbDatepicker #dStart="ngbDatepicker" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary material-icons" (click)="dStart.toggle()" type="button">
-                                    calendar_today
-                                </button>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="col-md-6">
-                        <ngb-timepicker [(ngModel)]="EventStartTime"
-                        [hourStep]="hourStep" [minuteStep]="minuteStep" name="EventStartTime"></ngb-timepicker>
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="dtmStartTime">End Time</label>
-                        <div class="input-group">
-                            <input class="form-control" placeholder="yyyy-mm-dd"
-                                    name="EventEndDate" [(ngModel)]="EventEndDate" ngbDatepicker #dEnd="ngbDatepicker" required>
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary material-icons" (click)="dEnd.toggle()" type="button">
-                                    calendar_today
-                                </button>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="col-md-6">
-                        <ngb-timepicker [(ngModel)]="EventEndTime"
-                        [hourStep]="hourStep" [minuteStep]="minuteStep" name="EventEndTime"></ngb-timepicker>
-                    </div>
-                </div>
 
-                <hr>
-                <button type="submit" class="btn btn-primary" [disabled]="!addNewEventForm.valid">Create Event</button>
-                <button type="button" class="btn btn-light" (click)="CloseModal()">Close</button>
+    <div class="container">
 
-                <!-- <button type="button" class="btn btn-success" type="submit" >Save Event</button>
-                <button type="button" class="btn btn-light" (click)="CloseModal()" [disabled]="!editForm.valid">Close</button> -->
-            </form>
-
+        <!-- <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <iframe 
+                src="https://calendar.google.com/calendar/embed?&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=b3V0b2Z0aGVwYXJrY2FsZW5kYXJAZ21haWwuY29t&amp;color=%23039BE5&amp;showTitle=0&amp;mode=MONTH&amp;showNav=1&amp;showPrint=0&amp;showCalendars=0" 
+                style="border-width:0" 
+                width="800" 
+                height="600" 
+                frameborder="0" 
+                scrolling="no"></iframe>
+            </div>
+            <div class="col-md-2"></div>
         </div>
-    </div>
+        
 
-   
-</ng-template>
-
-
-<div class="container">
-
-    <!-- <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <iframe 
-            src="https://calendar.google.com/calendar/embed?&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FChicago&amp;src=b3V0b2Z0aGVwYXJrY2FsZW5kYXJAZ21haWwuY29t&amp;color=%23039BE5&amp;showTitle=0&amp;mode=MONTH&amp;showNav=1&amp;showPrint=0&amp;showCalendars=0" 
-            style="border-width:0" 
-            width="800" 
-            height="600" 
-            frameborder="0" 
-            scrolling="no"></iframe>
-        </div>
-        <div class="col-md-2"></div>
-    </div>
-    
-
-    <br><br><br> -->
-    <div class="row">
-        <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <full-calendar [options]="calendarOptions"></full-calendar>
-        </div>
-        <div class="col-md-2"></div>
-    </div>
-    
-    <br>
-    <hr>
-    <div class="schedule-details">
-        <h3 class="text-center">Schedule Details</h3>
-        <button class="btn btn-primary" (click)="createNewEventDialog(NewEvent)" >Create event</button>
+        <br><br><br> -->
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <full-calendar [options]="calendarOptions"></full-calendar>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        
+        <br>
+        <hr>
+        <div class="schedule-details">
+            <h3 class="text-center">Schedule Details</h3>
+            <button class="btn btn-primary" (click)="createNewEventDialog(NewEvent)" >Create event</button>
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Location</th>
+                            <th scope="col">Start Time</th>
+                            <th scope="col">End Time</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let event of eventDTO; index as i">
+                            <th scope="row">{{ i + 1 }}</th>
+                            <td>
+                                {{ event.Name }}
+                            </td>
+                            <td>{{ event.Location }}</td>
+                            <td>{{ event.StartTime | date:'short' }}</td>
+                            <td>{{ event.EndTime | date:'short' }}</td>
+                            <td>
+                                <div class="form-group">
+                                    <button class="btn btn-success" (click)="EditDialog(content, event)">Edit</button>
+                                    <button class="btn btn-danger" (click)="DeleteDialog(content, event)">Remove</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Location</th>
-                        <th scope="col">Start Time</th>
-                        <th scope="col">End Time</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let event of eventDTO; index as i">
-                        <th scope="row">{{ i + 1 }}</th>
-                        <td>
-                            {{ event.Name }}
-                        </td>
-                        <td>{{ event.Location }}</td>
-                        <td>{{ event.StartTime | date:'short' }}</td>
-                        <td>{{ event.EndTime | date:'short' }}</td>
-                        <td>
-                            <div class="form-group">
-                                <button class="btn btn-success" (click)="EditDialog(content, event)">Edit</button>
-                                <button class="btn btn-danger" (click)="DeleteDialog(content, event)">Remove</button>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            
+                </div>
             </div>
         </div>
     </div>
+
+</div>
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
 </div>
