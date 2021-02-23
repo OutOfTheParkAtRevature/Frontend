@@ -25,25 +25,53 @@
         </select>
 
  <button (click)="userWantsNewPlaybook()">New Playbook</button>
+ 
+ <div *ngIf="accountService.isCoachAuthorized(loggedInUser)">
     <table class="table table-striped" style="text-align: center;">
     <caption></caption>
         <thead>
         <tr>
+            <th scope="col">By</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Visible</th>
             <th scope="col">Image</th>
-            <th *ngIf="accountService.isCoachAuthorized(loggedInUser)" scope="col"></th>
+            
         </tr>
         </thead>
+        
         <tbody>
         <tr *ngFor="let plays of play">
+            <td>{{plays.DrawnBy}}</td>
             <td>{{plays.Name}}</td>
             <td>{{plays.Description}}</td>
+            <td>{{plays.visible}}</td>
             <td><img width="400" height="400" src="{{plays.ImageString}}" alt="Image not found"/></td>
-            <td *ngIf="accountService.isCoachAuthorized(loggedInUser)" style="vertical-align: middle;"><button class="btn btn-danger" (click)="deletePlay(plays.playID)">Delete</button></td>
+            <td style="vertical-align: middle;"><button class="btn btn-danger" (click)="deletePlay(plays.id)">Delete</button></td>
+            <td style="vertical-align: middle;"><button class="btn-outline-success" (click)="makeViewable(plays.id)">Approve</button></td>
         </tr>
         </tbody>
     </table>
+   <!----> </div>
+        <div *ngIf="!accountService.isCoachAuthorized(loggedInUser)"> 
+            <table class="table table-striped" style="text-align: center;">
+                <thead>
+                    <tr>  
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Image</th>                       
+                    </tr>
+                    </thead>
+        <tbody>
+                <tr *ngFor="let plays of viewablePlays">
+                <td>{{plays.DrawnBy}}</td>
+                <td>{{plays.Name}}</td>
+                <td>{{plays.Description}}</td>
+                <td><img width="400" height="400" src="{{plays.ImageString}}" alt="Image not found"/></td>
+            </tr>
+        </tbody>
+        </table>
+        </div>
     </div>
 </div>
 
