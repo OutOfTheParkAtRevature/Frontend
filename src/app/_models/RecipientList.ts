@@ -3,10 +3,10 @@
 export class RecipientList
 {
     //recipientListId: number;
-    id: number;
-    recipientId: number;
+    id: string;
+    recipientId: string;
 
-    constructor(id: number)
+    constructor(id: string)
     {
         this.recipientId = id;
     }

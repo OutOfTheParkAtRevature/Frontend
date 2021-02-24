@@ -1,11 +1,10 @@
-export interface UserLoggedIn {
-    id: string;
-    token: string;
+export class CreateUser {
     userName: string;
+    password: string;
     fullName: string;
     phoneNumber: string;
     email: string;
-    teamID: string;
-    //roleID: number;
+    teamId: string;
     roleName: string;
+    clientUri: string;
 }
