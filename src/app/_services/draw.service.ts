@@ -47,8 +47,13 @@ export class DrawService {
   deletePlay(playId: number): Observable<Play>
   {
     //return this.http.delete(this.baseUrl + `playbooks/plays/delete/${playId}`);
-    return this.http.delete<Play>(this.baseUrl + 'playbooks/' + playId);
+    return this.http.delete<Play>(this.baseUrl + 'plays/' + playId);
   }
 
+  editPlay(id:number, model: Play): Observable<Play>
+  {
+    //Need a CONTROLLER METHOD HERE
+    return this.http.put<Play>(this.baseUrl + 'plays/' + id, model);
+  }
  
 }

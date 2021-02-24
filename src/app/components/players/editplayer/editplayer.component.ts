@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AccountService } from '../../../_services/account.service';
 import { UserService } from '../../../_services/user.service';
 import { User } from '../../../_models/User';
+import { Role } from '../../../_models/Role';
 
 @Component({
   selector: 'app-editplayer',
@@ -19,18 +20,20 @@ export class EditplayerComponent implements OnInit {
               private redirect: Router) { }
 
   userId: string;
-  //user: any = {};
   editedUser: any = {};
   user: User;
-  //editedUser: User;
+  roleList: Array<Role> = new Array<Role>();
 
 
   ngOnInit(): void {
+    this.getRoleList();
     this.route.params.subscribe(params => {
       this.userId = params.id;
     });
 
     this.getUser(this.userId);
+    this.editedUser.role = new Role("");
+    console.log(this.editedUser);
   }
 
   getUser(userId) {
@@ -38,6 +41,7 @@ export class EditplayerComponent implements OnInit {
       this.user = response;
       this.titleService.setTitle(`Edit - ${this.user.userName}`);
 
+      this.editedUser = new User();
       this.editedUser = {
         fullName: this.user.fullName,
         password: this.user.password,
@@ -56,7 +60,8 @@ export class EditplayerComponent implements OnInit {
     this.editedUser.id = this.user.id;
     this.editedUser.userName = this.user.userName;
     this.editedUser.teamID = this.user.teamID;
-    this.editedUser.roleName = this.user.roleName;
+    this.getRole();
+    //this.editedUser.roleName = this.user.roleName;
 
     this.userService.editUser(this.userId, this.editedUser).subscribe(res => {
       console.log(res);
@@ -65,6 +70,24 @@ export class EditplayerComponent implements OnInit {
       console.log(err);
     })
   }
+
+  
+  getRoleList() {
+    this.userService.getRoles().subscribe( roles => {
+      this.roleList = roles;
+    }, err => {
+      console.log(err);
+    })
+  }
+
+  getRole() {
+      let temp: any = this.editedUser.role;
+    for (let i = 0; i < this.roleList.length; i++) {
+      if (this.roleList[i].roleName == temp) 
+        this.editedUser.roleName = this.roleList[i].roleName;
+    }
+  }
+
 
 
 }

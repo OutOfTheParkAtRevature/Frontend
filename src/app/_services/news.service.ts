@@ -52,16 +52,18 @@ export class NewsService {
     return this.http.get<LeagueArticle>(this.baseUrl + 'leagueArticles/' + id);
   }
 
-  createLeagueArticle(leagueArticle: LeagueArticle): Observable<LeagueArticle>
+  createLeagueArticle(leagueArticle: any): Observable<LeagueArticle>
   {
     //return this.http.post(this.baseUrl + 'leagueArticles', leagueArticle);
-    return this.http.post<LeagueArticle>(this.baseUrl + 'leagueArticles', leagueArticle);
+    let art: LeagueArticle = leagueArticle;
+    return this.http.post<LeagueArticle>(this.baseUrl + 'leagueArticles', art);
   }
 
-  editLeagueArticle(leagueArticle: LeagueArticle, id: number): Observable<LeagueArticle>
+  editLeagueArticle(leagueArticle: any, id: number): Observable<LeagueArticle>
   {
     //return this.http.put(this.baseUrl + `leagueArticles/edit/${id}`, leagueArticle);
-    return this.http.put<LeagueArticle>(this.baseUrl + 'leagueArticles/' + id, leagueArticle);
+    let art: LeagueArticle = leagueArticle;
+    return this.http.put<LeagueArticle>(this.baseUrl + 'leagueArticles/' + id, art);
   }
 
   getTeamArticles(): Observable<TeamArticle[]> 

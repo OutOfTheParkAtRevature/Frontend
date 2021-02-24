@@ -2,8 +2,8 @@
 
 export class Message
 {
-    id: string;
-    senderId: string;
+    messageID: string;
+    senderID: string;
     senderName: string;
     recipientListId: string;
     date: Date;

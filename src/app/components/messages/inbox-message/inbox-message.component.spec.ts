@@ -27,7 +27,7 @@ describe('InboxMessageComponent', () => {
     component.Inbox = {
       isRead: false,
       recipients: [],
-      userID: 1
+      userID: 'ab62eec6-0fba-4e14-9a25-039af61be5e2'
     } as Inbox;
     fixture.detectChanges();
   });

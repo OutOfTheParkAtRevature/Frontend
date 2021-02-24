@@ -9,7 +9,4 @@ export interface User {
   email: string;
   teamID: string;
   roleName: string;
-  
-  // team: Team;
-  // role: Role;
 }

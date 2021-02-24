@@ -26,7 +26,13 @@ export class CreateArticleComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if(params.isTeam == 0)    this.isTeam = false;
+      if(params.isTeam == 0)
+      {
+        this.isTeam = false;
+        this.newArticle = new LeagueArticle();
+      }
+      else
+        this.newArticle = new TeamArticle();
     });
   }
 

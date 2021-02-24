@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GamesService } from '../../_services/games.service';
 import { Team } from '../../_models/Team';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-teams',
@@ -13,7 +14,7 @@ export class TeamsComponent implements OnInit {
   //teams: any;
   teams: Array<Team> = new Array<Team>();
 
-  constructor(private http: HttpClient, public gamesService: GamesService) { }
+  constructor(private http: HttpClient, public gamesService: GamesService, public accountService: AccountService) { }
 
   ngOnInit(): void {
     this.getTeams();

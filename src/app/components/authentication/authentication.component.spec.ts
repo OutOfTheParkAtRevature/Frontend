@@ -27,4 +27,21 @@ describe('AuthenticationComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should call OnChangingSection()', () => {
+    component.boolLogIn = true;
+    component.boolRegister = false;
+    component.onChangingSection();
+    expect(component.boolLogIn).toBeFalse();
+    expect(component.boolRegister).toBeTrue();
+  });
+
+  it('should call RegisteringUser() and LogIngUser()', () => {
+    component.LogIngUser(new Event('look',
+      { 'bubbles': true, 'cancelable': false }
+    ));
+    component.RegisteringUser(new Event('look',
+      { 'bubbles': true, 'cancelable': false }
+    ));
+  });
 });
