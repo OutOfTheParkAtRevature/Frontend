@@ -33,13 +33,13 @@ describe('UserServiceService', () => {
           id: 1, userName: '', fullName: '',
           phoneNumber: '', email: '', eVisible: true,
           password: '', pVisible: false, teamID: 1,
-          roleName: '', team: null, role: null
+          roleName: '', team: null, role: null, unconfirmed: false
         },
         {
           id: 2, userName: '', fullName: '',
           phoneNumber: '', email: '', eVisible: true,
           password: '', pVisible: false, teamID: 2,
-          roleName: '', team: null, role: null
+          roleName: '', team: null, role: null, unconfirmed: false
         }
       ] as User[];
     });
