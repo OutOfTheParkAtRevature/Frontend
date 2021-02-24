@@ -12,7 +12,9 @@ export class StatServiceService {
 
   constructor( private http: HttpClient) { }
 
-  baseUrl: string = "http://localhost:3000/"
+  baseUrl: string = "http://localhost:3000/";
+
+
   getBassballStatistic(playerId: string, gameId: string): Observable<CreatePlayerGameDto>{
     return this.http.get<CreatePlayerGameDto>(this.baseUrl + 'playerGames/' + playerId + '/' + gameId );
   }
