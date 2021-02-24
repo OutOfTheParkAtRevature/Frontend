@@ -16,7 +16,7 @@ export class GamesService {
   constructor(private http: HttpClient) { }
 
   //baseUrl = environment.apiUrl;
-  baseUrl: string = "http://localhost:3000/api/";
+  baseUrl: string = "http://40.88.224.69/api/";
 
   getGames(): Observable<Game[]> 
   {
