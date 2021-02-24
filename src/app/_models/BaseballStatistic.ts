@@ -1,4 +1,5 @@
 export interface BaseballStatistic {
+    statLineID: string;
     battingAve: number;
     runs: number;
     rbi: number;

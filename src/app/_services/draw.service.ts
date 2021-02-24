@@ -12,7 +12,7 @@ import { Playbook } from '../_models/Playbook';
 export class DrawService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = "http://40.88.226.19/api/";
   constructor(private http: HttpClient) { }
 
   createDrawing(model: Play): Observable<Play>
