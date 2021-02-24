@@ -24,9 +24,9 @@ export class EquipmentComponent implements OnInit {
   getEquipment() {
     this.equipmentService.getRequests().subscribe(response => {
       this.equipmentList = response;
-      this.getTeam();
-      this.getUser();
-      this.getItem();
+      //this.getTeam();
+      //this.getUser();
+      //this.getItem();
       console.log(this.equipmentList);
     }, err => {
       console.log(err)
@@ -34,33 +34,33 @@ export class EquipmentComponent implements OnInit {
     
   }
 
-  getTeam() {
-    this.equipmentList.forEach(element => {
-      this.equipmentService.getTeam(element.teamId).subscribe( response => {
-        element.team = response;
-      }, err => {
-        console.log(err);
-      })
-    })
-  }
+  // getTeam() {
+  //   this.equipmentList.forEach(element => {
+  //     this.equipmentService.getTeam(element.teamId).subscribe( response => {
+  //       element.team = response;
+  //     }, err => {
+  //       console.log(err);
+  //     })
+  //   })
+  // }
 
-  getUser() {
-    this.equipmentList.forEach(element => {
-      this.equipmentService.getUser(element.userId).subscribe( response => {
-        element.user = response;
-      }, err => {
-        console.log(err);
-      })
-    })
-  }
+  // getUser() {
+  //   this.equipmentList.forEach(element => {
+  //     this.equipmentService.getUser(element.userId).subscribe( response => {
+  //       element.user = response;
+  //     }, err => {
+  //       console.log(err);
+  //     })
+  //   })
+  // }
 
-  getItem() {
-    this.equipmentList.forEach(element => {
-      this.equipmentService.getItem(element.itemId).subscribe( response => {
-        element.item = response;
-      }, err => {
-        console.log(err);
-      })
-    })
-  }
+  // getItem() {
+  //   this.equipmentList.forEach(element => {
+  //     this.equipmentService.getItem(element.itemId).subscribe( response => {
+  //       element.item = response;
+  //     }, err => {
+  //       console.log(err);
+  //     })
+  //   })
+  // }
 }

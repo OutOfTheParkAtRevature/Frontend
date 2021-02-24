@@ -15,6 +15,7 @@ export class AccountService {
 
   //baseUrl = environment.apiUrl;
   baseUrl: string = "http://40.88.226.19/api/";
+
   private currentUserSource = new ReplaySubject<UserLoggedIn>(1);
   currentUser$ = this.currentUserSource.asObservable();
 

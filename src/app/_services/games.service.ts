@@ -63,22 +63,22 @@ export class GamesService {
   }
 
   
-  // getTeams(): Observable<Team[]>
-  // {
-  //   //return this.http.get(this.baseUrl + 'teams');
-  //   return this.http.get<Team[]>(this.baseUrl + 'teams');
-  // }
+  getTeams(): Observable<Team[]>
+  {
+    //return this.http.get(this.baseUrl + 'teams');
+    return this.http.get<Team[]>(this.baseUrl + 'teams');
+  }
 
-  // getTeam(id: number): Observable<Team>
-  // {
-  //   //return this.http.get(this.baseUrl + `teams/${id}`);
-  //   return this.http.get<Team>(this.baseUrl + 'teams/' + id);
-  // }
+  getTeam(id: string): Observable<Team>
+  {
+    //return this.http.get(this.baseUrl + `teams/${id}`);
+    return this.http.get<Team>(this.baseUrl + 'teams/' + id);
+  }
 
-  // updateTeam(team: Team, id: number): Observable<Team>
-  // {
-  //   //return this.http.put(this.baseUrl + `teams/edit/${id}`, team);
-  //   return this.http.put<Team>(this.baseUrl + 'teams/' + id, team);
-  // }
+  updateTeam(team: Team, id: string): Observable<Team>
+  {
+    //return this.http.put(this.baseUrl + `teams/edit/${id}`, team);
+    return this.http.put<Team>(this.baseUrl + 'teams/' + id, team);
+  }
 
 }

@@ -12,8 +12,13 @@ import { User } from '../_models/User';
 export class UserService {
 
   //baseUrl = environment.apiUrl;
-  userUrl = "http://40.88.226.19/api/";
-  teamUrl = "http://40.88.226.19/api/";
+
+  baseUrl = "http://40.88.226.19/api/";
+  //userUrl = "http://localhost:3000/api/";
+  //teamUrl = "http://localhost:3001/api/";
+  userUrl = this.baseUrl;
+  teamUrl = this.baseUrl;
+
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]>
@@ -68,7 +73,7 @@ export class UserService {
     return this.http.get<Team[]>(this.teamUrl + 'team');
   }
 
-  getTeam(teamId: number): Observable<Team>
+  getTeam(teamId: string): Observable<Team>
   {
     //return this.http.get(this.baseUrl + `teams/${teamId}`);
     return this.http.get<Team>(this.teamUrl + 'team/' + teamId);
