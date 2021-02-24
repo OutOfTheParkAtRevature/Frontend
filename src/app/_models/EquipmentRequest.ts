@@ -8,7 +8,7 @@ export class EquipmentRequest
     //requestId: number;
     id: number;
     userId: string;
-    teamId: number;
+    teamId: string;
     requestDate: string;
     message: string;
     itemId: number;
