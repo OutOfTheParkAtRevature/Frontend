@@ -4,7 +4,7 @@ export class CreateUser {
     fullName: string;
     phoneNumber: string;
     email: string;
-    teamId: string;
+    teamID: string;
     roleName: string;
     clientUri: string;
 }

@@ -6,8 +6,8 @@ export interface Team {
     losses: number;
     //winningPct: number;
     winningPct: string;
-    carpoolId: string;
-    leagueId: string;
-    statLineId: string;
+    carpoolID: string;
+    leagueID: string;
+    statLineID: string;
   }
   

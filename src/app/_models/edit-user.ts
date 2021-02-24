@@ -4,6 +4,6 @@ export class EditUser {
     phoneNumber: string;
     oldPassword: string;
     newPassword: string;
-    teamId: string;
+    teamID: string;
     roleName: string;
 }
