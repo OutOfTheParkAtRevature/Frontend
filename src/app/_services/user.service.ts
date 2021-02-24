@@ -12,8 +12,11 @@ import { User } from '../_models/User';
 export class UserService {
 
   //baseUrl = environment.apiUrl;
-  userUrl = "http://localhost:3000/api/";
-  teamUrl = "http://localhost:3001/api/";
+  baseUrl = "http://20.62.210.88/api/";
+  //userUrl = "http://localhost:3000/api/";
+  //teamUrl = "http://localhost:3001/api/";
+  userUrl = this.baseUrl;
+  teamUrl = this.baseUrl;
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]>
