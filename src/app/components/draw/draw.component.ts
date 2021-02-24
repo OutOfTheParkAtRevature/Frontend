@@ -50,6 +50,7 @@ export class DrawComponent implements AfterViewInit {
     this.canvasEl.width = this.width;
     this.canvasEl.height = this.height;
     this.cx.lineCap = 'round';
+    this.cx.lineWidth = 6;
      this.SetBackGroundWhite();
   }
 
@@ -74,7 +75,7 @@ public captureEvents() {
             // triggers a mouseup event    
             takeUntil(fromEvent(this.canvasEl, 'mouseup')),
             //stop and unsubscribe once the (mouseleave event)
-            //takeUntil(fromEvent(this.canvasEl, 'mouseleave')),
+            takeUntil(fromEvent(this.canvasEl, 'mouseleave')),
             // pairwise lets us get the previous value to draw a line from the previous point to the current point    
             pairwise()
           )
@@ -131,8 +132,9 @@ private drawOnCanvas( lastPosition:{ x: number, y: number }, positionNow: { x: n
 
 //Draws a circle on the canvas wherever the user clicks
 public drawAO(currentPos: {x: number, y:number}){
+  var lineWidth: number = this.cx.lineWidth * 2 + 4;
   this.cx.beginPath();
-  this.cx.arc(currentPos.x, currentPos.y, 20, 0, 2 * Math.PI);
+  this.cx.arc(currentPos.x, currentPos.y, lineWidth, 0, 2 * Math.PI);
   this.cx.stroke();
   this.isMakingXs = false;
   this.isMakingCircle = false;
@@ -142,18 +144,19 @@ public drawAO(currentPos: {x: number, y:number}){
 
 //Draws an X on the canvas wherever the user clicks
 public drawAX(currentPos: {x: number, y:number}){
+  var lineWidth: number = this.cx.lineWidth * 2 + 4;
   this.cx.beginPath();
   this.cx.lineTo(currentPos.x, currentPos.y);
-  this.cx.lineTo(currentPos.x + 10, currentPos.y +10);
+  this.cx.lineTo(currentPos.x + lineWidth, currentPos.y +lineWidth);
   this.cx.stroke();
   this.cx.lineTo(currentPos.x, currentPos.y);
-  this.cx.lineTo(currentPos.x + 10, currentPos.y -10);
+  this.cx.lineTo(currentPos.x + lineWidth, currentPos.y -lineWidth);
   this.cx.stroke();
   this.cx.lineTo(currentPos.x, currentPos.y);
-  this.cx.lineTo(currentPos.x - 10, currentPos.y +10);
+  this.cx.lineTo(currentPos.x - lineWidth, currentPos.y +lineWidth);
   this.cx.stroke();
   this.cx.lineTo(currentPos.x, currentPos.y);
-  this.cx.lineTo(currentPos.x - 10, currentPos.y -10);
+  this.cx.lineTo(currentPos.x - lineWidth, currentPos.y -lineWidth);
   this.cx.stroke();
   this.isMakingXs = false;
   this.isMakingCircle = false;
