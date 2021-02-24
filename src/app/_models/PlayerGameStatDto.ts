@@ -1,7 +1,7 @@
 import { BaseballStatistic } from "./BaseballStatistic";
 
-export interface CreatePlayerGameDto{
+export interface playerGameStat {
     playerId: string;
     gameId: string;
-    BaseBallStatistic: BaseballStatistic;
+    baseballStatistic: BaseballStatistic;
 }

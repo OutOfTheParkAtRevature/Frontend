@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { from, Observable, ObservedValueOf } from 'rxjs';
-import { CreatePlayerGameDto }from '../_models/createPlayerGame';
+import { CreatePlayerGame}from '../_models/create-player-game';
 import { PlayerGame } from '../_models/PlayerGame'
 import { BaseballStatistic } from '../_models/BaseballStatistic';
-
+import { playerGameStat } from '../_models/PlayerGameStatDto'
 @Injectable({
   providedIn: 'root'
 })
@@ -15,11 +15,11 @@ export class StatServiceService {
   baseUrl: string = "http://localhost:3000/";
 
 
-  getBassballStatistic(playerId: string, gameId: string): Observable<CreatePlayerGameDto>{
-    return this.http.get<CreatePlayerGameDto>(this.baseUrl + 'playerGames/' + playerId + '/' + gameId );
+  getBassballStatistic(playerId: string, gameId: string): Observable<playerGameStat>{
+    return this.http.get<playerGameStat>(this.baseUrl + 'playerGames/' + playerId + '/' + gameId );
   }
   
-  createBaseBallStatistic(playerGameDto: CreatePlayerGameDto ): Observable<PlayerGame>{
+  createBaseBallStatistic(playerGameDto: CreatePlayerGame ): Observable<PlayerGame>{
     return this.http.post<PlayerGame>(this.baseUrl + 'playerGames',  playerGameDto );
 
   }

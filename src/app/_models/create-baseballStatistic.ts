@@ -1,10 +1,10 @@
-export class CreateBaseballStatistic {
+export interface CreateBaseballStatistic {
     battingAve: number;
     runs: number;
     rbi: number;
     hits: number;
     steals: number;
-    era: number;
+    ERA: number;
     strikeOuts: number;
     saves: number;
 }
