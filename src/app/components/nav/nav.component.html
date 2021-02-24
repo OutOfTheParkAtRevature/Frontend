@@ -41,18 +41,21 @@
             <!-- <li *ngIf="!(accountService.currentUser$ | async)" class="nav-item">
               <a class="nav-link" routerLink="/">Login / Register</a>
             </li> -->
-            <div ngbDropdown class="d-inline-block">
-              <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Admin Selection</button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <!-- <a class="nav-link" routerLink="/" ngbDropdownItem>Home</a> -->
-                <button routerLink="/calendar" ngbDropdownItem>Team Schedule</button>
-                <button routerLink="/players" ngbDropdownItem>Manage Users</button>
-                <button  routerLink="/equipment" ngbDropdownItem>Equipment Requests</button>
-                <button routerLink="/teams" ngbDropdownItem>League Standings</button>
-              </div>
-            </div>
-            <div ngbDropdown class="d-inline-block">
-              <button class="btn btn-primary" id="dropdownBasic2" ngbDropdownToggle>User Selection</button>
+              <li class="nav-item" ngbDropdown>
+               <a class="nav-link" tabindex="0" ngbDropdownToggle id="navBarAdmin" role="button">
+                Admin Selection
+               </a>
+               <div ngbDropdownMenu aria-labelledby="navBarAdmin" class="dropdown-menu"> 
+                <a ngbDropdownItem routerLink="/calendar" role="button">Team Schedule</a>
+                <a ngbDropdownItem routerLink="/players" role="button">Manage Users</a>
+                <a ngbDropdownItem routerLink="/equipment" role="button">Equipment Requests</a>
+                <a ngbDropdownItem routerLink="/teams" role="button">League Standings</a>
+               </div>
+              </li>
+            <li class="nav-item" ngbDropdown>
+              <a class="nav-link" tabindex="0" ngbDropdownToggle id="navBarUser" role="button">
+                User Selection
+               </a>
               <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
                 <!-- <a class="nav-link" routerLink="/" ngbDropdownItem>Home</a> -->
                 <button routerLink="/games" ngbDropdownItem >Games</button>
@@ -60,11 +63,11 @@
                 <button  routerLink="/teamNews" ngbDropdownItem>News</button>
                 <button routerLink="/plays" ngbDropdownItem>View Playbook</button>
               </div>
-            </div>
-            <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
-              <a class="nav-link" (click)="logout()">Logout</a>
             </li>
           </ul>
+          <span *ngIf="(accountService.currentUser$ | async)" class="nav-item navbar-text" placement="bottom-right">
+            <a class="nav-link" (click)="logout()">Logout</a> 
+          </span>
           <!-- <div class="login">
             <form #loginForm="ngForm" *ngIf="(accountService.currentUser$ | async) === null" class="d-flex" (ngSubmit)="login()" ngNativeValidate autocomplete="off">
               <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username" required>
