@@ -8,8 +8,7 @@ import { Event } from 'src/app/_models/Event';
 import { CalendarService } from 'src/app/_services/calendar.service';
 import { NgbCalendar, NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
 import {NgbDateStruct, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
-import { NgbTime } from '@ng-bootstrap/ng-bootstrap/timepicker/ngb-time';
-
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-calendar',
@@ -30,7 +29,7 @@ export class CalendarComponent implements OnInit {
   minuteStep: number = 15;
   // @ViewChild('NewEvent') newEventInput;
   
-  constructor( private _calendar : CalendarService, private modalService: NgbModal, config: NgbModalConfig, private calendar: NgbCalendar ) {
+  constructor( private _calendar : CalendarService, private modalService: NgbModal, config: NgbModalConfig, private calendar: NgbCalendar,  public accountService: AccountService) {
     config.backdrop = 'static';
     config.keyboard = false;
   }

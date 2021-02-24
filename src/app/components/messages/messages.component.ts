@@ -9,6 +9,8 @@ import { Inbox } from 'src/app/_models/inbox';
 import { Recipient } from 'src/app/_models/recipient';
 import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_compiler';
 import { Message } from 'src/app/_models/Message';
+import { AccountService } from '../../_services/account.service';
+import { UserLoggedIn } from 'src/app/_models/UserLoggedIn';
 
 @Component({
   selector: 'app-messages',
@@ -18,6 +20,7 @@ import { Message } from 'src/app/_models/Message';
 })
 export class MessagesComponent implements OnInit {
 
+  userLogged: UserLoggedIn; 
   users:User[];
   userInbox: Array<Inbox> = [];
   isNewConversation: boolean = false;
@@ -31,7 +34,7 @@ export class MessagesComponent implements OnInit {
 
   selectedUserId: string;
 
-  constructor( private _message: MessageService, private _users: UserService, private modalService: NgbModal, config: NgbModalConfig) 
+  constructor( private _message: MessageService, private _users: UserService, private modalService: NgbModal, config: NgbModalConfig, public accountService: AccountService) 
   {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -39,7 +42,10 @@ export class MessagesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // this.getLoggedInUser();
+    if (this.accountService.currentUser$) {
+      this.getLoggedInUser();
+    }
+    
     this.getAvailableToChat();
     this.getInboxFromUser();
     this.GetCarpoolInbox();
@@ -276,8 +282,8 @@ export class MessagesComponent implements OnInit {
     let myMessage: Message = new Message ();
     myMessage.body = this.userMessage;
     myMessage.date = new Date(); 
-    myMessage.senderName = "Player" // Get user from user logged in
-    myMessage.senderId = "1";
+    myMessage.senderName = this.userLogged.fullName
+    myMessage.senderId = this.userLogged.id+ "";
     this.allMessages.push(myMessage);
     
     
@@ -287,6 +293,13 @@ export class MessagesComponent implements OnInit {
     this.txtUserMessage.nativeElement.focus();
 
     this.AutoFocusOnBottom();
+  }
+
+  /** Get logged in user */
+  getLoggedInUser() {
+    this.accountService.currentUser$.subscribe( user => {
+      this.userLogged = user;
+    });
   }
 
 }
