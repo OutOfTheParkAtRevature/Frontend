@@ -1,4 +1,4 @@
-<!-- <div style="position: relative;" class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser"> -->
+<div style="position: relative;" class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
 
 <ng-template #content let-modal>
     <div class="modal-header">
@@ -74,9 +74,9 @@
     
 </div>
 
-<!-- </div> -->
+</div>
 
 <!-- If the user is not logged in -->
-<!-- <div *ngIf="(accountService.currentUser$ | async) === null">
+<div *ngIf="(accountService.currentUser$ | async) === null">
     <app-home></app-home>
-</div> -->
+</div>
