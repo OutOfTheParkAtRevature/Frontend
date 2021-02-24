@@ -1,8 +1,8 @@
 export class EditGame {
     gameDate: Date;
-    winningTeamId: string;
+    winningTeamID: string;
     homeScore: string;
     awayScore: string;
-    homeStatId: string = null;
-    awayStatId: string = null;
+    homeStatID: string = null;
+    awayStatID: string = null;
 }

@@ -1,6 +1,6 @@
 export class TeamGame
 {
-    public TeamID: string;
-    public GameID: string; 
-    public StatLineID: string;
+    public teamID: string;
+    public gameID: string; 
+    public statLineID: string;
 }

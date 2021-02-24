@@ -7,11 +7,11 @@ export class EquipmentRequest
 {
     //requestId: number;
     id: number;
-    userId: string;
-    teamId: string;
+    userID: string;
+    teamID: string;
     requestDate: string;
     message: string;
-    itemId: number;
+    itemID: number;
     status: string;
 
     team: Team;

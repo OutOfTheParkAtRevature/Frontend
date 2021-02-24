@@ -1,5 +1,5 @@
 export class League {
-    leagueId: string;
+    leagueID: string;
     leagueName: string;
-    sportId: string;
+    sportID: string;
 }

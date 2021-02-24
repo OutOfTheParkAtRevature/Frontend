@@ -5,7 +5,7 @@ export class Message
     messageID: string;
     senderID: string;
     senderName: string;
-    recipientListId: string;
+    recipientListID: string;
     date: Date;
     body: string;
 }

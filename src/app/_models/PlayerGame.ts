@@ -1,7 +1,7 @@
 export class PlayerGame
 {
     //All GUIDS on backend
-    public UserID: string; 
-    public GameID: string; 
-    public StatLineID: string;
+    public userID: string; 
+    public gameID: string; 
+    public statLineID: string;
 }
