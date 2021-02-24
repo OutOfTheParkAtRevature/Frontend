@@ -14,7 +14,7 @@ export class EditGameComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private gamesService: GamesService, private router: Router, public accountService: AccountService) { }
 
-  gameId: number;
+  gameId: string;
   //game:any = {};
   editedGame:any = {};
   //homeTeam:any = {};
@@ -47,27 +47,27 @@ export class EditGameComponent implements OnInit {
   }
 
   getHomeTeam() {
-    this.gamesService.getTeam(this.game.homeTeamId).subscribe(team => {
+    this.gamesService.getTeam(this.game.homeTeamID).subscribe(team => {
       this.homeTeam = team;
     })
   }
 
   getAwayTeam() {
-    this.gamesService.getTeam(this.game.awayTeamId).subscribe(team => {
+    this.gamesService.getTeam(this.game.awayTeamID).subscribe(team => {
       this.awayTeam = team;
     })
   }
 
   editGame() {
     if (this.editedGame.homeScore > this.editedGame.awayScore) {
-      this.editedGame.winningTeamId = this.game.homeTeamId;
-      this.editedGame.losingTeamId = this.game.awayTeamId;
+      this.editedGame.winningTeamId = this.game.homeTeamID;
+      this.editedGame.losingTeamId = this.game.awayTeamID;
     } else {
-      this.editedGame.winningTeamId = this.game.awayTeamId;
-      this.editedGame.losingTeamId = this.game.homeTeamId;
+      this.editedGame.winningTeamId = this.game.awayTeamID;
+      this.editedGame.losingTeamId = this.game.homeTeamID;
     }
-    this.editedGame.homeTeamId = this.game.homeTeamId;
-    this.editedGame.awayTeamId = this.game.awayTeamId;
+    this.editedGame.homeTeamId = this.game.homeTeamID;
+    this.editedGame.awayTeamId = this.game.awayTeamID;
 
     this.gamesService.editGame(this.editedGame, this.gameId).subscribe(game => {
       console.log(game);

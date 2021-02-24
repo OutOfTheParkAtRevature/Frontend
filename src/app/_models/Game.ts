@@ -8,9 +8,11 @@ export class Game
     homeTeamID: string;
     awayTeamID: string;
     gameDate: Date;
-    winningTeam: string;
+    winningTeam: Team;
     homeScore: number;
     awayScore: number;
     homeStatID: string;
     awayStatID: string;
+    homeTeam: Team;
+    awayTeam: Team;
 }

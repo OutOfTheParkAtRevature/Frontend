@@ -123,16 +123,16 @@ export class MessagesComponent implements OnInit {
     //Load conversation when user clicks... 
     //User comments display at rigth...
     let Message1:Message = new Message();
-    Message1.id = "2";
-    Message1.recipientListId = "1";
-    Message1.senderId = "1";
+    Message1.messageID = "2";
+    Message1.recipientListID = "1";
+    Message1.senderID = "1";
     Message1.senderName = "Player";
     Message1.body = "This is the user conversation";
 
     let Message2:Message = new Message();
-    Message2.id = "3";
-    Message2.recipientListId = "1";
-    Message2.senderId = "2";
+    Message2.messageID = "3";
+    Message2.recipientListID = "1";
+    Message2.senderID = "2";
     Message2.senderName = "Full Name";
     Message2.body = "This is the other user response";
 
@@ -283,7 +283,7 @@ export class MessagesComponent implements OnInit {
     myMessage.body = this.userMessage;
     myMessage.date = new Date(); 
     myMessage.senderName = this.userLogged.fullName
-    myMessage.senderId = this.userLogged.id+ "";
+    myMessage.senderID = this.userLogged.id+ "";
     this.allMessages.push(myMessage);
     
     

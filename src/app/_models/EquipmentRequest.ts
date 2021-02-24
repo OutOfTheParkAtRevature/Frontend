@@ -6,12 +6,12 @@ import { User } from "./User";
 export class EquipmentRequest
 {
     //requestId: number;
-    id: number;
+    id: string;
     userID: string;
     teamID: string;
     requestDate: string;
     message: string;
-    itemID: number;
+    itemID: string;
     status: string;
 
     team: Team;

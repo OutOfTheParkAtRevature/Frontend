@@ -25,8 +25,8 @@ export class PlaysComponent implements OnInit
   viewablePlays: Play[] = []; // should view only viewable plays
   tempPlay: Play[] = [];
   imageString: string;
-  chosenplaybookId: any;//Will be a string for guids
-  teamId: any; //Will be a string for guids
+  chosenplaybookId: string;//Will be a string for guids
+  teamId: string; //Will be a string for guids
   myTeams: Team;
   TeamPlaybookList: Array<Playbook> = new Array<Playbook>() ;
   playbooks: any = {};
@@ -44,7 +44,6 @@ export class PlaysComponent implements OnInit
   //gets all the plays
   getPlays(){
     this.drawService.getPlays().subscribe(response => {
-      //this.model = reponse;
       this.tempPlay = response;
       this.getCurrentPlays();
     }, err => {
@@ -56,7 +55,7 @@ export class PlaysComponent implements OnInit
   getCurrentPlays(){
     if(this.tempPlay != []){
     this.tempPlay.forEach(element => {
-      if(element.PlaybookId == this.playbooks.id){
+      if(element.PlaybookID == this.playbooks.id){
         this.play.push(element);
         if(element.visible == true){
           this.viewablePlays.push(element);
@@ -82,7 +81,7 @@ export class PlaysComponent implements OnInit
   //Gets the teamid based on current user
   getTeamID() {
     this.accountService.currentUser$.subscribe( user => {
-       this.teamId = user.teamID;
+       this.teamId = user.teamID.toString();
        console.log(this.teamId);
       }, err => {
         console.log(err)

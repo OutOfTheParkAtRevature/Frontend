@@ -6,7 +6,7 @@ import { Inbox } from '../_models/inbox';
 import { Message } from '../_models/Message';
 import { RecipientList } from '../_models/RecipientList';
 import { UserInbox } from '../_models/UserInbox';
-import * as signalR from "@aspnet/signalr";
+//import * as signalR from "@aspnet/signalr";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class MessageService {
   //baseUrl = environment.apiUrl;
   baseUrl = "http://localhost:3000/";
 
-  private hubConnection: signalR.HubConnection;
+  //private hubConnection: signalR.HubConnection;
 
   //SignalR message gateway
   // public startConnection = () => {

@@ -6,6 +6,7 @@ import { UserService } from '../../../_services/user.service';
 import { Role } from '../../../_models/Role';
 import { Team } from '../../../_models/Team';
 import { User } from '../../../_models/User';
+import { CreateUser } from 'src/app/_models/create-user';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,7 @@ import { User } from '../../../_models/User';
 })
 export class RegisterComponent implements OnInit {
 
-  model: User;
+  model: CreateUser;
   teamList: Array<Team> = new Array<Team>();
 
   constructor(public accountService: AccountService, public userService: UserService, private router: Router) { }
@@ -22,11 +23,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.getTeamList();
     //this.model.team = new Team();
-    this.model = new User();
+    this.model = new CreateUser();
   }
 
   createUser() {
-      this.getTeam();
+    //this.getTeam();
     this.getRole();
     console.log(this.model);
     this.accountService.registerUser(this.model).subscribe(res => {
@@ -47,16 +48,16 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  getTeam() {
-      console.log(this.model.team);
-      let temp: any = this.model.team;
-    for (let i = 0; i < this.teamList.length; i++) {
-      if (this.teamList[i].name == temp) {
-        this.model.teamID = this.teamList[i].id;
-      }
-    }
-    this.model.team = null;
-  }
+  // getTeam() {
+  //     console.log(this.model.team);
+  //     let temp: any = this.model.team;
+  //   for (let i = 0; i < this.teamList.length; i++) {
+  //     if (this.teamList[i].name == temp) {
+  //       this.model.teamID = this.teamList[i].id;
+  //     }
+  //   }
+  //   this.model.team = null;
+  // }
 
   getRole() {
       
