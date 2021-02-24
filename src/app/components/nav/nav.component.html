@@ -7,47 +7,62 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/">Home</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/calendar">Team Schedule</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/games">Games</a> 
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/plays">View Playbook</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/equipment">Equipment Requests</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/teams">League Standings</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/players">Manage Users</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/messages">Messages</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/teamNews">News</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li *ngIf="!(accountService.currentUser$ | async)" class="nav-item">
+              <a class="nav-link" routerLink="/">Login / Register</a>
+            </li> -->
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Admin Selection</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <!-- <a class="nav-link" routerLink="/" ngbDropdownItem>Home</a> -->
+                <button routerLink="/calendar" ngbDropdownItem>Team Schedule</button>
+                <button routerLink="/players" ngbDropdownItem>Manage Users</button>
+                <button  routerLink="/equipment" ngbDropdownItem>Equipment Requests</button>
+                <button routerLink="/teams" ngbDropdownItem>League Standings</button>
+              </div>
+            </div>
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-primary" id="dropdownBasic2" ngbDropdownToggle>User Selection</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+                <!-- <a class="nav-link" routerLink="/" ngbDropdownItem>Home</a> -->
+                <button routerLink="/games" ngbDropdownItem >Games</button>
+                <button routerLink="/messages" ngbDropdownItem>Messages</button>
+                <button  routerLink="/teamNews" ngbDropdownItem>News</button>
+                <button routerLink="/plays" ngbDropdownItem>View Playbook</button>
+              </div>
+            </div>
             <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
               <a class="nav-link" (click)="logout()">Logout</a>
-            </li>
-            <li *ngIf="!(accountService.currentUser$ | async)" class="nav-item">
-              <a class="nav-link" routerLink="/">Login / Register</a>
             </li>
           </ul>
           <!-- <div class="login">
