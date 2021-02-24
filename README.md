@@ -10,6 +10,7 @@ Out of the Park is an application to act as a central hub for coaches, parents, 
 ```
 
 Open up the command console and navigate into the directory where you cloned the repository.
+
 3. Use the following CLI command to run the frontend Angular application:
 ```bash
   ng serve
