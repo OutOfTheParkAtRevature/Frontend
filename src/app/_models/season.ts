@@ -1,4 +1,4 @@
 export class Season {
-    seasonId: string;
-    leagueId: string;
+    seasonID: string;
+    leagueID: string;
 }

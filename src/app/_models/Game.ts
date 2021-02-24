@@ -4,13 +4,13 @@ import { Team } from "./Team";
 export class Game
 {
     id: string;
-    seasonId: string;
-    homeTeamId: string;
-    awayTeamId: string;
+    seasonID: string;
+    homeTeamID: string;
+    awayTeamID: string;
     gameDate: Date;
     winningTeam: string;
     homeScore: number;
     awayScore: number;
-    homeStatId: string;
-    awayStatId: string;
+    homeStatID: string;
+    awayStatID: string;
 }
