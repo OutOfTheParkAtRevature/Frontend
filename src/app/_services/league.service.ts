@@ -15,7 +15,7 @@ import { Vendor } from '../_models/vendor';
 export class LeagueService {
 
 
-  leagueUrl = "http://20.62.247.144/api/";
+  leagueUrl = "http://40.88.226.19/api/";
   constructor(private http: HttpClient) { }
   getTeams(): Observable<Team[]>
   {
