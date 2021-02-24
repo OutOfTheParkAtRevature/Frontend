@@ -44,7 +44,19 @@
               <!-- *ngIf="accountService.currentUser$ | async" -->
             </li>
             <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
+                <!--
+              <i class="fas fa-bell" (click)="displayNotifications()" *ngIf="hasNotifications"></i>
+              <i class="fas fa-bell" style="background-color: red;" (click)="displayNotifications()" *ngIf="!hasNotifications"></i>
+                -->
               <a class="nav-link" (click)="logout()">Logout</a>
+            </li>
+            <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
+                <!--
+              <i class="fas fa-bell" (click)="displayNotifications()" *ngIf="hasNotifications"></i>
+              <i class="fas fa-bell" style="background-color: red;" (click)="displayNotifications()" *ngIf="!hasNotifications"></i>
+                -->
+                <button class="btn btn-danger" (click)="displayNotifications()" *ngIf="hasNotifications">Notifications</button>
+                <button class="btn btn-secondary" (click)="displayNotifications()" *ngIf="!hasNotifications">Notifications</button>
             </li>
             <li *ngIf="!(accountService.currentUser$ | async)" class="nav-item">
               <a class="nav-link" routerLink="/">Login / Register</a>
@@ -65,5 +77,14 @@
       </div>
     </nav>
   </div>
+
+    <div *ngIf="viewNotifications">
+        <table style="position: fixed; top: 80px; right: 10px; background-color: white;">
+            <caption> </caption>
+            <tr *ngFor="let note of notifications">
+                {{note.status}}, {{note.message}}
+            </tr>
+        </table>
+    </div>
       
   
