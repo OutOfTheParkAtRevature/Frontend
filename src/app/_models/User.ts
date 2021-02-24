@@ -1,7 +1,7 @@
 import { Role } from "./Role";
 import { Team } from "./Team";
 
-export interface User {
+export class User {
   id: string;
   userName: string;
   fullName: string;
@@ -9,4 +9,7 @@ export interface User {
   email: string;
   teamID: string;
   roleName: string;
+  team: Team;
+  password: string;
+  unconfirmed: boolean;
 }

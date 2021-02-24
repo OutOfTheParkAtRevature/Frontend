@@ -1,3 +1,5 @@
+import { Team } from "./Team";
+
 export class CreateUser {
     userName: string;
     password: string;
@@ -7,4 +9,5 @@ export class CreateUser {
     teamID: string;
     roleName: string;
     clientUri: string;
+    team: Team;
 }

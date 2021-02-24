@@ -37,8 +37,8 @@ export class CreateEquipmentRequestComponent implements OnInit {
 
   getCurrentUser() {
     this.accountService.currentUser$.subscribe( user => {
-      this.model.teamId = user.teamID;
-      this.model.userId = user.id + ""; 
+      this.model.teamID = user.teamID;
+      this.model.userID = user.id + ""; 
     })
   }
 
@@ -54,7 +54,7 @@ export class CreateEquipmentRequestComponent implements OnInit {
   getCreatedItem() {
     for (let i = 0; i < this.itemList.length; i++) {
       if (this.itemList[i].description == this.model.item.description) {
-        this.model.itemId = this.itemList[i].id;
+        this.model.itemID = this.itemList[i].id;
       }
     }
   }

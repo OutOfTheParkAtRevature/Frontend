@@ -38,19 +38,19 @@ export class DrawService {
     return this.http.get<Playbook[]>(this.baseUrl + 'playbooks');
   }
 
- getPlaybooksByID(teamId: number): Observable<Playbook>
+ getPlaybooksByID(teamId: string): Observable<Playbook>
  {
     //return this.http.get(this.baseUrl + `playbooks/${teamId}`);
     return this.http.get<Playbook>(this.baseUrl + 'playbooks/' + teamId);
   }
   
-  deletePlay(playId: number): Observable<Play>
+  deletePlay(playId: string): Observable<Play>
   {
     //return this.http.delete(this.baseUrl + `playbooks/plays/delete/${playId}`);
     return this.http.delete<Play>(this.baseUrl + 'plays/' + playId);
   }
 
-  editPlay(id:number, model: Play): Observable<Play>
+  editPlay(id:string, model: Play): Observable<Play>
   {
     //Need a CONTROLLER METHOD HERE
     return this.http.put<Play>(this.baseUrl + 'plays/' + id, model);

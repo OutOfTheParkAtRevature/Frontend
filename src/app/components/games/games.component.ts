@@ -24,9 +24,9 @@ export class GamesComponent implements OnInit {
     this.gamesService.getGames().subscribe(games => {
       this.games = games;
       console.log(games);
-      this.getHomeTeams();
-      this.getAwayTeams();
-      this.getWinningTeams();
+      // this.getHomeTeams();
+      // this.getAwayTeams();
+      // this.getWinningTeams();
       this.setTimes();
     }, err => {
       console.log(err);
@@ -42,33 +42,33 @@ export class GamesComponent implements OnInit {
     })
   }
 
-  getHomeTeams() {
-    this.games.forEach(game => {
-      return this.gamesService.getTeam(game.homeTeamId).subscribe(team => {
-        game.homeTeam = team;
-      }, err => {
-        console.log(err);
-      })
-    });
-  }
+  // getHomeTeams() {
+  //   this.games.forEach(game => {
+  //     return this.gamesService.getTeam(game.homeTeamId).subscribe(team => {
+  //       game.homeTeam = team;
+  //     }, err => {
+  //       console.log(err);
+  //     })
+  //   });
+  // }
 
-  getAwayTeams() {
-    this.games.forEach(game => {
-      return this.gamesService.getTeam(game.awayTeamId).subscribe(team => {
-        game.awayTeam = team;
-      }, err => {
-        console.log(err);
-      })
-    });
-  }
+  // getAwayTeams() {
+  //   this.games.forEach(game => {
+  //     return this.gamesService.getTeam(game.awayTeamId).subscribe(team => {
+  //       game.awayTeam = team;
+  //     }, err => {
+  //       console.log(err);
+  //     })
+  //   });
+  // }
 
-  getWinningTeams() {
-    this.games.forEach(game => {
-      return this.gamesService.getTeam(game.winningTeam).subscribe(team => {
-        game.winner = team;
-      }, err => {
-        console.log(err);
-      })
-    })
-  }
+  // getWinningTeams() {
+  //   this.games.forEach(game => {
+  //     return this.gamesService.getTeam(game.winningTeam).subscribe(team => {
+  //       game.winningTeam = team;
+  //     }, err => {
+  //       console.log(err);
+  //     })
+  //   })
+  // }
 }

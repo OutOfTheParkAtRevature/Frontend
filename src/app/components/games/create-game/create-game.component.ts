@@ -69,7 +69,7 @@ export class CreateGameComponent implements OnInit {
   getHomeTeam() {
     for (let i = 0; i < this.teamList.length; i++) {
       if (this.teamList[i].name == this.newGame.homeTeam.name) {
-        this.newGame.homeTeamId = this.teamList[i].id;
+        this.newGame.homeTeamID = this.teamList[i].id;
       }
     }
   }
@@ -77,7 +77,7 @@ export class CreateGameComponent implements OnInit {
   getAwayTeam() {
     for (let i = 0; i < this.teamList.length; i++) {
       if (this.teamList[i].name == this.newGame.awayTeam.name) {
-        this.newGame.awayTeamId = this.teamList[i].id;
+        this.newGame.awayTeamID = this.teamList[i].id;
       }
     }
   }
