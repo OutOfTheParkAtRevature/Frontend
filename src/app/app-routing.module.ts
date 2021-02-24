@@ -32,7 +32,8 @@ import { RegisterComponent } from './components/home/register/register.component
 
 const routes: Routes = [
   {path: 'draw/:id', component: DrawComponent},
-  {path: '', component: HomeComponent},
+  //{path: '', component: HomeComponent},
+  {path: '', component: LeagueNewsComponent},
   {path: 'players', component: PlayersComponent},
   {path: 'teams', component: TeamsComponent},
   {path: 'equipment', component: EquipmentComponent},
@@ -58,6 +59,7 @@ const routes: Routes = [
   {path: "article/create/:isTeam", component: CreateArticleComponent},
   {path: "register", component: RegisterComponent},
   {path: "auth", component: AuthenticationComponent},
+  {path: "home", component: HomeComponent},
 ];
 
 @NgModule({
