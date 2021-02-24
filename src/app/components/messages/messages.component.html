@@ -1,3 +1,5 @@
+<div style="position: relative;" class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
+
 <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title">Create new Group</h4>
@@ -37,93 +39,21 @@
         <div class="col-md-3">
             <div class="user-container">
                 <div class="inboxes" *ngFor="let Inbox of userInbox" (click)="OpenInbox(Inbox)">
-                    <!-- [class.UserNotReviewed]="Inbox.isRead" -->
                     <app-inbox-message [Inbox]="Inbox" [class.UserNotReviewed]="Inbox.isRead">
                     </app-inbox-message>
                 </div>
-
-                <!-- <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div>
-                <div class="inboxes">
-                    <p>some text</p>
-                </div> -->
             </div>
         </div>
         <div class="col-md-9" *ngIf="InboxDescription"> 
             <div class="chat-container" #divChatMessage >
                 <div class="chat-message" *ngFor="let conversation of allMessages" >
-                    <!-- Conditional Binding: 
-                    [style.color]="eachOutlet.dollarValue < 0 ? 'red' : null"
-                    [ngClass]="{'nameOfClass': condition, "nameOfClass2": condition}"
-                    -->
                     <div class="chat-content" [class.user-response]="conversation.senderId == 1">
-                        <span > {{conversation.body}} </span>
+                        <!-- the '1' is referencing to the userID -->
+                        <span *ngIf="conversation.senderId != 1">{{ conversation.senderName }}: </span>
+                        <span> {{conversation.body}} </span>
                     </div>
 
                 </div>
-                <!-- Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dolorum debitis eius doloribus? Impedit voluptatibus ipsum nisi recusandae minus nostrum autem, inventore odit porro ab. Vitae id reprehenderit alias! Illum. -->
-                <!-- <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div>
-                <div class="chat-message">
-                    <span>Some text</span>
-                </div> -->
             </div>
             <div class="chat-group-information" *ngIf="InboxDescription">
                 <li *ngFor="let inboxUsers of InboxDescription.recipients" > {{inboxUsers.fullName}} </li>
@@ -137,10 +67,16 @@
                     [(ngModel)]="userMessage"
                     #txtUserMessage></textarea>
                 <button class="btn btn-primary" (click)="UploadMessage()">Send message</button>
-                <!-- (click)="SendMessage()" -->
             </div>
 
         </div>
     </div>
     
+</div>
+
+</div>
+
+<!-- If the user is not logged in -->
+<div *ngIf="(accountService.currentUser$ | async) === null">
+    <app-home></app-home>
 </div>

@@ -21,20 +21,21 @@ export class PlaysComponent implements OnInit
 
 
   newPlaybook: Playbook;
-  play: Play[] = [];// should view only plays that are visible
-  coachPlay: Play[] = []; // should view all team plays
+  play: Play[] = [];// should view all plays
+  viewablePlays: Play[] = []; // should view only viewable plays
   tempPlay: Play[] = [];
   imageString: string;
-  chosenplaybookId: number;
-  teamId: number;
+  chosenplaybookId: any;//Will be a string for guids
+  teamId: any; //Will be a string for guids
   myTeams: Team;
   TeamPlaybookList: Array<Playbook> = new Array<Playbook>() ;
   playbooks: any = {};
   createNewPlaybook: boolean;
+  makePlayVisible: boolean;
 
   ngOnInit(): void {
     this.newPlaybook = new Playbook;
-    this.chosenplaybookId = 0;
+    this.chosenplaybookId = '';
     this.createNewPlaybook = false;
     this.getTeamID(); 
     
@@ -51,12 +52,16 @@ export class PlaysComponent implements OnInit
     })  
   }
 
-
+//Gets current team plays as well as fills a list to contain only viewable plays
   getCurrentPlays(){
     if(this.tempPlay != []){
     this.tempPlay.forEach(element => {
       if(element.PlaybookId == this.playbooks.id){
         this.play.push(element);
+        if(element.visible == true){
+          this.viewablePlays.push(element);
+          console.log(this.viewablePlays);
+        }
       }
   
     });
@@ -109,6 +114,7 @@ export class PlaysComponent implements OnInit
   //Sets the play arrays length to zero to clear previous showings of plays
   selectPlayBook(playbookName){
     this.play.length = 0;
+    this.viewablePlays.length = 0;
     this.TeamPlaybookList.forEach(element => {
       if(element.name == playbookName.target.value){
         this.playbooks = element;
@@ -143,6 +149,19 @@ export class PlaysComponent implements OnInit
     this.TeamPlaybookList.length = 0;
     this.getTeamPlayBook();
   }
+  }
+
+  makeViewable(id){
+    this.play.forEach(element => {
+      if(element.id == id){
+        element.visible = true;
+        this.drawService.editPlay(element.id, element).subscribe(response => {
+          console.log(response);
+        });
+      }
+      
+      console.log(element);
+    });
   }
 
 }

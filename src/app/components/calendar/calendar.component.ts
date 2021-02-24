@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 //Events from Calendar
 import { Calendar } from '@fullcalendar/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
@@ -8,6 +8,7 @@ import { Event } from 'src/app/_models/Event';
 import { CalendarService } from 'src/app/_services/calendar.service';
 import { NgbCalendar, NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
 import {NgbDateStruct, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
+import { AccountService } from '../../_services/account.service';
 
 @Component({
   selector: 'app-calendar',
@@ -17,19 +18,18 @@ import {NgbDateStruct, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 export class CalendarComponent implements OnInit {
 
   eventDTO:Event[];
-  selectedEvent: Event;
+  selectedEvent: Event = new Event();
   removeEvent: boolean;
 
-  EventStartTime: NgbTimeStruct;
-  EventEndTime: NgbTimeStruct;
-  EventStartDate: NgbDateStruct;
-  EventEndDate: NgbDateStruct;
+  EventStartTime: NgbTimeStruct = this.GetDefaultTime();
+  EventEndTime: NgbTimeStruct = this.GetDefaultTime();
+  EventStartDate: NgbDateStruct= this.calendar.getToday();
+  EventEndDate: NgbDateStruct = this.calendar.getToday();
   hourStep: number = 1;
   minuteStep: number = 15;
+  // @ViewChild('NewEvent') newEventInput;
   
-
-  
-  constructor( private _calendar : CalendarService, private modalService: NgbModal, config: NgbModalConfig, private calendar: NgbCalendar ) {
+  constructor( private _calendar : CalendarService, private modalService: NgbModal, config: NgbModalConfig, private calendar: NgbCalendar,  public accountService: AccountService) {
     config.backdrop = 'static';
     config.keyboard = false;
   }
@@ -40,7 +40,7 @@ export class CalendarComponent implements OnInit {
 
     this._calendar.getCalendar().subscribe(
       dataOnSuccess => {
-        console.log(dataOnSuccess);
+        // console.log(dataOnSuccess);
         this.eventDTO = dataOnSuccess.events;
 
         this.displayElementsIntoCalendar();
@@ -50,6 +50,7 @@ export class CalendarComponent implements OnInit {
         console.log("Error ", dataOnError);
       }
     );
+
   }
 
 
@@ -75,7 +76,7 @@ export class CalendarComponent implements OnInit {
     // weekends: false
     eventClick : (args) => {
       // opens events in a popup window
-      console.log(args);
+      // console.log(args);
       window.open(args.event.url, '_blank', 'width=700,height=600');
       // prevents current tab from navigating
       args.jsEvent.preventDefault();
@@ -85,9 +86,11 @@ export class CalendarComponent implements OnInit {
   
   
   handleDateClick(arg): void {
-    alert('date click! ' + arg.dateStr)
-    
+    // alert('date click! ' + arg.dateStr)
     console.log(arg);
+    // this.newEventInput.nativeElement
+    // this.modalService.open(this.newEventInput.nativeElement);
+
     // let str = formatDate(new Date(), {
       //   month: 'long',
       //   year: 'numeric',
@@ -128,7 +131,17 @@ export class CalendarComponent implements OnInit {
   GetDefaultTime():NgbTimeStruct{
     return {hour: 13, minute: 30, second: 0};
   }
+
+  GetTimeFromEvent(date: Date): NgbTimeStruct{
+    let tempDate: Date = new Date(date);
+    return {hour: tempDate.getHours(), minute: tempDate.getMinutes(), second: 0};
+  }
   
+  GetDateFromNgDateStruct(date: Date) : NgbDateStruct{
+    let tempDate: Date = new Date(date);
+    return  { day: tempDate.getDay(), month: tempDate.getMonth() + 1, year: tempDate.getFullYear()};
+  }
+
   createNewEventDialog(content): void{
       this.selectedEvent = new Event();
       this.InitializeDateTimeData();
@@ -137,24 +150,54 @@ export class CalendarComponent implements OnInit {
   
   EditDialog(content, event : Event) :void {
     this.selectedEvent = event;
-    this.InitializeDateTimeData();
+    //Set the date and time from the DateTime...
+    this.EventStartTime = this.GetTimeFromEvent(event.StartTime);
+    // console.log(this.EventStartTime)
+    this.EventEndTime = this.GetTimeFromEvent(event.EndTime);
+    this.EventStartDate = this.GetDateFromNgDateStruct(event.StartTime);
+    this.EventEndDate = this.GetDateFromNgDateStruct(event.EndTime);
+    // console.log(event, this.EventStartDate);
+    
     this.removeEvent = false;
     this.modalService.open(content);
   }
   
   
-  AddNewEvent(): void{
+  AddNewEvent( eventForm): void{
     //Generate the correct Event
-    this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
-    this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime)
-    //Some Add logic to ws
-
-    //Add to the event table
-    this.eventDTO.push(this.selectedEvent);
     
-    this.displayElementsIntoCalendar()
-    this.CloseModal();
+    
+    //Force the form to be valid
+    if (eventForm.valid )
+    {
+      
+      this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
+      this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime)
+      
+      if ( 
+          (this.selectedEvent.StartTime.toDateString() === this.selectedEvent.EndTime.toDateString())
+            &&
+          ( this.selectedEvent.StartTime.getHours() < this.selectedEvent.EndTime.getHours() )
+         )
+      {
+        //Some Add logic to ws
+    
+        //Add to the event table
+        this.eventDTO.push(this.selectedEvent);
+        
+        this.displayElementsIntoCalendar()
+        this.CloseModal();
+      }
+      else{
+        //some edit label in red if not valid..
+        console.log("Input diferent time from start to end.");
+        }
 
+      }
+      else{
+        //some edit label in red if not valid..
+        console.log("Requested info not valid.");
+      }
   }
 
   AssignDate(EventDate: NgbDateStruct, EventTime: NgbTimeStruct) : Date
@@ -162,17 +205,34 @@ export class CalendarComponent implements OnInit {
     return new Date(`${EventDate.year}-${EventDate.month}-${EventDate.day} ${EventTime.hour}:${EventTime.minute}`)
   }
 
-  editEvent() :void {
+  editEvent( eventForm ) :void {
     //Do some update event logic
-    this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
-    this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime);
+    // event.preventDefault();
+    // console.log(eventForm.value, eventForm.valid);
 
-    this.CloseModal();
+    //Force the form to be valid
+    if (eventForm.valid)
+    {
+      this.selectedEvent.StartTime = this.AssignDate(this.EventStartDate, this.EventStartTime);
+      this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime);
+
+      //Some Add logic to ws
+
+      this.CloseModal();
+    }
+    else{
+      //some edit label in red if not valid..
+    }
   }
 
   RemoveEvent():void {
     //Do some remove event logic
-    
+
+
+    let eventIndex = this.eventDTO.indexOf(this.selectedEvent);
+    if (eventIndex > -1) {
+      this.eventDTO.splice(eventIndex, 1);
+    }
     //Event ID for identifying the element. 
     // this.selectedEvent.Name
     this.CloseModal();

@@ -11,7 +11,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 /* Bootstrap Components */
 import { NgbModule /*, NgbRating */, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -56,6 +56,7 @@ import { UserService } from './_services/user.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BearerAuthInterceptorService } from './_services/bearer-auth-interceptor.service';
 import { InboxMessageComponent } from './components/messages/inbox-message/inbox-message.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
@@ -94,7 +95,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     LeagueNewsComponent,
     EditArticleComponent,
     CreateArticleComponent,
-    RegisterComponent
+    RegisterComponent,
+    StatsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -105,6 +107,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     AppRoutingModule,
     FullCalendarModule,
     MatSlideToggleModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BearerAuthInterceptorService, multi:true },
