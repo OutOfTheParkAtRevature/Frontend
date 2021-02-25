@@ -1,7 +1,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary" id="navbar">
       <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/">NR Team Manager</a>
+        <a class="navbar-brand" routerLink="/">Out Of The Park</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -62,27 +62,31 @@
               </div>
             </li>
             
-            <li *ngIf="(accountService.currentUser$ | async) as loggedInUser" class="nav-item">
+            <!-- <li *ngIf="(accountService.currentUser$ | async) as loggedInUser" class="nav-item">
                 {{loggedInUser.userName}}
-            </li>
+            </li> -->
             <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
                 <!--
                 <button class="btn btn-danger" (click)="displayNotifications()" *ngIf="hasNotifications">Notifications</button>
                 <button class="btn btn-secondary" (click)="displayNotifications()" *ngIf="!hasNotifications">Notifications</button>
                 -->
-                <button class="material-icons" (click)="displayNotifications()" *ngIf="!hasNotifications">alarm</button>
-                <button class="material-icons" style="background-color: red;" (click)="displayNotifications()" *ngIf="hasNotifications">alarm</button>
+                <!-- <button class="material-icons" (click)="displayNotifications()" *ngIf="!hasNotifications">alarm</button>
+                <button class="material-icons" style="background-color: red;" (click)="displayNotifications()" *ngIf="hasNotifications">alarm</button> -->
             </li>
             <!--
             <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
               <a class="nav-link" (click)="logout()">Logout</a>
             </li>
         -->
-            <li *ngIf="!(accountService.currentUser$ | async)" class="nav-item">
+            <!-- <li *ngIf="!(accountService.currentUser$ | async)" class="nav-item">
 
               <a class="nav-link" routerLink="/home">Login / Register</a>
-            </li>
+            </li> -->
           </ul>
+          <span *ngIf="!(accountService.currentUser$ | async)" class="nav-item navbar-text">
+
+            <a class="nav-link" routerLink="/home">Login / Register</a>
+          </span>
           <span *ngIf="(accountService.currentUser$ | async)" class="nav-item navbar-text" placement="bottom-right">
               <!--
             {{loggedInUser.userName}}
@@ -90,6 +94,8 @@
             <button class="material-icons" style="background-color: red;" (click)="displayNotifications()" *ngIf="hasNotifications">alarm</button>
               -->
             <a class="nav-link" (click)="logout()">Logout</a> 
+            <button class="material-icons" (click)="displayNotifications()" *ngIf="!hasNotifications">alarm</button>
+                <button class="material-icons" style="background-color: red;" (click)="displayNotifications()" *ngIf="hasNotifications">alarm</button>
           </span>
           <!-- <div class="login">
             <form #loginForm="ngForm" *ngIf="(accountService.currentUser$ | async) === null" class="d-flex" (ngSubmit)="login()" ngNativeValidate autocomplete="off">
