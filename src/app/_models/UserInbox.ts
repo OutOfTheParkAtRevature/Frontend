@@ -1,3 +1,4 @@
+import { Recipient } from "./recipient";
 
 
 export class UserInbox
@@ -5,5 +6,6 @@ export class UserInbox
     id: string;
     userID: string;
     messageID: string;
-    isRead: boolean;    //Stored in DB as a bit
+    recipients: Recipient[] = [];
+    isRead: boolean;  
 }

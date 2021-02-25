@@ -1,6 +1,6 @@
 
 
-export class Message
+export class    Message
 {
     messageID: string;
     senderID: string;

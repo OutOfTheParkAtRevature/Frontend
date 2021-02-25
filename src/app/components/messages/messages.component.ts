@@ -11,6 +11,7 @@ import { elementEventFullName } from '@angular/compiler/src/view_compiler/view_c
 import { Message } from 'src/app/_models/Message';
 import { AccountService } from '../../_services/account.service';
 import { UserLoggedIn } from 'src/app/_models/UserLoggedIn';
+import { debug } from 'console';
 
 @Component({
   selector: 'app-messages',
@@ -22,9 +23,9 @@ export class MessagesComponent implements OnInit {
 
   userLogged: UserLoggedIn; 
   users:User[];
-  userInbox: Array<Inbox> = [];
+  userInbox: Array<UserInbox> = [];
   isNewConversation: boolean = false;
-  InboxDescription: Inbox;
+  InboxDescription: UserInbox;
   userNewGroup = { "recipients": [] };
   allMessages: Array<Message> = [];
   userMessage: string = "";
@@ -111,51 +112,31 @@ export class MessagesComponent implements OnInit {
     );
   }
 
+  getMessagesFromConversation( messageID: string ): void
+  {
+    this.allMessages = [];
+    this._message.getMessagesFromConversation(messageID).subscribe(
+      dataOnSuccess => {
+        console.log(dataOnSuccess);
 
-  OpenInbox(inbox: Inbox) :void {
+        this.allMessages=dataOnSuccess.content;
+      },
+      dataOnError=> {
+        console.log(dataOnError);
+      }
+    );
+  }
+
+
+  OpenInbox(inbox: UserInbox) :void {
     console.log("Selected!", inbox);
 
     this.InboxDescription = inbox;
     inbox.isRead = false;
 
-    this.allMessages = [];
-
     //Load conversation when user clicks... 
+    this.getMessagesFromConversation(inbox.messageID);
     //User comments display at rigth...
-    let Message1:Message = new Message();
-    Message1.messageID = "2";
-    Message1.recipientListID = "1";
-    Message1.senderID = "1";
-    Message1.senderName = "Player";
-    Message1.body = "This is the user conversation";
-
-    let Message2:Message = new Message();
-    Message2.messageID = "3";
-    Message2.recipientListID = "1";
-    Message2.senderID = "2";
-    Message2.senderName = "Full Name";
-    Message2.body = "This is the other user response";
-
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
-    this.allMessages.push(Message1);
-    this.allMessages.push(Message2);
 
     // The first time it doesn't work, because the div element is not created at the moment.
     this.AutoFocusOnBottom();
@@ -175,7 +156,7 @@ export class MessagesComponent implements OnInit {
   GetCarpoolInbox(): void{
     console.log("Get carpool inbox");
 
-    let CarpoolInbox:Inbox = new Inbox();
+    let CarpoolInbox:UserInbox = new UserInbox();
     CarpoolInbox.userID = "1000";
     CarpoolInbox.recipients = [];
 
@@ -222,7 +203,7 @@ export class MessagesComponent implements OnInit {
     console.log("Group created successfully", this.userNewGroup);
 
     //Create new inbox logic
-    let newGroup: Inbox = new Inbox();
+    let newGroup: UserInbox = new UserInbox();
     newGroup.userID = "1"; //Later review userID
 
     this.userNewGroup.recipients.forEach(user => {
@@ -282,8 +263,8 @@ export class MessagesComponent implements OnInit {
     let myMessage: Message = new Message ();
     myMessage.body = this.userMessage;
     myMessage.date = new Date(); 
-    myMessage.senderName = this.userLogged.fullName
-    myMessage.senderID = this.userLogged.id+ "";
+    myMessage.senderName = "some dude"// this.userLogged.fullName
+    myMessage.senderID = "1"; //this.userLogged.id+ ""
     this.allMessages.push(myMessage);
     
     
