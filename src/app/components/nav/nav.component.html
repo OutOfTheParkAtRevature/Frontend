@@ -70,8 +70,8 @@
                 <button class="btn btn-danger" (click)="displayNotifications()" *ngIf="hasNotifications">Notifications</button>
                 <button class="btn btn-secondary" (click)="displayNotifications()" *ngIf="!hasNotifications">Notifications</button>
                 -->
-                <button class="material-icons" (click)="displayNotifications()" *ngIf="hasNotifications">alarm</button>
-                <button class="material-icons" style="background-color: red;" (click)="displayNotifications()" *ngIf="!hasNotifications">alarm</button>
+                <button class="material-icons" (click)="displayNotifications()" *ngIf="!hasNotifications">alarm</button>
+                <button class="material-icons" style="background-color: red;" (click)="displayNotifications()" *ngIf="hasNotifications">alarm</button>
             </li>
             <!--
             <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
