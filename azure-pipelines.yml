@@ -50,6 +50,13 @@ stages:
           - task: SonarCloudPublish@1
             displayName: Publish Code Analysis
 
+          - task: AzureRmWebAppDeployment@4
+            inputs:
+              ConnectionType: 'AzureRM'
+              azureSubscription: 'out-of-the-park-rg Connection'
+              appType: 'webAppLinux'
+              WebAppName: 'OutOfThePark'
+              packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
 
   - stage: 'Build'
     displayName: Build and push
