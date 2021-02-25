@@ -85,7 +85,7 @@ export class MessagesComponent implements OnInit {
   getInboxFromUser() {
 
     this._message.getMessages(1).subscribe( UserInboxes => {
-      // console.log(UserInboxes); 
+      console.log(UserInboxes); 
 
       this.userInbox = UserInboxes.inboxes;
       
@@ -115,14 +115,16 @@ export class MessagesComponent implements OnInit {
   getMessagesFromConversation( messageID: string ): void
   {
     this.allMessages = [];
+    console.log(messageID);
     this._message.getMessagesFromConversation(messageID).subscribe(
       dataOnSuccess => {
-        console.log("Data from messages: ", dataOnSuccess);
+        // console.log("Data from messages: ", dataOnSuccess);
         
         this.allMessages=dataOnSuccess.content;
       },
       dataOnError=> {
         console.log(dataOnError);
+        //
       }
     );
   }
@@ -133,16 +135,29 @@ export class MessagesComponent implements OnInit {
 
     this.InboxDescription = inbox;
     inbox.isRead = false;
-
+    
     //Load conversation when user clicks... 
     this.getMessagesFromConversation(inbox.messageID);
-    //User comments display at rigth...
+    
+    this.CreateUserInbox(inbox);
 
     // The first time it doesn't work, because the div element is not created at the moment.
     this.AutoFocusOnBottom();
 
     this.userMessage = "";
 
+  }
+
+  CreateUserInbox(inbox : UserInbox):void {
+    console.log(inbox);
+    this._message.postMessageInboxes(inbox).subscribe(
+      data => {
+        console.log("success => ", data);
+      },
+      data => {
+        console.log("Error => ", data);
+      }
+    )
   }
 
   AutoFocusOnBottom(): void {
@@ -239,7 +254,22 @@ export class MessagesComponent implements OnInit {
     //refresh array
     this.userInbox.push(newGroup);
 
-    this.OpenInbox(newGroup);
+    // this.OpenInbox(newGroup);
+    //Create new inbox.
+    let message= {
+      content: []
+    };
+    this._message.postMessage(message).subscribe(
+      data => {
+        console.log(data);
+        newGroup.messageID = data.id;
+
+        this.OpenInbox(newGroup);
+      },
+      data => {
+        console.log(data);  
+      }
+    );
     
     this.CloseModal();
 

@@ -45,6 +45,10 @@ export class MessageService {
     return this.http.get<any>(this.baseUrl + `userInboxes/${userID}`);
   }
 
+  postMessageInboxes(userInboxes:UserInbox):Observable<any> {
+    return this.http.post(this.baseUrl + `userInboxes/`, userInboxes);
+  }
+
   getMessagesFromConversation(messageID: string) : Observable<MessageInbox>{
     return this.http.get<MessageInbox>(this.baseUrl + `messages/${messageID}`)
     
@@ -55,6 +59,11 @@ export class MessageService {
   {
     //return this.http.post(this.baseUrl + `messages/send`, message);
     return this.http.post<Message>(this.baseUrl + 'messages', message);
+  }
+
+  postMessage(message: any): Observable<any>
+  {
+    return this.http.post(this.baseUrl + 'messages', message)
   }
 
   putMessage(messageID:string, mockMessages:any): Observable<any>
