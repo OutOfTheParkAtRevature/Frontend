@@ -120,10 +120,16 @@
   "games": [
     {
       "id": 1,
-      "homeTeamId": 1,
-      "awayTeamId": 2,
+      "homeTeam": {
+		"name": "Barcelona"
+	  },
+      "awayTeam": {
+		"name": "Arsenal"
+	  },
       "gameDate": "1-1-2000",
-      "winningTeam": 1,
+      "winningTeam": {
+		"name": "Barcelona"
+	  },
       "homeScore": 2,
       "awayScore": 0
     }

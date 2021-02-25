@@ -27,15 +27,17 @@ export class RegisterComponent implements OnInit {
   }
 
   createUser() {
-    //this.getTeam();
+    this.getTeam();
     this.getRole();
     console.log(this.model);
+
     this.accountService.registerUser(this.model).subscribe(res => {
       console.log(res);
       this.router.navigate(['/leagueNews']);
       //Login this player
     }, err => {
       console.log(err);
+      console.log(err["error"]);
     });
   }
 
@@ -45,19 +47,20 @@ export class RegisterComponent implements OnInit {
       console.log(this.teamList);
     }, err => {
       console.log(err);
+      console.log(err["error"]);
     })
   }
 
-  // getTeam() {
-  //     console.log(this.model.team);
-  //     let temp: any = this.model.team;
-  //   for (let i = 0; i < this.teamList.length; i++) {
-  //     if (this.teamList[i].name == temp) {
-  //       this.model.teamID = this.teamList[i].id;
-  //     }
-  //   }
-  //   this.model.team = null;
-  // }
+  getTeam() {
+      console.log(this.model.team);
+      let temp: any = this.model.team;
+    for (let i = 0; i < this.teamList.length; i++) {
+      if (this.teamList[i].name == temp) {
+        this.model.teamID = this.teamList[i].teamID;
+      }
+    }
+    this.model.team = null;
+  }
 
   getRole() {
       
