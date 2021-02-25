@@ -67,7 +67,9 @@
   "calendar": {
     "events": [
       {
-        "id": "1",
+
+        "id":"1",
+
         "Name": "Event 1",
         "Location": "Random Address 1",
         "Message": "Some random message",
@@ -75,7 +77,9 @@
         "EndTime": "2021-02-08 13:00:00"
       },
       {
-        "id": "2",
+
+        "id":"2",
+
         "Name": "Event 2",
         "Location": "Random Address 2",
         "Message": "Some random message #2",
@@ -101,7 +105,50 @@
       "awayScore": 0
     }
   ],
-  "messages": [],
+  "messages": [
+    {
+      "id":"1",
+      "content": [
+        {
+          "id": "1",
+          "senderID": "2",
+          "senderName": "John Doe",
+          "recipientListID": "1",
+          "date":"2021-02-18T17:35:08.143Z",
+          "body":"Hello, how are you?"
+        },
+        {
+          "id": "2",
+          "senderID": "1",
+          "senderName": "Player",
+          "recipientListID": "1",
+          "date":"2021-02-18T17:38:08.143Z",
+          "body":"Hi, I'm fine, thanks for asking :)"
+        }
+      ]
+    },
+    {
+      "id":"2",
+      "content": [
+        {
+          "id": "1",
+          "senderID": "4",
+          "senderName": "Coach",
+          "recipientListID": "2",
+          "date":"2021-02-18T17:30:08.143Z",
+          "body":"Hi, are you there?"
+        },
+        {
+          "id": "2",
+          "senderID": "4",
+          "senderName": "Coach",
+          "recipientListID": "2",
+          "date":"2021-02-18T17:36:08.143Z",
+          "body":"The equipment you have requested have been accepted."
+        }
+      ]
+    }
+  ],
   "playbooks": [
     {
       "name": "Offence",
@@ -167,8 +214,9 @@
       "id": "1",
       "inboxes": [
         {
-          "id": "1",
+          "id":"1",
           "userID": "1",
+
           "recipients": [
             {
               "userID": "2",
@@ -179,8 +227,10 @@
           "isRead": true
         },
         {
-          "id": "2",
+
+          "id":"2",
           "userID": "1",
+
           "recipients": [
             {
               "userID": "4",
