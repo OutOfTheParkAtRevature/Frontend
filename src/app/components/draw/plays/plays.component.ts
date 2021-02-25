@@ -81,7 +81,7 @@ export class PlaysComponent implements OnInit
   //Gets the teamid based on current user
   getTeamID() {
     this.accountService.currentUser$.subscribe( user => {
-       this.teamId = user.teamID.toString();
+       this.teamId = user.teamID;//.toString();
        console.log(this.teamId);
       }, err => {
         console.log(err)

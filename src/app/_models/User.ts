@@ -12,4 +12,6 @@ export class User {
   team: Team;
   password: string;
   unconfirmed: boolean;
+
+  token: string;
 }

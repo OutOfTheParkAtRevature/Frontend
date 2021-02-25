@@ -12,7 +12,9 @@ import { Playbook } from '../_models/Playbook';
 export class DrawService {
 
   //baseUrl = environment.apiUrl;
+  //baseUrl: string = "http://40.88.226.19/api/";
   baseUrl: string = "http://localhost:3000/";
+
   constructor(private http: HttpClient) { }
 
   createDrawing(model: Play): Observable<Play>
@@ -38,8 +40,8 @@ export class DrawService {
     return this.http.get<Playbook[]>(this.baseUrl + 'playbooks');
   }
 
- getPlaybooksByID(teamId: string): Observable<Playbook>
- {
+  getPlaybooksByID(teamId: string): Observable<Playbook>
+  {
     //return this.http.get(this.baseUrl + `playbooks/${teamId}`);
     return this.http.get<Playbook>(this.baseUrl + 'playbooks/' + teamId);
   }
@@ -50,9 +52,9 @@ export class DrawService {
     return this.http.delete<Play>(this.baseUrl + 'plays/' + playId);
   }
 
-  editPlay(id:string, model: Play): Observable<Play>
+  editPlay(id: string, model: Play): Observable<Play> //NEEDS TO BE A STRING ID:
   {
-    //Need a CONTROLLER METHOD HERE
+    
     return this.http.put<Play>(this.baseUrl + 'plays/' + id, model);
   }
  
