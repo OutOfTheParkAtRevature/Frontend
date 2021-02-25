@@ -15,7 +15,7 @@ export class NewsService {
 
   //baseUrl = environment.apiUrl;
   //baseUrl: string = "http://localhost:3000/";
-  baseUrl: string = "http://52.150.39.58/api/";
+  baseUrl: string = "http://52.226.52.181/api/";
 
   getArticles(): Observable<Article[]> 
   {
