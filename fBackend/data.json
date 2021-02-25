@@ -184,12 +184,24 @@
       "id": 3,
       "teamId": 2,
       "name": "Forward"
+    },
+    {
+      "name": "Defense",
+      "teamId": 1,
+      "id": 4
+    },
+    {
+      "name": "Anthony mungle",
+      "teamId": 1,
+      "id": 5
+    },
+    {
+      "name": "Hi",
+      "teamId": 1,
+      "id": 6
     }
-  
   ],
-  "plays": [
-    
-  ],
+  "plays": [],
   "recipientLists": [
     {
       "id": 1,
@@ -367,6 +379,17 @@
       "id": 10,
       "userName": "Me",
       "teamID": 1,
+      "roleName": "Player"
+    },
+    {
+      "fullName": "StatTest",
+      "password": "Me",
+      "phoneNumber": "123456789",
+      "email": "abc@efg",
+      "role": "Player",
+      "id": 10,
+      "userName": "Me",
+      "teamID": 2,
       "roleName": "Player"
     }
   ]

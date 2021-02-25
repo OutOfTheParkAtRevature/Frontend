@@ -28,6 +28,7 @@ import { LeagueNewsComponent } from './components/news/league-news/league-news.c
 import { EditArticleComponent } from './components/news/edit-article/edit-article.component';
 import { CreateArticleComponent } from './components/news/create-article/create-article.component';
 import { RegisterComponent } from './components/home/register/register.component';
+import { StatsComponent } from './components/stats/stats.component';
 
 
 const routes: Routes = [
@@ -60,6 +61,7 @@ const routes: Routes = [
   {path: "register", component: RegisterComponent},
   {path: "auth", component: AuthenticationComponent},
   {path: "home", component: HomeComponent},
+  {path: 'stats', component: StatsComponent},
 ];
 
 @NgModule({

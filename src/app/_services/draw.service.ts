@@ -46,7 +46,7 @@ export class DrawService {
     return this.http.get<Playbook>(this.baseUrl + 'playbooks/' + teamId);
   }
   
-  deletePlay(playId: string): Observable<Play>
+  deleteMyPlay(playId: string): Observable<Play>
   {
     //return this.http.delete(this.baseUrl + `playbooks/plays/delete/${playId}`);
     return this.http.delete<Play>(this.baseUrl + 'plays/' + playId);
