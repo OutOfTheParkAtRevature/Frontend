@@ -40,8 +40,8 @@ export class CalendarComponent implements OnInit {
 
     this._calendar.getCalendar().subscribe(
       dataOnSuccess => {
-        // console.log(dataOnSuccess);
-        this.eventDTO = dataOnSuccess.events;
+        console.log(dataOnSuccess);
+        this.eventDTO = dataOnSuccess;
 
         this.displayElementsIntoCalendar();
 
@@ -181,12 +181,21 @@ export class CalendarComponent implements OnInit {
          )
       {
         //Some Add logic to ws
-    
-        //Add to the event table
-        this.eventDTO.push(this.selectedEvent);
-        
-        this.displayElementsIntoCalendar()
-        this.CloseModal();
+        this._calendar.createEvent(this.selectedEvent).subscribe(
+          dataOnSuccess => {
+            //Add to the event table
+            console.log(dataOnSuccess);
+            this.eventDTO.push(dataOnSuccess);
+            
+            this.displayElementsIntoCalendar();
+            
+          },
+          dataOnError => {
+            console.log("Error => ", dataOnError)
+          }
+          );
+          
+          this.CloseModal();
       }
       else{
         //some edit label in red if not valid..
@@ -217,6 +226,14 @@ export class CalendarComponent implements OnInit {
       this.selectedEvent.EndTime = this.AssignDate(this.EventEndDate, this.EventEndTime);
 
       //Some Add logic to ws
+      this._calendar.editEvent(this.selectedEvent.id, this.selectedEvent).subscribe(
+        dataOnSuccess=> {
+          console.log("Success", dataOnSuccess);
+        },
+        dataOnError => {
+          console.log("Error => ", dataOnError);
+        }
+      );
 
       this.CloseModal();
     }

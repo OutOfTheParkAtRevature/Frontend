@@ -93,26 +93,32 @@
       }
     }
   ],
-  "calendar": {
-    "events": [
-      {
-        "id": "1",
-        "Name": "Event 1",
-        "Location": "Random Address 1",
-        "Message": "Some random message",
-        "StartTime": "2021-02-08 12:00:00",
-        "EndTime": "2021-02-08 13:00:00"
-      },
-      {
-        "id": "2",
-        "Name": "Event 2",
-        "Location": "Random Address 2",
-        "Message": "Some random message #2",
-        "StartTime": "2021-02-03 12:00:00",
-        "EndTime": "2021-02-03 13:00:00"
-      }
-    ]
-  },
+  "calendar": [
+    {
+      "id": "1",
+      "Name": "Event 1",
+      "Location": "Random Address 1",
+      "Message": "Some random message",
+      "StartTime": "2021-02-08 12:00:00",
+      "EndTime": "2021-02-08 13:00:00"
+    },
+    {
+      "id": "2",
+      "Name": "Event 2",
+      "Location": "Random Address 2",
+      "Message": "Some random message #2",
+      "StartTime": "2021-02-03 12:00:00",
+      "EndTime": "2021-02-03 13:00:00"
+    },
+    {
+      "Name": "Grand final",
+      "Location": "Address #1",
+      "Message": "This is the event final almost final",
+      "StartTime": "2021-02-03T19:30:00.000Z",
+      "EndTime": "2021-02-03T20:45:00.000Z",
+      "id": "0EMK-bK"
+    }
+  ],
   "games": [
     {
       "id": 1,
