@@ -1,1 +1,47 @@
-<p>stats works!</p>
+
+   <select (change)="getSelectedPlayerStats($event)"> 
+    <option value="0">Players</option>
+    <option  *ngFor="let players of allTeamPlayers" value={{players.fullName}}>
+      {{players.fullName}}
+    </option>
+    </select> 
+
+    <div *ngIf="baseball != null">
+    <table matSort class="table table-striped">
+        <caption></caption>
+        <tbody>
+        <!-- <tr>
+            <td>Name</td>
+            <td>{{selectedUser.fullName}}</td>
+        </tr> -->
+        <tr>
+            <td>BattingAvg</td>
+            <td>{{baseball.battingAve}}</td>
+        </tr>
+        <tr>
+            <td>Runs</td>
+            <td>{{baseball.runs}}</td>
+        </tr>
+        <tr>
+            <td>RBI</td>
+            <td>{{baseball.rbi}}</td>
+        </tr>
+        <tr>
+            <td>Hits</td>
+            <td>{{baseball.hits}}</td>
+        </tr>
+        <tr>
+            <td>Steals</td>
+            <td>{{baseball.steals}}</td>
+        </tr>
+        <tr>
+            <td>StrikeOuts</td>
+            <td>{{baseball.strikeOuts}}</td>
+        </tr>
+        <tr>
+            <td>Saves</td>
+            <td>{{baseball.saves}}</td>
+        </tr>
+        </tbody>
+    </table>
+    </div>

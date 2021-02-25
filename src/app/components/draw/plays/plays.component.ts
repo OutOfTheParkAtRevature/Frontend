@@ -67,7 +67,7 @@ export class PlaysComponent implements OnInit
   }
   }
 
-  deletePlay(playNot){
+  deletePlay(playNot: string){
     console.log(playNot);
     this.drawService.deleteMyPlay(playNot).subscribe(Response => {
       this.play.splice(0, this.play.length);
@@ -95,7 +95,6 @@ export class PlaysComponent implements OnInit
   getTeamPlayBook(){ 
     this.drawService.getPlaybooks().subscribe(response =>{
       console.log(response);
-      console.log(this.teamId);
       response.forEach(element => {
         console.log(element)
         if(element.teamId === this.teamId){
@@ -121,6 +120,7 @@ export class PlaysComponent implements OnInit
     });
     this.chosenplaybookId = this.playbooks.id;
     console.log(this.playbooks)
+ 
     this.getPlays(); 
   }
 
@@ -144,9 +144,11 @@ export class PlaysComponent implements OnInit
       console.log(response);
     }, err => {
       console.log(err)
-    })
+    })   
+    alert("Playbook Created");
     this.TeamPlaybookList.length = 0;
     this.getTeamPlayBook();
+    this.getPlays();
   }
   }
 

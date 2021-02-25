@@ -76,4 +76,8 @@ export class StatServiceService {
     return this.http.delete<any>(this.baseUrl + 'BaseballStatistics/' + statLineID);
   }
 
+  getBaseballStatline(statLineID: string): Observable<BaseballStatistic>{
+    return this.http.get<BaseballStatistic>(this.baseUrl + 'BaseballStatistics/' + statLineID);
+  }
+
 }

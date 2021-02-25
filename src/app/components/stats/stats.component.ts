@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { element } from 'protractor';
 import { BaseballStatistic } from 'src/app/_models/BaseballStatistic';
 import { CreateTeamGame } from 'src/app/_models/create-team-game';
 import { CreatePlayerGameDto } from 'src/app/_models/createPlayerGame';
 import { PlayerGame } from 'src/app/_models/PlayerGame';
 import { TeamGame } from 'src/app/_models/TeamGame';
+import { User } from 'src/app/_models/User';
+import { AccountService } from 'src/app/_services/account.service';
 import { StatServiceService } from 'src/app/_services/stat-service.service';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-stats',
@@ -13,30 +17,50 @@ import { StatServiceService } from 'src/app/_services/stat-service.service';
 })
 export class StatsComponent implements OnInit {
 
-  constructor(private statService: StatServiceService) { }
+  constructor(private statService: StatServiceService, private userService: UserService, private accountService: AccountService) { }
 
-  getAllTeamStats: TeamGame[];
-  getAllTeamGameStats: TeamGame[];
+  statsNumber: string;
+  selectedUser: User;
+  teamId: string;
+  allTeamPlayers: User[]= [];
+  getAllTeamStats: TeamGame[]= [];
+  getAllTeamGameStats: TeamGame[]= [];
   teamOverallStats: TeamGame;
   teamGames: TeamGame;
   selectedPlayerStats: PlayerGame;
   selectedPlayerGames: PlayerGame;
-  playerOverallStats: PlayerGame[];
-  playerOverallGameStats: PlayerGame[];
-  allPlayersStats: PlayerGame[];
+  playerOverallStats: PlayerGame[]= [];
+  playerOverallGameStats: PlayerGame[]= [];
+  allPlayersStats: PlayerGame[]= [];
   baseball: BaseballStatistic;
 
   ngOnInit(): void {
-  }
+    // this.accountService.currentUser$.subscribe(Response => {
+    //    this.teamId = Response.teamID.
+    //   }, err => {
+    //     console.log(err)
+    //   })  
+      this.teamId ="1";
+      this.getPlayers();
+    }
 
   //Get a specific player's overall stats
-  getSelectedPlayerStats(id: string){
-    this.statService.getPlayerOverallStats(id).subscribe(response => {
+  getSelectedPlayerStats(player: User){
+    this.selectedUser = player;
+    this.statService.getPlayerOverallStats(player.id).subscribe(response => {
       this.selectedPlayerStats = response;
+      this.statsNumber = response.statLineID;
     },
     err => {
       console.log(err)
     })
+    this.statService.getBaseballStatline(this.statsNumber).subscribe(response => {
+      this.baseball = response;
+    },
+    err => {
+      console.log(err)
+    })
+
   }
 
   //Gets stats for a player in a specific game
@@ -143,7 +167,17 @@ export class StatsComponent implements OnInit {
     })
   }
 
-  
+  getPlayers(){
+   this.userService.getUsers().subscribe(response => {
+     response.forEach(element => {
+      if(element.roleName == "Player" && element.teamID == this.teamId)
+      {
+        this.allTeamPlayers.push(element);
+      }
+        })
+      })
+
+  }
 
 }
 
