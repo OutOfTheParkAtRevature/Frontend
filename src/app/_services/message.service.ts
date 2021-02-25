@@ -49,10 +49,15 @@ export class MessageService {
     return this.http.get<MessageInbox>(this.baseUrl + `messages/${messageID}`)
   }
   
-  sendMessage(message: Message): Observable<Message>
+  sendMessage(messageID: string ,message: Message): Observable<Message>
   {
     //return this.http.post(this.baseUrl + `messages/send`, message);
-    return this.http.post<Message>(this.baseUrl + 'messages', message);
+    return this.http.post<Message>(this.baseUrl + `messages/${messageID}/content`, message);
+  }
+
+  putMessage(messageID:string, mockMessages:any): Observable<any>
+  {
+    return this.http.put(this.baseUrl + `messages/${messageID}`, mockMessages);
   }
 
   getRecipientLists(): Observable<RecipientList[]>
