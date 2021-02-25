@@ -17,6 +17,7 @@ import { debug } from 'console';
   selector: 'app-messages',
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css'],
+  
 })
 export class MessagesComponent implements OnInit {
 
@@ -116,8 +117,8 @@ export class MessagesComponent implements OnInit {
     this.allMessages = [];
     this._message.getMessagesFromConversation(messageID).subscribe(
       dataOnSuccess => {
-        console.log(dataOnSuccess);
-
+        console.log("Data from messages: ", dataOnSuccess);
+        
         this.allMessages=dataOnSuccess.content;
       },
       dataOnError=> {
@@ -262,31 +263,11 @@ export class MessagesComponent implements OnInit {
     let myMessage: Message = new Message ();
     myMessage.body = this.userMessage;
     myMessage.date = new Date(); 
-    myMessage.senderName = "Player"// this.userLogged.fullName
+    myMessage.senderName = "some dude"// this.userLogged.fullName
     myMessage.senderID = "1"; //this.userLogged.id+ ""
     this.allMessages.push(myMessage);
     
-    // this._message.sendMessage(this.InboxDescription.messageID, myMessage).subscribe(
-    //   dataOnSuccess => {
-    //     console.log("Message sended.");
-    //   },
-    //   dataOnError => {
-    //     console.log("Error=> ",dataOnError);
-    //   }
-    // );
-    let mockMessageTemplate = {
-      id: this.InboxDescription.messageID,
-      content: this.allMessages
-    };
     
-    this._message.putMessage(this.InboxDescription.messageID,mockMessageTemplate).subscribe(
-        dataOnSuccess => {
-        console.log("Message sended.");
-      },  
-      dataOnError => {
-        console.log("Error=> ",dataOnError);
-      }
-    );
     //Clear the message
     this.userMessage = "";
     
@@ -294,8 +275,6 @@ export class MessagesComponent implements OnInit {
 
     this.AutoFocusOnBottom();
   }
-
-  
 
   /** Get logged in user */
   getLoggedInUser() {
