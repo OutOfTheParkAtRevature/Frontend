@@ -9,7 +9,11 @@
                 <button class="btn btn-outline-success" type="submit" id="loginButton">Login</button>
                 </form>
         </div>
-        <p><strong>Please contact your administrator if you need an account.</strong></p>
+        <p>
+            <strong>Don't have an account?</strong> 
+            <a routerLink="/register">Register here</a>
+            <br>
+        </p>
         </div>
         
         <div *ngIf="(accountService.currentUser$ | async)" class="container" id="loggedIn">

@@ -14,6 +14,7 @@ export class EquipmentRequestDetailsComponent implements OnInit {
 
   constructor(private equipmentService: EquipmentService, private route: ActivatedRoute, public accountService: AccountService
                 , public userService: UserService) { }
+                
   equipmentRequestId: string;
   //equipmentRequest: any = {};
   equipmentRequest: EquipmentRequest;
@@ -38,7 +39,7 @@ export class EquipmentRequestDetailsComponent implements OnInit {
   }
 
   getTeam() {
-      this.equipmentService.getTeam(this.equipmentRequest.teamId).subscribe( response => {
+      this.equipmentService.getTeam(this.equipmentRequest.teamID).subscribe( response => {
         this.equipmentRequest.team = response;
       }, err => {
         console.log(err);
@@ -46,7 +47,7 @@ export class EquipmentRequestDetailsComponent implements OnInit {
   }
 
   getUser() {
-    this.equipmentService.getUser(this.equipmentRequest.userId).subscribe( res => {
+    this.equipmentService.getUser(this.equipmentRequest.userID).subscribe( res => {
       this.equipmentRequest.user = res;
     }, err => {
       console.log(err);
@@ -54,7 +55,7 @@ export class EquipmentRequestDetailsComponent implements OnInit {
   }
 
   getItem() {
-      this.equipmentService.getItem(this.equipmentRequest.itemId).subscribe( response => {
+      this.equipmentService.getItem(this.equipmentRequest.itemID).subscribe( response => {
         this.equipmentRequest.item = response;
       }, err => {
         console.log(err);

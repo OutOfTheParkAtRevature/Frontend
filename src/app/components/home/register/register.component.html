@@ -1,0 +1,30 @@
+<div class="container">
+    <div>
+        <h2 id="createPlayerTitle">Register</h2>
+        <form #createUserForm="ngForm" (ngSubmit)="createUser()" ngNativeValidate autocomplete="off">
+            <label id="createPlayerLabel" for="Username">Username</label>
+            <input id="createPlayerInput" name="Username" [(ngModel)]="model.userName" class="form-control me-2" type="text" placeholder="Username" aria-label="Username">
+            <br>
+            <label id="createPlayerLabel" for="Password">Password</label>
+            <input id="createPlayerInput" name="Password" [(ngModel)]="model.password" class="form-control me-2" type="password" placeholder="Password" aria-label="Password">
+            <br>
+            <label id="createPlayerLabel" for="FullName">Full Name</label>
+            <input id="createPlayerInput" name="FullName" [(ngModel)]="model.fullName" class="form-control me-2" type="text" placeholder="Full Name" aria-label="FullName">
+            <br>
+            <label id="createPlayerLabel" for="PhoneNumber">Phone Number</label>
+            <input id="createPlayerInput" name="PhoneNumber" [(ngModel)]="model.phoneNumber" class="form-control me-2" type="tel" placeholder="Phone Number" aria-label="PhoneNumber">
+            <br>
+            <label id="createPlayerLabel" for="Email">Email</label>
+            <input id="createPlayerInput" name="Email" [(ngModel)]="model.email" class="form-control me-2" type="email" placeholder="Email" aria-label="Email">
+            <br>
+            <label id="createPlayerTeam" for="TeamId">Team</label>
+            <select name="TeamId" [(ngModel)]="model.team" required class="form-select form-select-lg mb-3">
+                <option selected></option>
+                <option *ngFor="let team of teamList">{{team.name}}</option>
+            </select>
+            <br>
+            <br>
+            <button id="createPlayerButton" class="btn btn-outline-success" type="submit">Register</button>
+        </form>
+    </div>
+</div>

@@ -15,7 +15,7 @@ export class CreateEquipmentRequestComponent implements OnInit {
   //itemList: any;
   //model: any = {};
   itemList: Array<Equipment> = new Array<Equipment>();
-  model: EquipmentRequest;
+  model: EquipmentRequest = new EquipmentRequest();
 
   constructor(private equipmentService: EquipmentService, public accountService: AccountService, private router: Router) { }
 
@@ -37,14 +37,15 @@ export class CreateEquipmentRequestComponent implements OnInit {
 
   getCurrentUser() {
     this.accountService.currentUser$.subscribe( user => {
-      this.model.teamId = user.teamID;
-      this.model.id = user.id;
+      this.model.teamID = user.teamID;
+      this.model.userID = user.id + ""; 
     })
   }
 
   getItemList() {
     this.equipmentService.getItems().subscribe( items => {
       this.itemList = items;
+      console.log(this.itemList);
     }, err => {
       console.log(err);
     })
@@ -53,7 +54,7 @@ export class CreateEquipmentRequestComponent implements OnInit {
   getCreatedItem() {
     for (let i = 0; i < this.itemList.length; i++) {
       if (this.itemList[i].description == this.model.item.description) {
-        this.model.itemId = this.itemList[i].id;
+        this.model.itemID = this.itemList[i].id;
       }
     }
   }

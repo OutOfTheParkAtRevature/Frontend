@@ -12,7 +12,8 @@ import { Playbook } from '../_models/Playbook';
 export class DrawService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl: string = "http://localhost:3000/";
+  //baseUrl: string = "http://40.88.226.19/api/";
+  baseUrl: string ="http://localhost:3000/api/";
   constructor(private http: HttpClient) { }
 
   createDrawing(model: Play): Observable<Play>
@@ -47,8 +48,13 @@ export class DrawService {
   deletePlay(playId: number): Observable<Play>
   {
     //return this.http.delete(this.baseUrl + `playbooks/plays/delete/${playId}`);
-    return this.http.delete<Play>(this.baseUrl + 'playbooks/' + playId);
+    return this.http.delete<Play>(this.baseUrl + 'plays/' + playId);
   }
 
+  editPlay(id:number, model: Play): Observable<Play> //NEEDS TO BE A STRING ID:
+  {
+    
+    return this.http.put<Play>(this.baseUrl + 'plays/' + id, model);
+  }
  
 }

@@ -17,7 +17,7 @@ export class EditArticleComponent implements OnInit {
   articleId: number;
   isTeam: boolean = true;
   editedArticle: Article | TeamArticle | LeagueArticle;
-  article: Article | TeamArticle | LeagueArticle;
+  //article: Article | TeamArticle | LeagueArticle;
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -41,7 +41,8 @@ export class EditArticleComponent implements OnInit {
         (
             data => 
             {
-                this.article = data;
+                //this.article = data;
+                this.editedArticle = data;
                 console.log(data);
             }, 
             err => console.log(err)
@@ -53,7 +54,8 @@ export class EditArticleComponent implements OnInit {
         (
             data => 
             {
-                this.article = data;
+                //this.article = data;
+                this.editedArticle = data;
                 console.log(data);
             }, 
             err => console.log(err)
@@ -76,7 +78,7 @@ export class EditArticleComponent implements OnInit {
     {
         this.newsService.editLeagueArticle(this.editedArticle, this.articleId).subscribe
         (
-            () => this.router.navigate(['/teamNews']),
+            () => this.router.navigate(['/leagueNews']),
             (err) => console.log(err)
         );
     }

@@ -1,15 +1,11 @@
 
 
-export class Message
+export class    Message
 {
-    //messageId: number;
-    id: number;
-    senderId: string;
+    messageID: string;
+    senderID: string;
     senderName: string;
-    recipientListId: number;
-    //recipientList: Array<string>;
+    recipientListID: string;
     date: Date;
     body: string;
-    //recipient: User;
-    //state: string;
 }

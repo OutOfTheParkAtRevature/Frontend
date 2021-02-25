@@ -21,20 +21,21 @@ export class PlaysComponent implements OnInit
 
 
   newPlaybook: Playbook;
-  play: Play[] = [];// should view only plays that are visible
-  coachPlay: Play[] = []; // should view all team plays
+  play: Play[] = [];// should view all plays
+  viewablePlays: Play[] = []; // should view only viewable plays
   tempPlay: Play[] = [];
   imageString: string;
-  chosenplaybookId: number;
-  teamId: number;
+  chosenplaybookId: number;// string;//Will be a string for guids
+  teamId: number;// string; //Will be a string for guids
   myTeams: Team;
   TeamPlaybookList: Array<Playbook> = new Array<Playbook>() ;
   playbooks: any = {};
   createNewPlaybook: boolean;
+  makePlayVisible: boolean;
 
   ngOnInit(): void {
     this.newPlaybook = new Playbook;
-    this.chosenplaybookId = 0;
+    this.chosenplaybookId = 0; //'';
     this.createNewPlaybook = false;
     this.getTeamID(); 
     
@@ -43,7 +44,6 @@ export class PlaysComponent implements OnInit
   //gets all the plays
   getPlays(){
     this.drawService.getPlays().subscribe(response => {
-      //this.model = reponse;
       this.tempPlay = response;
       this.getCurrentPlays();
     }, err => {
@@ -51,12 +51,16 @@ export class PlaysComponent implements OnInit
     })  
   }
 
-
+//Gets current team plays as well as fills a list to contain only viewable plays
   getCurrentPlays(){
     if(this.tempPlay != []){
     this.tempPlay.forEach(element => {
-      if(element.PlaybookId == this.playbooks.id){
+      if(element.PlaybookID == this.playbooks.id){
         this.play.push(element);
+        if(element.visible == true){
+          this.viewablePlays.push(element);
+          console.log(this.viewablePlays);
+        }
       }
   
     });
@@ -77,7 +81,7 @@ export class PlaysComponent implements OnInit
   //Gets the teamid based on current user
   getTeamID() {
     this.accountService.currentUser$.subscribe( user => {
-       this.teamId = user.teamID;
+       //this.teamId = user.teamID;//.toString();
        console.log(this.teamId);
       }, err => {
         console.log(err)
@@ -109,6 +113,7 @@ export class PlaysComponent implements OnInit
   //Sets the play arrays length to zero to clear previous showings of plays
   selectPlayBook(playbookName){
     this.play.length = 0;
+    this.viewablePlays.length = 0;
     this.TeamPlaybookList.forEach(element => {
       if(element.name == playbookName.target.value){
         this.playbooks = element;
@@ -143,6 +148,19 @@ export class PlaysComponent implements OnInit
     this.TeamPlaybookList.length = 0;
     this.getTeamPlayBook();
   }
+  }
+
+  makeViewable(id){
+    this.play.forEach(element => {
+      if(element.id == id){
+        element.visible = true;
+        this.drawService.editPlay(element.id, element).subscribe(response => {
+          console.log(response);
+        });
+      }
+      
+      console.log(element);
+    });
   }
 
 }

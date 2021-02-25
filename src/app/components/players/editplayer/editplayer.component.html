@@ -1,35 +1,40 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
 
     <ng-container *ngIf="loggedInUser.id == user.id || accountService.isAssCoachAuthorized(loggedInUser)">
-    <div *ngIf="loggedInUser.id == user.id">
-        <h2 id="editPlayerTitle">Welcome {{user.fullName}}</h2>
-        <br>
-        <h5 id="editPlayer">Please edit your information below:</h5>
-    </div>
+        <div *ngIf="loggedInUser.id == user.id">
+            <h2 id="editPlayerTitle">Welcome {{user.fullName}}</h2>
+            <br>
+            <h5 id="editPlayer">Please edit your information below:</h5>
+        </div>
 
-    <div *ngIf="accountService.isAssCoachAuthorized(loggedInUser)">
-        <h2 id="editPlayerTitle">Welcome {{loggedInUser.fullName}}</h2>
+        <div *ngIf="accountService.isAssCoachAuthorized(loggedInUser)">
+            <h2 id="editPlayerTitle">Welcome {{loggedInUser.fullName}}</h2>
+            <br>
+            <h5 id="editPlayer">Edit {{user.fullName}} below:</h5>
+        </div>
         <br>
-        <h5 id="editPlayer">Edit {{user.fullName}} below:</h5>
-    </div>
-    <br>
-    <a id="backToUsers" routerLink="/players">Back to Users</a>
-    <form #editUserForm="ngForm" (ngSubmit)="editUser()">
-        <label id="editPlayerLabel" for="FullName">Full Name</label>
-        <input id="editPlayerInput" name="FullName" [(ngModel)]="editedUser.fullName" class="form-control me-2" type="text" value="{{user.fullName}}" aria-label="FullName">
-        <br>
-        <label id="editPlayerLabel" for="Password">Password</label>
-        <input id="editPlayerInput" name="Password" [(ngModel)]="editedUser.password" class="form-control me-2" type="password" value="{{user.password}}}" aria-label="Password">
-        <br>
-        <label id="editPlayerLabel" for="PhoneNumber">Phone Number</label>
-        <input id="editPlayerInput" name="PhoneNumber" [(ngModel)]="editedUser.phoneNumber" class="form-control me-2" type="tel" pattern="[0-9]{10}" value="{{user.phoneNumber}}" aria-label="PhoneNumber">
-        <br>
-        <label id="editPlayerLabel" for="Email">Email</label>
-        <input id="editPlayerInput" name="Email" [(ngModel)]="editedUser.email" class="form-control me-2" type="email" value="{{user.email}}" aria-label="Email">
-        <br>
-        <!-- Need to edit the role -->
-        <button id="editPlayerButton" type="submit" class="btn btn-outline-success">Edit</button>
-    </form>
+        <a id="backToUsers" routerLink="/players">Back to Users</a>
+        <form #editUserForm="ngForm" (ngSubmit)="editUser()">
+            <label id="editPlayerLabel" for="FullName">Full Name</label>
+            <input id="editPlayerInput" name="FullName" [(ngModel)]="editedUser.fullName" class="form-control me-2" type="text" value="{{user.fullName}}" aria-label="FullName">
+            <br>
+            <label id="editPlayerLabel" for="Password">Password</label>
+            <input id="editPlayerInput" name="Password" [(ngModel)]="editedUser.password" class="form-control me-2" type="password" value="{{user.password}}}" aria-label="Password">
+            <br>
+            <label id="editPlayerLabel" for="PhoneNumber">Phone Number</label>
+            <input id="editPlayerInput" name="PhoneNumber" [(ngModel)]="editedUser.phoneNumber" class="form-control me-2" type="tel" pattern="[0-9]{10}" value="{{user.phoneNumber}}" aria-label="PhoneNumber">
+            <br>
+            <label id="editPlayerLabel" for="Email">Email</label>
+            <input id="editPlayerInput" name="Email" [(ngModel)]="editedUser.email" class="form-control me-2" type="email" value="{{user.email}}" aria-label="Email">
+            <br>
+            <label id="createPlayerLabel" for="Roles">Role</label>
+            <select name="Role" [(ngModel)]="editedUser.role" required class="form-select form-select-lg mb-3">
+                <option selected></option>
+                <option *ngFor="let role of roleList">{{role.roleName}}</option>
+            </select>
+            <br>
+            <button id="editPlayerButton" type="submit" class="btn btn-outline-success">Edit</button>
+        </form>
     </ng-container>
 
     <!-- If the user is not authorized to view  -->

@@ -6,6 +6,7 @@ import { UserService } from '../../../_services/user.service';
 import { Role } from '../../../_models/Role';
 import { Team } from '../../../_models/Team';
 import { User } from '../../../_models/User';
+import { CreateUser } from 'src/app/_models/create-user';
 
 @Component({
   selector: 'app-create-player',
@@ -17,7 +18,7 @@ export class CreatePlayerComponent implements OnInit {
   //model:any = {};
   //teamList:any;
   //roleList: any;
-  model: User;
+  model: CreateUser;
   teamList: Array<Team> = new Array<Team>();
   roleList: Array<Role> = new Array<Role>();
 
@@ -25,7 +26,7 @@ export class CreatePlayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTeamList();
-    this.getRoleList();
+    //this.getRoleList();
   }
 
   createUser() {
@@ -70,7 +71,10 @@ export class CreatePlayerComponent implements OnInit {
 
   getRole() {
       
-    this.model.roleName = this.model.role.roleName;
+    //this.model.roleName = this.model.role.roleName;
+    this.model.roleName = "Unconfirmed User";
+
+
       /*
       //Do we need this?
     for (let i = 0; i < this.roleList.length; i++) {

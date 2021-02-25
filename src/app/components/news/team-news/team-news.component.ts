@@ -34,7 +34,18 @@ export class TeamNewsComponent implements OnInit {
 
   sortArticles(): void
   {
-    //Put pinned article on top
+    //Put pinned articles on top
+    let pinCount = 0;
+    for(let x = 0; x < this.articles.length; x++)
+    {
+        if(this.articles[x].isPinned)
+        {
+            let z: TeamArticle = this.articles[x];
+            this.articles[x] = this.articles[pinCount];
+            this.articles[pinCount] = z;
+            pinCount++;
+        }
+    }
   }
 
 

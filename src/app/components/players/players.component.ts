@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CreateUser } from 'src/app/_models/create-user';
 import { User } from '../../_models/User';
 import { AccountService } from '../../_services/account.service';
 import { UserService } from '../../_services/user.service';
@@ -14,7 +15,7 @@ export class PlayersComponent implements OnInit {
   //users: any;
   //model: any = {}
   users: Array<User> = new Array<User>();
-  model: User;
+  model: CreateUser;
 
 
   constructor(public userService: UserService, public accountService: AccountService) { }
@@ -36,6 +37,7 @@ export class PlayersComponent implements OnInit {
 
   getTeams() {
     this.users.forEach(element => {
+        element.unconfirmed = (element.roleName == "Unconfirmed User");
       this.userService.getTeam(element.teamID).subscribe( response => {
         element.team = response;
       }, err => {

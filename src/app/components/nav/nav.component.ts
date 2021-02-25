@@ -5,6 +5,7 @@ import { UserLoggedIn } from '../../_models/UserLoggedIn';
 import { UserLoggingIn } from '../../_models/UserLoggingIn';
 import { AccountService } from '../../_services/account.service';
 import { UserService } from '../../_services/user.service';
+import { Notification } from '../../_models/Notification';
 
 @Component({
   selector: 'app-nav',
@@ -20,20 +21,50 @@ export class NavComponent implements OnInit {
 
   model2: UserLoggedIn = {
     id: null, userName: null, fullName: null, phoneNumber: null, 
-    email: null, teamID: null, roleName:null//roleID: null
+    email: null, teamID: null, roleName:null, token:null//roleID: null
   };
+
+  public notifications: Array<Notification> = new Array<Notification>();
+  public hasNotifications: boolean;
+  public viewNotifications: boolean;
 
   constructor(public accountService: AccountService, private router: Router, private userService: UserService) { }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void 
+  {
+    this.getNotifications();
   }
+
+  getNotifications(): void
+  {
+    //this.notificationService.signalRecieved.subscribe((data: Notification) => { this.notifications.push(data); });
+    let x = new Notification();
+    x.message = "You've got mail";
+    this.notifications.push(x);
+    this.notifications.push(x);
+    this.hasNotifications = true;
+    this.viewNotifications = false;
+  }
+
+  displayNotifications(): void
+  {
+    if(!this.viewNotifications)
+    {
+      this.viewNotifications = true;
+      this.hasNotifications = false;
+    }
+    else if(this.viewNotifications)
+      this.viewNotifications = false;
+    else
+      this.viewNotifications = true;
+  }
+
 
   login() {
       /*
     this.accountService.login(this.model).subscribe( res => {
       console.log(res);
-      this.router.navigate([''])
+      this.router.navigate(['']);
     }, err => {
       console.log(err);
     });
@@ -65,6 +96,11 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
-    this.router.navigate([''])
+    this.router.navigate(['']);
+
+    //Notifications
+    this.notifications = new Array<Notification>();
+    this.hasNotifications = false;
+    this.viewNotifications = false;
   }
 }

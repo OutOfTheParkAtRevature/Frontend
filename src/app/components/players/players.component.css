@@ -1,3 +1,7 @@
 #playersTitle {
     text-align: center;
 }
+
+.unconfirmed {
+    background-color: red;
+}

@@ -1,34 +1,38 @@
 <div class="container" *ngIf="(accountService.currentUser$ | async) as loggedInUser">
     <ng-container *ngIf="accountService.isParentAuthorized(loggedInUser)"> 
-    <h2 id="editRequestTitle">Edit Request #{{equipmentRequest.requestID}}</h2>
-    <br>
-    <a id="backToRequests" routerLink="/equipment">Back to Requests</a><br>
-    <form #editRequestForm="ngForm" (ngSubmit)="editRequest()">
-        <label id="editLabel" for="FullName">Requester Full Name</label>
-        <input id="editInput" name="FullName" class="form-control me-2" type="text" value="{{equipmentRequest?.user?.userName}}" aria-label="FullName" readonly>
-        <br>
-        <label id="editLabel" for="Item">Item Requested</label>
-        <input id="editInput" name="Item" class="form-control me-2" type="text" value="{{equipmentRequest?.item?.description}}" aria-label="TeamName" readonly>
-        <br>
-        <label id="editLabel" for="TeamName">Requester Team</label>
-        <input id="editInput" name="TeamName" class="form-control me-2" type="text" value="{{equipmentRequest?.team?.name}}" aria-label="TeamName" readonly>
-        <br>
-        <label id="editLabel" for="RequestDate">Request Date</label>
-        <input id="editInput" name="RequestDate" class="form-control me-2" type="datetime" value="{{equipmentRequest.requestDate}}" aria-label="RequestDate" readonly>
-        <br>
-        <label id="editLabel" for="Message">Message</label>
-        <input id="editInput" name="Message" class="form-control me-2" type="text" value="{{equipmentRequest.message}}" aria-label="Message" readonly>
-        <br>
-        <label id="editLabel" for="Status">Status</label>
-        <select name="Status" [(ngModel)]="editedEquipmentRequest.status">
-            <option>App. Pending</option>
-            <option>Approved</option>
-            <option>Fulfilled</option>
-          </select>
-        <br>
-        <br>
-        <button id="editRequestButton" type="submit" class="btn btn-outline-success">Edit</button>
-    </form>
+        <div *ngIf="equipmentRequest && equipmentRequest.id">
+            <h2 id="editRequestTitle">Edit Request #{{equipmentRequest.id}}</h2>
+            <br>
+            <a id="backToRequests" routerLink="/equipment">Back to Requests</a><br>
+            <form #editRequestForm="ngForm" (ngSubmit)="editRequest()">
+                <label id="editLabel" for="FullName">Requester Full Name</label>
+                <input id="editInput" name="FullName" class="form-control me-2" type="text" value="{{equipmentRequest?.user?.userName}}" aria-label="FullName" readonly>
+                <br>
+                <label id="editLabel" for="Item">Item Requested</label>
+                <input id="editInput" name="Item" class="form-control me-2" type="text" value="{{equipmentRequest?.item?.Description}}" aria-label="TeamName" readonly>
+                <br>
+                <label id="editLabel" for="TeamName">Requester Team</label>
+                <input id="editInput" name="TeamName" class="form-control me-2" type="text" value="{{equipmentRequest?.team?.name}}" aria-label="TeamName" readonly>
+                <br>
+                <!--
+                <label id="editLabel" for="RequestDate">Request Date</label>
+                <input id="editInput" name="RequestDate" class="form-control me-2" type="datetime" value="{{equipmentRequest.requestDate}}" aria-label="RequestDate" readonly>
+                <br>
+                -->
+                <label id="editLabel" for="Message">Message</label>
+                <input id="editInput" name="Message" class="form-control me-2" type="text" value="{{equipmentRequest.message}}" aria-label="Message" readonly>
+                <br>
+                <label id="editLabel" for="Status">Status</label>
+                <select name="Status" [(ngModel)]="editedEquipmentRequest.status">
+                    <option>App. Pending</option>
+                    <option>Approved</option>
+                    <option>Fulfilled</option>
+                </select>
+                <br>
+                <br>
+                <button id="editRequestButton" type="submit" class="btn btn-outline-success">Edit</button>
+            </form>
+        </div>
     </ng-container>
     <ng-container *ngIf="!accountService.isParentAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>

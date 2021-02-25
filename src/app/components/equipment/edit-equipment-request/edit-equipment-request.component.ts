@@ -39,6 +39,7 @@ export class EditEquipmentRequestComponent implements OnInit {
   getRequest(id) {
     this.equipmentService.getRequest(id).subscribe(res => {
       this.equipmentRequest = res;
+      this.editedEquipmentRequest = res;
 
       // getting more information about the request
       this.getTeam();
@@ -49,14 +50,14 @@ export class EditEquipmentRequestComponent implements OnInit {
       //this.editedEquipmentRequest = {
       //  status: this.equipmentRequest.status
       //};
-      this.editedEquipmentRequest.status = this.equipmentRequest.status;
+      this.editedEquipmentRequest.status = res.status;
     }, err => {
       console.log(err);
     })
   }
 
   getTeam() {
-    this.equipmentService.getTeam(this.equipmentRequest.teamId).subscribe( response => {
+    this.equipmentService.getTeam(this.equipmentRequest.teamID).subscribe( response => {
       this.equipmentRequest.team = response;
     }, err => {
       console.log(err);
@@ -64,23 +65,24 @@ export class EditEquipmentRequestComponent implements OnInit {
   }
 
   getUser() {
-    this.equipmentService.getUser(this.equipmentRequest.userId).subscribe( res => {
+    this.equipmentService.getUser(this.equipmentRequest.userID).subscribe( res => {
       this.equipmentRequest.user = res;
     }, err => {
       console.log(err);
     })
   }
 
-  editRequest() {
-    console.log(this.editedEquipmentRequest)
+  editRequest() : void
+  {
+    console.log(this.editedEquipmentRequest);
     this.equipmentService.editRequest(this.equipmentRequestId, this.editedEquipmentRequest).subscribe(res =>{
-      console.log(res);
-      this.router.navigate([`/equipment/details/${this.equipmentRequestId}`])
+        console.log(res);
+        this.router.navigate([`/equipment/details/${this.equipmentRequestId}`])
     })
   }
 
   getItem() {
-    this.equipmentService.getItem(this.equipmentRequest.itemId).subscribe( response => {
+    this.equipmentService.getItem(this.equipmentRequest.itemID).subscribe( response => {
       this.equipmentRequest.item = response;
     }, err => {
       console.log(err);

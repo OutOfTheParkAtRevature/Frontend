@@ -3,7 +3,7 @@
 export class Equipment
 {
     //equipmentId: number;
-    id: number;
+    id: string;
     description: string;
 
     constructor(d: string)

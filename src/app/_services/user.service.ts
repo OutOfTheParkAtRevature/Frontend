@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { concatMap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { EditUser } from '../_models/edit-user';
 import { Role } from '../_models/Role';
 import { Team } from '../_models/Team';
 import { User } from '../_models/User';
-import { UserLoggedIn } from '../_models/UserLoggedIn';
 
 @Injectable({
   providedIn: 'root'
@@ -14,50 +12,79 @@ import { UserLoggedIn } from '../_models/UserLoggedIn';
 export class UserService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl = "http://localhost:3000/";
+  baseUrl = "http://40.88.226.19/api/";
+  //userUrl = "http://20.62.210.88/api/";
+  userUrl = "http://localhost:3000/";
+  teamUrl = "http://localhost:3000/";
+  //teamUrl = "http://20.62.247.144/api/";
+  //userUrl = this.baseUrl;
+  //teamUrl = this.baseUrl;
+  
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]>
   {
-    //return this.http.get(this.baseUrl + 'users');
-    return this.http.get<User[]>(this.baseUrl + 'users');
+    //return this.http.get<User[]>(this.userUrl + 'user');
+    return this.http.get<User[]>(this.userUrl + 'users');
   }
 
   getUser(userId: string): Observable<User>
   {
-    //return this.http.get(this.baseUrl + `users/${userId}`);
-    return this.http.get<User>(this.baseUrl + 'users/' + userId);
+    //return this.http.get<User>(this.userUrl + 'user/' + userId);
+    return this.http.get<User>(this.userUrl + 'users/' + userId);
   }
   
-  editUser(id: string, model: User): Observable<User>
+  getUserByUsername(username: string): Observable<User>
   {
-    //return this.http.put(this.baseUrl + `users/edit/${id}`, model );
-    return this.http.put<User>(this.baseUrl + 'users/' + id, model);
+    return this.http.get<User>(this.userUrl + 'user/username' + username);
   }
 
-  getTeams(): Observable<Team[]>
+  editUser(id: string, model: EditUser): Observable<User>
   {
-    //return this.http.get(this.baseUrl + 'teams');
-    return this.http.get<Team[]>(this.baseUrl + 'teams');
+    //return this.http.put<User>(this.userUrl + 'user/' + id, model);
+    return this.http.put<User>(this.userUrl + 'users/' + id, model);
   }
 
-  getTeam(teamId: number): Observable<Team>
+  deleteUser(id: string): Observable<any>
   {
-    //return this.http.get(this.baseUrl + `teams/${teamId}`);
-    return this.http.get<Team>(this.baseUrl + 'teams/' + teamId);
+    return this.http.delete<any>(this.userUrl + 'user/' +id);
+  }
+
+  getUserRole(userId: any): Observable<string>{
+    return this.http.get<string>(this.userUrl + 'user/role/' + userId);
+  }
+
+  approveRole(userId: any, model: EditUser): Observable<User>{
+    return this.http.put<User>(this.userUrl + 'user/role/' + userId, model);
   }
 
   getRoles(): Observable<Role[]>
   {
-    //return this.http.get(this.baseUrl + 'users/roles');
-    return this.http.get<Role[]>(this.baseUrl + 'roles');
+    //return this.http.get<Role[]>(this.userUrl + 'user/roles');
+    return this.http.get<Role[]>(this.userUrl + 'roles');
   }
 
-  getRole(roleId: number): Observable<Role>
+  getRole(roleId: string): Observable<Role>
   {
-    //return this.http.get(this.baseUrl + `users/roles/${roleId}`);
-    return this.http.get<Role>(this.baseUrl + 'roles/' + roleId);
+    //return this.http.get<Role>(this.userUrl + 'user/roles/' + roleId);
+    return this.http.get<Role>(this.userUrl + 'roles/' + roleId);
   }
+
+  getTeams(): Observable<Team[]>
+  {
+    //return this.http.get<Team[]>(this.teamUrl + 'team');
+    return this.http.get<Team[]>(this.teamUrl + 'teams');
+  }
+
+  getTeam(teamId: string): Observable<Team>
+  {
+    //return this.http.get<Team>(this.teamUrl + 'team/' + teamId);
+    return this.http.get<Team>(this.teamUrl + 'teams/' + teamId);
+  }
+
+  
+
+  
 
 
 }

@@ -7,46 +7,85 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/">Home</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/calendar">Team Schedule</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/games">Games</a> 
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/plays">View Playbook</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/equipment">Equipment Requests</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/teams">League Standings</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/players">Manage Users</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
-            </li>
-            <li class="nav-item">
+            </li> -->
+            <!-- <li class="nav-item">
               <a class="nav-link" routerLink="/messages">Messages</a>
+              *ngIf="accountService.currentUser$ | async"
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/leagueNews">News</a>
               <!-- *ngIf="accountService.currentUser$ | async" -->
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/teamNews">News</a>
-              <!-- *ngIf="accountService.currentUser$ | async" -->
+              <li class="nav-item" *ngIf="(accountService.currentUser$ | async)" ngbDropdown>
+               <a class="nav-link" tabindex="0" ngbDropdownToggle id="navBarAdmin" role="button">
+                Admin Selection
+               </a>
+               <div ngbDropdownMenu aria-labelledby="navBarAdmin" class="dropdown-menu"> 
+                <a ngbDropdownItem routerLink="/calendar" role="button">Team Schedule</a>
+                <a ngbDropdownItem routerLink="/players" role="button">Manage Users</a>
+                <a ngbDropdownItem routerLink="/equipment" role="button">Equipment Requests</a>
+                <a ngbDropdownItem routerLink="/teams" role="button">League Standings</a>
+               </div>
+              </li>
+            <li class="nav-item" *ngIf="(accountService.currentUser$ | async)" ngbDropdown>
+              <a class="nav-link" tabindex="0" ngbDropdownToggle id="navBarUser" role="button">
+                User Selection
+               </a>
+              <div ngbDropdownMenu aria-labelledby="navBarUser">
+                <!-- <a class="nav-link" routerLink="/" ngbDropdownItem>Home</a> -->
+                <button routerLink="/games" ngbDropdownItem >Games</button>
+                <button routerLink="/messages" ngbDropdownItem>Messages</button>
+                <!-- <button  routerLink="/teamNews" ngbDropdownItem>News</button> -->
+                <button routerLink="/plays" ngbDropdownItem>View Playbook</button>
+              </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/auth">Login / Register</a>
+            
+            <li *ngIf="(accountService.currentUser$ | async) as loggedInUser" class="nav-item">
+                {{loggedInUser.userName}}
+            </li>
+            <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
+                <!--
+                <button class="btn btn-danger" (click)="displayNotifications()" *ngIf="hasNotifications">Notifications</button>
+                <button class="btn btn-secondary" (click)="displayNotifications()" *ngIf="!hasNotifications">Notifications</button>
+                -->
+                <button class="material-icons" (click)="displayNotifications()" *ngIf="!hasNotifications">alarm</button>
+                <button class="material-icons" style="background-color: red;" (click)="displayNotifications()" *ngIf="hasNotifications">alarm</button>
+            </li>
+            <!--
+            <li *ngIf="(accountService.currentUser$ | async)" class="nav-item">
+              <a class="nav-link" (click)="logout()">Logout</a>
+            </li>
+        -->
+            <li *ngIf="!(accountService.currentUser$ | async)" class="nav-item">
+
+              <a class="nav-link" routerLink="/home">Login / Register</a>
             </li>
           </ul>
+          <span *ngIf="(accountService.currentUser$ | async)" class="nav-item navbar-text" placement="bottom-right">
+            <a class="nav-link" (click)="logout()">Logout</a> 
+          </span>
           <!-- <div class="login">
             <form #loginForm="ngForm" *ngIf="(accountService.currentUser$ | async) === null" class="d-flex" (ngSubmit)="login()" ngNativeValidate autocomplete="off">
               <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text" placeholder="Username" required>
@@ -62,5 +101,26 @@
       </div>
     </nav>
   </div>
-      
+
+    <div *ngIf="viewNotifications">
+        <table style="position: fixed; top: 80px; right: 10px; background-color: white;">
+            <caption> </caption>
+            <tr *ngFor="let note of notifications">
+                {{note.status}}, {{note.message}}
+            </tr>
+        </table>
+    </div>
+<!-- For Doodling
+    <div>
+        <table style="position: fixed; top: 80px; right: 10px; background-color: white;">
+            <caption> </caption>
+            <tr>
+                You have Mail
+            </tr>
+            <tr>
+                You have Mail
+            </tr>
+        </table>
+    </div>
+-->
   

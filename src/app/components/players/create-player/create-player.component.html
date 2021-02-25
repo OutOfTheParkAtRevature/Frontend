@@ -20,16 +20,17 @@
             <label id="createPlayerLabel" for="Email">Email</label>
             <input id="createPlayerInput" name="Email" [(ngModel)]="model.email" class="form-control me-2" type="email" placeholder="Email" aria-label="Email">
             <br>
+            <!--
             <label id="createPlayerLabel" for="Roles">Role</label>
             <select name="Role" [(ngModel)]="model.role" required class="form-select form-select-lg mb-3">
                 <option selected></option>
                 <option *ngFor="let role of roleList">{{role.roleName}}</option>
             </select>
             <br>
+            -->
             <br>
             <button id="createPlayerButton" class="btn btn-outline-success" type="submit">Create</button>
         </form>
-        
     </div>
 
     <ng-container *ngIf="!accountService.isAssCoachAuthorized(loggedInUser)">
