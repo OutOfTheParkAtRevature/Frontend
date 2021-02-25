@@ -38,7 +38,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="user-container">
-                <div class="inboxes" *ngFor="let Inbox of userInbox" (click)="OpenInbox(Inbox)">
+                <div class="inboxes table-secondary" *ngFor="let Inbox of userInbox" (click)="OpenInbox(Inbox)">
                     <app-inbox-message [Inbox]="Inbox" [class.UserNotReviewed]="Inbox.isRead">
                     </app-inbox-message>
                 </div>
@@ -47,9 +47,9 @@
         <div class="col-md-9" *ngIf="InboxDescription"> 
             <div class="chat-container" #divChatMessage >
                 <div class="chat-message" *ngFor="let conversation of allMessages" >
-                    <div class="chat-content" [class.user-response]="conversation.senderId == 1">
+                    <div class="chat-content" [class.user-response]="conversation.senderID == 1">
                         <!-- the '1' is referencing to the userID -->
-                        <span *ngIf="conversation.senderId != 1">{{ conversation.senderName }}: </span>
+                        <span *ngIf="conversation.senderID != 1">{{ conversation.senderName }}: </span>
                         <span> {{conversation.body}} </span>
                     </div>
 

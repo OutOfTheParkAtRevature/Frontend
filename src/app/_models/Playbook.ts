@@ -3,8 +3,8 @@
 export class Playbook
 {
     //playbookId: number;
-    id: string;
-    teamId: string;
+    id: number;// string;
+    teamId: number;// string;
     name: string;
 
     //constructor(id: number)
