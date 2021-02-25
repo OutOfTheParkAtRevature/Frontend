@@ -46,36 +46,37 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-      
+      /*
     this.accountService.login(this.model).subscribe( res => {
       this.router.navigate([''])
     }, err => {
       console.log(err);
+      console.log(err["error"]);
     });
+*/
 
-
-  //   //Temp code for mocked backend
-  //  this.userService.getUsers().subscribe
-  //  (
-  //   (data) => 
-  //   {
-  //       let matchFound: boolean = false;
-  //       for(let x = 0; x < data.length; x++)
-  //       {
-  //           if(data[x].userName == this.model.username
-  //               && data[x].password == this.model.password)
-  //           {
-  //               this.accountService.setCurrentUser(data[x]);
-  //               this.router.navigate(['']);
-  //               matchFound = true;
-  //               break;
-  //           }
-  //       }
-  //       //No match found
-  //       if(!matchFound) alert("Wrong username or password");
-  //   },
-  //   (err) => console.log(err)
-  //  );
+    //Temp code for mocked backend
+   this.userService.getUsers().subscribe
+   (
+    (data) => 
+    {
+        let matchFound: boolean = false;
+        for(let x = 0; x < data.length; x++)
+        {
+            if(data[x].userName == this.model.username
+                && data[x].password == this.model.password)
+            {
+                this.accountService.setCurrentUser(data[x]);
+                this.router.navigate(['']);
+                matchFound = true;
+                break;
+            }
+        }
+        //No match found
+        if(!matchFound) alert("Wrong username or password");
+    },
+    (err) => console.log(err)
+   );
   }
 
 }

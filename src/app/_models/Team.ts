@@ -1,6 +1,6 @@
 export interface Team {
-    //teamID: number;
-    id: string;
+    teamID: string;
+    //id: string;
     name: string;
     wins: number;
     losses: number;
