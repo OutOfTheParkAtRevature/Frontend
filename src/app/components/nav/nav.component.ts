@@ -61,15 +61,15 @@ export class NavComponent implements OnInit {
 
 
   login() {
-      /*
+      
     this.accountService.login(this.model).subscribe( res => {
       console.log(res);
       this.router.navigate(['']);
     }, err => {
       console.log(err);
     });
-    */
-
+    
+/*
     //Temp code for mocked backend
    this.userService.getUsers().subscribe
    (
@@ -92,6 +92,7 @@ export class NavComponent implements OnInit {
     },
     (err) => console.log(err)
    );
+   */
   }
 
   logout() {

@@ -13,25 +13,25 @@ export class UserService {
 
   //baseUrl = environment.apiUrl;
   baseUrl = "http://40.88.226.19/api/";
-  //userUrl = "http://20.62.210.88/api/";
-  userUrl = "http://localhost:3000/";
-  teamUrl = "http://localhost:3000/";
-  //teamUrl = "http://20.62.247.144/api/";
+  userUrl = "http://40.76.159.244/api/";
+  //userUrl = "http://localhost:3000/";
+  //teamUrl = "http://localhost:3000/";
+  teamUrl = "http://20.62.247.144/api/";
   //userUrl = this.baseUrl;
   //teamUrl = this.baseUrl;
-  
+
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<User[]>
   {
-    //return this.http.get<User[]>(this.userUrl + 'user');
-    return this.http.get<User[]>(this.userUrl + 'users');
+    return this.http.get<User[]>(this.userUrl + 'user');
+    //return this.http.get<User[]>(this.userUrl + 'users');
   }
 
   getUser(userId: string): Observable<User>
   {
-    //return this.http.get<User>(this.userUrl + 'user/' + userId);
-    return this.http.get<User>(this.userUrl + 'users/' + userId);
+    return this.http.get<User>(this.userUrl + 'user/' + userId);
+    //return this.http.get<User>(this.userUrl + 'users/' + userId);
   }
   
   getUserByUsername(username: string): Observable<User>
@@ -41,8 +41,8 @@ export class UserService {
 
   editUser(id: string, model: EditUser): Observable<User>
   {
-    //return this.http.put<User>(this.userUrl + 'user/' + id, model);
-    return this.http.put<User>(this.userUrl + 'users/' + id, model);
+    return this.http.put<User>(this.userUrl + 'user/' + id, model);
+    //return this.http.put<User>(this.userUrl + 'users/' + id, model);
   }
 
   deleteUser(id: string): Observable<any>
@@ -60,26 +60,26 @@ export class UserService {
 
   getRoles(): Observable<Role[]>
   {
-    //return this.http.get<Role[]>(this.userUrl + 'user/roles');
-    return this.http.get<Role[]>(this.userUrl + 'roles');
+    return this.http.get<Role[]>(this.userUrl + 'user/roles');
+    //return this.http.get<Role[]>(this.userUrl + 'roles');
   }
 
   getRole(roleId: string): Observable<Role>
   {
-    //return this.http.get<Role>(this.userUrl + 'user/roles/' + roleId);
-    return this.http.get<Role>(this.userUrl + 'roles/' + roleId);
+    return this.http.get<Role>(this.userUrl + 'user/roles/' + roleId);
+    //return this.http.get<Role>(this.userUrl + 'roles/' + roleId);
   }
 
   getTeams(): Observable<Team[]>
   {
-    //return this.http.get<Team[]>(this.teamUrl + 'team');
-    return this.http.get<Team[]>(this.teamUrl + 'teams');
+    return this.http.get<Team[]>(this.teamUrl + 'team');
+    //return this.http.get<Team[]>(this.teamUrl + 'teams');
   }
 
   getTeam(teamId: string): Observable<Team>
   {
-    //return this.http.get<Team>(this.teamUrl + 'team/' + teamId);
-    return this.http.get<Team>(this.teamUrl + 'teams/' + teamId);
+    return this.http.get<Team>(this.teamUrl + 'team/' + teamId);
+    //return this.http.get<Team>(this.teamUrl + 'teams/' + teamId);
   }
 
   

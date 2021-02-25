@@ -14,32 +14,33 @@ import { User } from '../_models/User';
 export class EquipmentService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl: string = "http://localhost:3000/";
+  //baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = "http://40.88.213.53/api/";
   constructor(private http: HttpClient) { }
 
   
   getRequest(id: string): Observable<EquipmentRequest>
   {
-    //return this.http.get(this.baseUrl + `equipment/${id}`);
-    return this.http.get<EquipmentRequest>(this.baseUrl + 'equipmentRequests/' + id);
+    //return this.http.get<EquipmentRequest>(this.baseUrl + 'equipmentRequests/' + id);
+    return this.http.get<EquipmentRequest>(this.baseUrl + 'Equipment/' + id);
   }
 
   getRequests(): Observable<EquipmentRequest[]>
   {
-    //return this.http.get(this.baseUrl + 'equipment');
-    return this.http.get<EquipmentRequest[]>(this.baseUrl + 'equipmentRequests');
+    //return this.http.get<EquipmentRequest[]>(this.baseUrl + 'equipmentRequests');
+    return this.http.get<EquipmentRequest[]>(this.baseUrl + 'Equipment');
   }
 
   createRequest(model: EquipmentRequest): Observable<EquipmentRequest>
   {
-    //return this.http.post(this.baseUrl + 'equipment', model);
-    return this.http.post<EquipmentRequest>(this.baseUrl + 'equipmentRequests', model);
+    //return this.http.post<EquipmentRequest>(this.baseUrl + 'equipmentRequests', model);
+    return this.http.post<EquipmentRequest>(this.baseUrl + 'Equipment', model);
   }
 
   editRequest(id: string, model: EquipmentRequest): Observable<EquipmentRequest>
   {
-    //return this.http.put(this.baseUrl + `equipment/edit/${id}`, model);
-    return this.http.put<EquipmentRequest>(this.baseUrl + 'equipmentRequests/' + id, model);
+    //return this.http.put<EquipmentRequest>(this.baseUrl + 'equipmentRequests/' + id, model);
+    return this.http.put<EquipmentRequest>(this.baseUrl + 'Equipment/edit/' + id, model);
   }
 
   getTeam(teamId: string): Observable<Team>
@@ -57,14 +58,14 @@ export class EquipmentService {
 
   getItems(): Observable<Equipment[]> 
   {
-    //return this.http.get(this.baseUrl + `equipment/items`);
-    return this.http.get<Equipment[]>(this.baseUrl + 'equipments');
+    //return this.http.get<Equipment[]>(this.baseUrl + 'equipments');
+    return this.http.get<Equipment[]>(this.baseUrl + 'Equipment/items');
   }
 
   getItem(id: string): Observable<Equipment> 
   {
-    //return this.http.get(this.baseUrl + `equipment/items/${id}`);
-    return this.http.get<Equipment>(this.baseUrl + 'equipments/' + id);
+    //return this.http.get<Equipment>(this.baseUrl + 'equipments/' + id);
+    return this.http.get<Equipment>(this.baseUrl + 'Equipment/items/' + id);
   }
 
 }

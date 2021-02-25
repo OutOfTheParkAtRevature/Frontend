@@ -16,31 +16,31 @@ export class GamesService {
   constructor(private http: HttpClient) { }
 
   //baseUrl = environment.apiUrl;
-  //baseUrl: string = "http://20.62.247.144/api/";
-  baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = "http://40.88.224.69/api/";
+  //baseUrl: string = "http://localhost:3000/";
 
   getGames(): Observable<Game[]> 
   {
-    //return this.http.get<Game[]>(this.baseUrl + 'game');
-    return this.http.get<Game[]>(this.baseUrl + 'games');
+    return this.http.get<Game[]>(this.baseUrl + 'game');
+    //return this.http.get<Game[]>(this.baseUrl + 'games');
   }
 
   getGame(id: string): Observable<Game>
   {
-    //return this.http.get<Game>(this.baseUrl + 'game/' + id);
-    return this.http.get<Game>(this.baseUrl + `games/${id}`);
+    return this.http.get<Game>(this.baseUrl + 'game/' + id);
+    //return this.http.get<Game>(this.baseUrl + `games/${id}`);
   }
 
   createGame(game: CreateGame): Observable<Game>
   {
-    //return this.http.post<Game>(this.baseUrl + 'game/', game);
-    return this.http.post<Game>(this.baseUrl + 'games', game);
+    return this.http.post<Game>(this.baseUrl + 'game/', game);
+    //return this.http.post<Game>(this.baseUrl + 'games', game);
   }
 
   editGame(game: EditGame, id: string): Observable<Game>
   {
-    //return this.http.put<Game>(this.baseUrl + 'game/' + id, game);
-    return this.http.put<Game>(this.baseUrl + `games/${id}`, game);
+    return this.http.put<Game>(this.baseUrl + 'game/' + id, game);
+    //return this.http.put<Game>(this.baseUrl + `games/${id}`, game);
   }
 
   deleteGame(id: string): Observable<any>{

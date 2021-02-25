@@ -8,16 +8,18 @@
         <label for="title">Title</label>
         <input name="title" [(ngModel)]="newArticle.title" class="form-control me-2" type="text">
         <br>
-        <label for="body">Body</label>
-        <input name="body" [(ngModel)]="newArticle.body" class="form-control me-2" type="text">
+        <label for="content">Body</label>
+        <input name="content" [(ngModel)]="newArticle.content" class="form-control me-2" type="text">
         <br>
+        <!--
         <div *ngIf="isTeam">
             <label for="teamId">Team Id</label>
-            <input name="teamId" [(ngModel)]="newArticle.teamId" class="form-control me-2" type="number" min="0">
+            <input name="teamId" [(ngModel)]="newArticle.teamId" class="form-control me-2" type="text" min="0">
             <br>
         </div>
-        <label for="isVisible">Is Visible?</label>
-        <input name="isVisible" [(ngModel)]="newArticle.isVisible" class="form-control me-2" type="checkbox">
+    -->
+        <label for="visible">Is Visible?</label>
+        <input name="visible" [(ngModel)]="newArticle.isVisible" class="form-control me-2" type="checkbox">
         <br>
         <!-- Should not be changeable?
         <label for="date">Date (Needs Validation)</label>

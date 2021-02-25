@@ -46,15 +46,15 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-      /*
+      
     this.accountService.login(this.model).subscribe( res => {
       this.router.navigate([''])
     }, err => {
       console.log(err);
       console.log(err["error"]);
     });
-*/
 
+/*
     //Temp code for mocked backend
    this.userService.getUsers().subscribe
    (
@@ -77,6 +77,7 @@ export class HomeComponent implements OnInit {
     },
     (err) => console.log(err)
    );
+   */
   }
 
 }

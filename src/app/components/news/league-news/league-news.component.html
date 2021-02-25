@@ -8,16 +8,16 @@
     <!-- I would like to color articles differently if they are not visible but the coach can see them -->
 
     <ng-container *ngFor="let article of articles; let o = odd;">
-        <div *ngIf="article.isVisible || accountService.isLeagueAdminAuthorized(loggedInUser)" [ngClass]="{'pinned': article.Pinned == true}">
+        <div *ngIf="article.isVisible || accountService.isLeagueAdminAuthorized(loggedInUser)" [ngClass]="{'pinned': article.isPinned == true}">
             <h6> {{article.title}} </h6>
             <p style="color: red;" *ngIf="!article.isVisible && accountService.isLeagueAdminAuthorized(loggedInUser)">
                 THIS ARTICLE IS MARKED AS INVISIBLE, AND SO YOUR PLAYERS WILL BE UNABLE TO SEE IT.
             </p>
             <p> 
                 {{article.date}}  
-                <a [routerLink]="['/article/edit', article.id, 0]" *ngIf="accountService.isLeagueAdminAuthorized(loggedInUser)">Edit</a>
+                <a [routerLink]="['/article/edit', article.articleID, 0]" *ngIf="accountService.isLeagueAdminAuthorized(loggedInUser)">Edit</a>
             </p>
-            <p> {{article.body}} </p>
+            <p> {{article.content}} </p>
             <br/>
         </div>
     </ng-container>
