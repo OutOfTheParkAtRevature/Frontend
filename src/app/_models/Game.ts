@@ -5,7 +5,7 @@ export class Game
 {
     id: string;
     seasonID: string;
-    homeTeamID: string;
+    homeTeamID: string; 
     awayTeamID: string;
     gameDate: Date;
     winningTeam: Team;

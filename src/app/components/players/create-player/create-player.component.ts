@@ -56,7 +56,7 @@ export class CreatePlayerComponent implements OnInit {
   getTeam() {
     for (let i = 0; i < this.teamList.length; i++) {
       if (this.teamList[i].name == this.model.team.name) {
-        this.model.teamID = this.teamList[i].id;
+        this.model.teamID = this.teamList[i].teamID;
       }
     }
   }
