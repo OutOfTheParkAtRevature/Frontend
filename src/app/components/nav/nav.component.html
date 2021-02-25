@@ -84,6 +84,11 @@
             </li>
           </ul>
           <span *ngIf="(accountService.currentUser$ | async)" class="nav-item navbar-text" placement="bottom-right">
+              <!--
+            {{loggedInUser.userName}}
+            <button class="material-icons" (click)="displayNotifications()" *ngIf="!hasNotifications">alarm</button>
+            <button class="material-icons" style="background-color: red;" (click)="displayNotifications()" *ngIf="hasNotifications">alarm</button>
+              -->
             <a class="nav-link" (click)="logout()">Logout</a> 
           </span>
           <!-- <div class="login">
