@@ -28,7 +28,7 @@ export class DrawComponent implements AfterViewInit {
 
   constructor(private drawService: DrawService, private activeParms: ActivatedRoute, public accountService: AccountService){}
   model = new Play;
-  chosenPlaybook: number; 
+  chosenPlaybook: any; //will be a string for guids
   playbooks: any = {};
   playBookList: Playbook[] = [];
   Eraser: string = 'white';
@@ -55,7 +55,7 @@ export class DrawComponent implements AfterViewInit {
   }
 
   public ngOnInit() {
-    this.chosenPlaybook =+ this.activeParms.snapshot.paramMap.get("id"); //This should only except strings once we switch to guids
+    this.chosenPlaybook = this.activeParms.snapshot.paramMap.get("id"); //This should only except strings once we switch to guids
     console.log(this.chosenPlaybook);
     this.getTeamPlayBook();
     this.getPlaybooks();
@@ -132,9 +132,9 @@ private drawOnCanvas( lastPosition:{ x: number, y: number }, positionNow: { x: n
 
 //Draws a circle on the canvas wherever the user clicks
 public drawAO(currentPos: {x: number, y:number}){
-  var lineWidth: number = this.cx.lineWidth * 2 + 4;
+  var length = this.cx.lineWidth + 4;
   this.cx.beginPath();
-  this.cx.arc(currentPos.x, currentPos.y, lineWidth, 0, 2 * Math.PI);
+  this.cx.arc(currentPos.x, currentPos.y, length, 0, 2 * Math.PI);
   this.cx.stroke();
   this.isMakingXs = false;
   this.isMakingCircle = false;
@@ -144,19 +144,19 @@ public drawAO(currentPos: {x: number, y:number}){
 
 //Draws an X on the canvas wherever the user clicks
 public drawAX(currentPos: {x: number, y:number}){
-  var lineWidth: number = this.cx.lineWidth * 2 + 4;
+  var length = this.cx.lineWidth + 4;
   this.cx.beginPath();
   this.cx.lineTo(currentPos.x, currentPos.y);
-  this.cx.lineTo(currentPos.x + lineWidth, currentPos.y +lineWidth);
+  this.cx.lineTo(currentPos.x + length, currentPos.y + length);
   this.cx.stroke();
   this.cx.lineTo(currentPos.x, currentPos.y);
-  this.cx.lineTo(currentPos.x + lineWidth, currentPos.y -lineWidth);
+  this.cx.lineTo(currentPos.x + length, currentPos.y - length);
   this.cx.stroke();
   this.cx.lineTo(currentPos.x, currentPos.y);
-  this.cx.lineTo(currentPos.x - lineWidth, currentPos.y +lineWidth);
+  this.cx.lineTo(currentPos.x - length, currentPos.y + length);
   this.cx.stroke();
   this.cx.lineTo(currentPos.x, currentPos.y);
-  this.cx.lineTo(currentPos.x - lineWidth, currentPos.y -lineWidth);
+  this.cx.lineTo(currentPos.x - length, currentPos.y - length);
   this.cx.stroke();
   this.isMakingXs = false;
   this.isMakingCircle = false;
@@ -236,6 +236,7 @@ public lineDecrease(){
 //Clears the cx object in a rectangle the size of the canvas
 public restetTemplate(){
   this.cx.clearRect(0, 0, this.canvasEl.width, this.canvasEl.height);
+  this.SetBackGroundWhite();
 }
 
 SetBackGroundBlack(){
@@ -310,3 +311,4 @@ getPlayBook() {
 } 
 
 }
+//Have Name of selected playbook appear/ In plays Give option to select new playbook

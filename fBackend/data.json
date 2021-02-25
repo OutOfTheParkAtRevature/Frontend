@@ -63,42 +63,11 @@
       "Description": "Helmet"
     }
   ],
-  "equipmentRequests": [
-    {
-      "message": "I broke it",
-      "item": {
-        "id": 3,
-        "Description": "Helmet"
-      },
-      "teamId": 1,
-      "userId": "4",
-      "itemId": 3,
-      "status": "Approved",
-      "id": 1,
-      "team": {
-        "id": 1,
-        "name": "Barcelona",
-        "wins": 1,
-        "losses": 0
-      },
-      "user": {
-        "id": 4,
-        "userName": "Coach",
-        "fullName": "Coach",
-        "phoneNumber": "444-4444",
-        "email": "Coach@Game",
-        "password": "Coach",
-        "teamID": 1,
-        "roleName": "Head Coach"
-      }
-    }
-  ],
+  "equipmentRequests": [],
   "calendar": {
     "events": [
       {
-
-        "id":"1",
-
+        "id": "1",
         "Name": "Event 1",
         "Location": "Random Address 1",
         "Message": "Some random message",
@@ -106,9 +75,7 @@
         "EndTime": "2021-02-08 13:00:00"
       },
       {
-
-        "id":"2",
-
+        "id": "2",
         "Name": "Event 2",
         "Location": "Random Address 2",
         "Message": "Some random message #2",
@@ -121,78 +88,30 @@
     {
       "id": 1,
       "homeTeam": {
-		"name": "Barcelona"
-	  },
+        "name": "Barcelona"
+      },
       "awayTeam": {
-		"name": "Arsenal"
-	  },
+        "name": "Arsenal"
+      },
       "gameDate": "1-1-2000",
       "winningTeam": {
-		"name": "Barcelona"
-	  },
+        "name": "Barcelona"
+      },
       "homeScore": 2,
       "awayScore": 0
     }
   ],
-  "messages": [
-    {
-      "id":"1",
-      "content": [
-        {
-          "id": "1",
-          "senderID": "2",
-          "senderName": "John Doe",
-          "recipientListID": "1",
-          "date":"2021-02-18T17:35:08.143Z",
-          "body":"Hello, how are you?"
-        },
-        {
-          "id": "2",
-          "senderID": "1",
-          "senderName": "Player",
-          "recipientListID": "1",
-          "date":"2021-02-18T17:38:08.143Z",
-          "body":"Hi, I'm fine, thanks for asking :)"
-        }
-      ]
-    },
-    {
-      "id":"2",
-      "content": [
-        {
-          "id": "1",
-          "senderID": "4",
-          "senderName": "Coach",
-          "recipientListID": "2",
-          "date":"2021-02-18T17:30:08.143Z",
-          "body":"Hi, are you there?"
-        },
-        {
-          "id": "2",
-          "senderID": "4",
-          "senderName": "Coach",
-          "recipientListID": "2",
-          "date":"2021-02-18T17:36:08.143Z",
-          "body":"The equipment you have requested have been accepted."
-        }
-      ]
-    }
-  ],
+  "messages": [],
   "playbooks": [
     {
-      "id": 2,
-      "teamId": 1,
-      "name": "Offense"
+      "name": "Offence",
+      "teamId": "a8a76b11-2345-4d60-b6f3-0345de7a7caa",
+      "id": 1
     },
     {
-      "id": 3,
-      "teamId": 2,
-      "name": "Forward"
-    },
-    {
-      "name": "Anthony",
-      "teamId": 1,
-      "id": 4
+      "name": "Defence",
+      "teamId": "a8a76b11-2345-4d60-b6f3-0345de7a7caa",
+      "id": 2
     }
   ],
   "plays": [
@@ -266,23 +185,20 @@
       "id": "1",
       "inboxes": [
         {
-          "id":"1",
+          "id": "1",
           "userID": "1",
-
           "recipients": [
             {
               "userID": "2",
-              "fullName": "John Doe"
+              "fullName": "haha I changed your name"
             }
           ],
           "messageID": "1",
           "isRead": true
         },
         {
-
-          "id":"2",
+          "id": "2",
           "userID": "1",
-
           "recipients": [
             {
               "userID": "4",

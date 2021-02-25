@@ -1,5 +1,5 @@
 <div class="container">
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" id="navbar">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary" id="navbar">
       <div class="container-fluid">
         <a class="navbar-brand" routerLink="/">NR Team Manager</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,7 +111,7 @@
         <table style="position: fixed; top: 80px; right: 10px; background-color: white;">
             <caption> </caption>
             <tr *ngFor="let note of notifications">
-                {{note.status}}, {{note.message}}
+                {{note.message}}
             </tr>
         </table>
     </div>

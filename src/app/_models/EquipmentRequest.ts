@@ -12,7 +12,7 @@ export class EquipmentRequest
     requestDate: string;
     message: string;
     itemID: string;
-    status: string;
+    status: string; 
 
     team: Team;
     user: User;

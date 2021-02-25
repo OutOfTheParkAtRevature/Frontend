@@ -25,8 +25,8 @@ export class PlaysComponent implements OnInit
   viewablePlays: Play[] = []; // should view only viewable plays
   tempPlay: Play[] = [];
   imageString: string;
-  chosenplaybookId: number;// string;//Will be a string for guids
-  teamId: number;// string; //Will be a string for guids
+  chosenplaybookId: string;//Will be a string for guids
+  teamId: string; //Will be a string for guids
   myTeams: Team;
   TeamPlaybookList: Array<Playbook> = new Array<Playbook>() ;
   playbooks: any = {};
@@ -35,7 +35,7 @@ export class PlaysComponent implements OnInit
 
   ngOnInit(): void {
     this.newPlaybook = new Playbook;
-    this.chosenplaybookId = 0; //'';
+    this.chosenplaybookId = '';
     this.createNewPlaybook = false;
     this.getTeamID(); 
     
@@ -69,7 +69,7 @@ export class PlaysComponent implements OnInit
 
   deletePlay(playNot){
     console.log(playNot);
-    this.drawService.deletePlay(playNot).subscribe(Response => {
+    this.drawService.deleteMyPlay(playNot).subscribe(Response => {
       this.play.splice(0, this.play.length);
     console.log(Response);
       this.getPlays();
@@ -81,7 +81,7 @@ export class PlaysComponent implements OnInit
   //Gets the teamid based on current user
   getTeamID() {
     this.accountService.currentUser$.subscribe( user => {
-       //this.teamId = user.teamID;//.toString();
+       this.teamId = user.teamID;//.toString();
        console.log(this.teamId);
       }, err => {
         console.log(err)

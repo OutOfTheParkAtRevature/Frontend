@@ -12,7 +12,8 @@ import { User } from '../_models/User';
 export class UserService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl = "http://40.88.226.19/api/";
+  //baseUrl = "http://40.88.226.19/api/";
+  //baseUrl: string = "https://outoftheparkgateway.azurewebsites.net/";
   userUrl = "http://40.76.159.244/api/";
   //userUrl = "http://localhost:3000/";
   //teamUrl = "http://localhost:3000/";
