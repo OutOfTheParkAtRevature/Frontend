@@ -6,6 +6,7 @@ import { UserLoggingIn } from '../../_models/UserLoggingIn';
 import { AccountService } from '../../_services/account.service';
 import { UserService } from '../../_services/user.service';
 import { Notification } from '../../_models/Notification';
+import { NotificationService } from '../../_services/notification.service';
 
 @Component({
   selector: 'app-nav',
@@ -28,7 +29,7 @@ export class NavComponent implements OnInit {
   public hasNotifications: boolean;
   public viewNotifications: boolean;
 
-  constructor(public accountService: AccountService, private router: Router, private userService: UserService) { }
+  constructor(public accountService: AccountService, private router: Router, private userService: UserService, private notificationService: NotificationService) { }
 
   ngOnInit(): void 
   {
@@ -39,8 +40,7 @@ export class NavComponent implements OnInit {
   {
     //this.notificationService.signalRecieved.subscribe((data: Notification) => { this.notifications.push(data); });
     let x = new Notification();
-    x.message = "You've got mail";
-    this.notifications.push(x);
+    x.message = "There is a new league news article posted!";
     this.notifications.push(x);
     this.hasNotifications = true;
     this.viewNotifications = false;
@@ -61,15 +61,15 @@ export class NavComponent implements OnInit {
 
 
   login() {
-      /*
+      
     this.accountService.login(this.model).subscribe( res => {
       console.log(res);
       this.router.navigate(['']);
     }, err => {
       console.log(err);
     });
-    */
-
+    
+/*
     //Temp code for mocked backend
    this.userService.getUsers().subscribe
    (
@@ -92,10 +92,16 @@ export class NavComponent implements OnInit {
     },
     (err) => console.log(err)
    );
+   */
   }
 
   logout() {
     this.accountService.logout();
-    this.router.navigate([''])
+    this.router.navigate(['']);
+
+    //Notifications
+    this.notifications = new Array<Notification>();
+    this.hasNotifications = false;
+    this.viewNotifications = false;
   }
 }

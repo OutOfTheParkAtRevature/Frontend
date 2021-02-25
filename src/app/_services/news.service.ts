@@ -14,7 +14,8 @@ export class NewsService {
   constructor(private http: HttpClient) { }
 
   //baseUrl = environment.apiUrl;
-  baseUrl: string = "http://localhost:3000/";
+  //baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = "http://52.150.39.58/api/";
 
   getArticles(): Observable<Article[]> 
   {
@@ -42,55 +43,64 @@ export class NewsService {
 
   getLeagueArticles(): Observable<LeagueArticle[]> 
   {
-    //return this.http.get(this.baseUrl + 'leagueArticles');
-    return this.http.get<LeagueArticle[]>(this.baseUrl + 'leagueArticles');
+    //return this.http.get<LeagueArticle[]>(this.baseUrl + 'leagueArticles');
+    return this.http.get<LeagueArticle[]>(this.baseUrl + 'News/league');
+  }
+
+  getPinnedLeagueArticles(): Observable<LeagueArticle[]> 
+  {
+    return this.http.get<LeagueArticle[]>(this.baseUrl + 'News/league/pinned');
   }
 
   getLeagueArticle(id: number): Observable<LeagueArticle>
   {
-    //return this.http.get(this.baseUrl + `leagueArticles/${id}`);
-    return this.http.get<LeagueArticle>(this.baseUrl + 'leagueArticles/' + id);
+    //return this.http.get<LeagueArticle>(this.baseUrl + 'leagueArticles/' + id);
+    return this.http.get<LeagueArticle>(this.baseUrl + 'News/league/' + id);
   }
 
   createLeagueArticle(leagueArticle: any): Observable<LeagueArticle>
   {
-    //return this.http.post(this.baseUrl + 'leagueArticles', leagueArticle);
     let art: LeagueArticle = leagueArticle;
-    return this.http.post<LeagueArticle>(this.baseUrl + 'leagueArticles', art);
+    //return this.http.post<LeagueArticle>(this.baseUrl + 'leagueArticles', art);
+    return this.http.post<LeagueArticle>(this.baseUrl + 'News/league', art);
   }
 
   editLeagueArticle(leagueArticle: any, id: number): Observable<LeagueArticle>
   {
-    //return this.http.put(this.baseUrl + `leagueArticles/edit/${id}`, leagueArticle);
     let art: LeagueArticle = leagueArticle;
-    return this.http.put<LeagueArticle>(this.baseUrl + 'leagueArticles/' + id, art);
+    //return this.http.put<LeagueArticle>(this.baseUrl + 'leagueArticles/' + id, art);
+    return this.http.put<LeagueArticle>(this.baseUrl + 'News/Team/' + id, art);
   }
 
   getTeamArticles(): Observable<TeamArticle[]> 
   {
-    //return this.http.get(this.baseUrl + 'teamArticles');
-    return this.http.get<TeamArticle[]>(this.baseUrl + 'teamArticles');
+    //return this.http.get<TeamArticle[]>(this.baseUrl + 'teamArticles');
+    return this.http.get<TeamArticle[]>(this.baseUrl + 'News/team');
+  }
+
+  getPinnedTeamArticles(): Observable<TeamArticle[]> 
+  {
+    return this.http.get<TeamArticle[]>(this.baseUrl + 'News/team/pinned');
   }
 
   getTeamArticle(id: number): Observable<TeamArticle>
   {
-    //return this.http.get(this.baseUrl + `teamArticles/${id}`);
-    return this.http.get<TeamArticle>(this.baseUrl + 'teamArticles/' + id);
+    //return this.http.get<TeamArticle>(this.baseUrl + 'teamArticles/' + id);
+    return this.http.get<TeamArticle>(this.baseUrl + 'News/team/' + id);
   }
 
-  createTeamArticle(teamArticle: any): Observable<TeamArticle>
+  createTeamArticle(TeamArticle: any): Observable<TeamArticle>
   {
-    //return this.http.post(this.baseUrl + 'teamArticles', teamArticle);
-    let art: TeamArticle = teamArticle;
-    return this.http.post<TeamArticle>(this.baseUrl + 'teamArticles', art);
+    let art: TeamArticle = TeamArticle;
+    //return this.http.post<TeamArticle>(this.baseUrl + 'teamArticles', art);
+    return this.http.post<TeamArticle>(this.baseUrl + 'News/team', art);
   }
 
-  //editTeamArticle(teamArticle: TeamArticle, id: number): Observable<TeamArticle>
-  editTeamArticle(teamArticle: any, id: number): Observable<TeamArticle>
+  editTeamArticle(TeamArticle: any, id: number): Observable<TeamArticle>
   {
-    //return this.http.put(this.baseUrl + `teamArticles/edit/${id}`, teamArticle);
-    let art: TeamArticle = teamArticle;
-    return this.http.put<TeamArticle>(this.baseUrl + 'teamArticles/' + id, art);
+    let art: TeamArticle = TeamArticle;
+    //return this.http.put<TeamArticle>(this.baseUrl + 'teamArticles/' + id, art);
+    return this.http.put<TeamArticle>(this.baseUrl + 'News/team/' + id, art);
   }
 
 }

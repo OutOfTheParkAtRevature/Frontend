@@ -15,7 +15,7 @@ export class StatServiceService {
 
   constructor( private http: HttpClient) { }
 
-  baseUrl: string = "http://40.88.226.19/api/";
+  baseUrl: string = "http://52.149.247.215/api/";
 
 
   //Gets stats for a player in a specific game

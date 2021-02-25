@@ -45,6 +45,7 @@
     <!-- If the user is not authorized to view  -->
     <ng-container *ngIf="!accountService.isPlayerAuthorized(loggedInUser)">
         <h2 class="text-center">Not Authorized</h2>
+        {{loggedInUser.roleName}}
         <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>
 </div>

@@ -13,7 +13,7 @@
                 <div class="form-group">
                     <span>{{selectedEvent.Name}}</span>
                     <br>
-                    <span>{{selectedEvent.Location}}</span>
+                    <span>{{selectedEvent.location}}</span>
                     <br>
                     <span>{{selectedEvent.Message}}</span>
                     <br>
@@ -238,11 +238,11 @@
                         <tr *ngFor="let event of eventDTO; index as i">
                             <th scope="row">{{ i + 1 }}</th>
                             <td>
-                                {{ event.Name }}
+                                {{ event.description }}
                             </td>
-                            <td>{{ event.Location }}</td>
-                            <td>{{ event.StartTime | date:'short' }}</td>
-                            <td>{{ event.EndTime | date:'short' }}</td>
+                            <td>{{ event.location }}</td>
+                            <td>{{ event.start.dateTime | date:'short' }}</td>
+                            <td>{{ event.end.dateTime | date:'short' }}</td>
                             <td>
                                 <div class="form-group">
                                     <button class="btn btn-success" (click)="EditDialog(content, event)">Edit</button>

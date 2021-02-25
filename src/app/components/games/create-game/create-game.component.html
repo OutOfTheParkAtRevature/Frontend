@@ -22,7 +22,7 @@
       </form>
     </ng-container>
 
-    <ng-container *ngIf="accountService.isLeagueAdminAuthorized(loggedInUser)">
+    <ng-container *ngIf="!accountService.isLeagueAdminAuthorized(loggedInUser)">
       <h2 class="text-center">Not Authorized</h2>
       <p class="text-center"><a  [routerLink]="['']">Go home.</a></p>
     </ng-container>
