@@ -93,26 +93,48 @@
       }
     }
   ],
-  "calendar": {
-    "events": [
-      {
-        "id": "1",
-        "Name": "Event 1",
-        "Location": "Random Address 1",
-        "Message": "Some random message",
-        "StartTime": "2021-02-08 12:00:00",
-        "EndTime": "2021-02-08 13:00:00"
-      },
-      {
-        "id": "2",
-        "Name": "Event 2",
-        "Location": "Random Address 2",
-        "Message": "Some random message #2",
-        "StartTime": "2021-02-03 12:00:00",
-        "EndTime": "2021-02-03 13:00:00"
-      }
-    ]
-  },
+  "calendar": [
+    {
+      "id": "1",
+      "Name": "Event 1",
+      "Location": "Random Address 1",
+      "Message": "Some random message",
+      "StartTime": "2021-02-08 12:00:00",
+      "EndTime": "2021-02-08 13:00:00"
+    },
+    {
+      "id": "2",
+      "Name": "Event 2",
+      "Location": "Random Address 2",
+      "Message": "Some random message #2",
+      "StartTime": "2021-02-03 12:00:00",
+      "EndTime": "2021-02-03 13:00:00"
+    },
+    {
+      "Name": "Grand final",
+      "Location": "Address #1",
+      "Message": "This is the event final almost final",
+      "StartTime": "2021-02-18T19:30:00.000Z",
+      "EndTime": "2021-02-19T20:45:00.000Z",
+      "id": "0EMK-bK"
+    },
+    {
+      "Name": "Another Event",
+      "Location": "Location #3",
+      "Message": "This is a example of a event",
+      "StartTime": "2021-02-24T20:30:00.000Z",
+      "EndTime": "2021-02-24T21:30:00.000Z",
+      "id": "6uXBysk"
+    },
+    {
+      "Name": "Event 3",
+      "Location": "Adress #5",
+      "Message": "This is a event example for the demonstration",
+      "StartTime": "2021-02-23T19:30:00.000Z",
+      "EndTime": "2021-02-23T20:30:00.000Z",
+      "id": "EU4T0DW"
+    }
+  ],
   "games": [
     {
       "id": 1,
@@ -203,11 +225,8 @@
       "teamId": 2,
       "name": "Forward"
     }
-  
   ],
-  "plays": [
-    
-  ],
+  "plays": [],
   "recipientLists": [
     {
       "id": 1,
