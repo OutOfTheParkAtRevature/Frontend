@@ -28,7 +28,7 @@ export class DrawComponent implements AfterViewInit {
 
   constructor(private drawService: DrawService, private activeParms: ActivatedRoute, public accountService: AccountService){}
   model = new Play;
-  chosenPlaybook: string; 
+  chosenPlaybook: number; 
   playbooks: any = {};
   playBookList: Playbook[] = [];
   Eraser: string = 'white';
@@ -55,7 +55,7 @@ export class DrawComponent implements AfterViewInit {
   }
 
   public ngOnInit() {
-    this.chosenPlaybook = this.activeParms.snapshot.paramMap.get("id"); //This should only except strings once we switch to guids
+    this.chosenPlaybook =+ this.activeParms.snapshot.paramMap.get("id"); //This should only except strings once we switch to guids
     console.log(this.chosenPlaybook);
     this.getTeamPlayBook();
     this.getPlaybooks();
