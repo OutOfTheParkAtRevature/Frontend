@@ -14,7 +14,7 @@ import { AccountService } from '../../_services/account.service';
 })
 export class CalendarComponent implements OnInit {
 
-  eventDTO:Event[];
+  eventDTO:any;
   selectedEvent: Event = new Event();
   removeEvent: boolean;
 
