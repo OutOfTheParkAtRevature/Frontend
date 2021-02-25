@@ -96,6 +96,11 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
-    this.router.navigate([''])
+    this.router.navigate(['']);
+
+    //Notifications
+    this.notifications = new Array<Notification>();
+    this.hasNotifications = false;
+    this.viewNotifications = false;
   }
 }
