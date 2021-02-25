@@ -15,7 +15,7 @@ export class CreateArticleComponent implements OnInit {
 
   constructor(public accountService: AccountService, private newsService: NewsService, private route: ActivatedRoute, private router: Router) { }
 
-  newArticle: Article | TeamArticle | LeagueArticle;
+  newArticle: TeamArticle | LeagueArticle;
   isTeam: boolean = true;
   teamList: Array<Team> = new Array<Team>();
   //userLoggedIn: User;
@@ -33,11 +33,14 @@ export class CreateArticleComponent implements OnInit {
       }
       else
         this.newArticle = new TeamArticle();
+
+      this.accountService.currentUser$.subscribe((data) => this.newArticle.teamID = data.teamID);
     });
   }
 
   createArticle() 
   {
+    this.newArticle.date = new Date();
     if (this.isTeam) {
       this.newsService.createTeamArticle(this.newArticle).subscribe(game => {
         console.log(game);

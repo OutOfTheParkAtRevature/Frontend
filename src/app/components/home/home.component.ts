@@ -5,6 +5,7 @@ import { User } from '../../_models/User';
 import { UserLoggedIn } from '../../_models/UserLoggedIn';
 import { UserLoggingIn } from '../../_models/UserLoggingIn';
 import { AccountService } from '../../_services/account.service';
+import { NotificationService } from '../../_services/notification.service';
 import { UserService } from '../../_services/user.service';
 
 @Component({
@@ -14,7 +15,7 @@ import { UserService } from '../../_services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public accountService: AccountService, private userService: UserService, private router: Router) { }
+  constructor(public accountService: AccountService, private userService: UserService, private notificationService: NotificationService, private router: Router) { }
 
   user: UserLoggedIn; 
   //team:any = {};
@@ -46,15 +47,16 @@ export class HomeComponent implements OnInit {
   }
 
   login() {
-      /*
+      
     this.accountService.login(this.model).subscribe( res => {
-      this.router.navigate([''])
+        //this.notificationService.getNotifications();
+      this.router.navigate(['']);
     }, err => {
       console.log(err);
       console.log(err["error"]);
     });
-*/
 
+/*
     //Temp code for mocked backend
    this.userService.getUsers().subscribe
    (
@@ -77,6 +79,7 @@ export class HomeComponent implements OnInit {
     },
     (err) => console.log(err)
    );
+   */
   }
 
 }

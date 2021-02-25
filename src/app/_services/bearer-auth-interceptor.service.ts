@@ -13,6 +13,7 @@ export class BearerAuthInterceptorService implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const ID_TOKEN = localStorage.getItem('id_token');
+    //alert(ID_TOKEN);
 
     //if we use a proxy, we can replace the url with the production url...
     if (ID_TOKEN)

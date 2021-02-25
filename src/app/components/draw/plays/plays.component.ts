@@ -69,7 +69,7 @@ export class PlaysComponent implements OnInit
 
   deletePlay(playNot){
     console.log(playNot);
-    this.drawService.deletePlay(playNot).subscribe(Response => {
+    this.drawService.deleteMyPlay(playNot).subscribe(Response => {
       this.play.splice(0, this.play.length);
     console.log(Response);
       this.getPlays();

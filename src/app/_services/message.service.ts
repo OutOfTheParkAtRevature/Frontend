@@ -46,7 +46,9 @@ export class MessageService {
   }
 
   getMessagesFromConversation(messageID: string) : Observable<MessageInbox>{
-    return this.http.get<MessageInbox>(this.baseUrl + `messages/${messageID}`)
+    //return this.http.get<MessageInbox>(this.baseUrl + `messages/${messageID}`)
+    
+    return this.http.get<any>(this.baseUrl + `userInboxes/${messageID}`);
   }
   
   sendMessage(messageID: string ,message: Message): Observable<Message>

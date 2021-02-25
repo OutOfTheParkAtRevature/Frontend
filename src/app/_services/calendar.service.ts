@@ -13,28 +13,33 @@ import { Event } from '../_models/Event';
 export class CalendarService {
 
   //baseUrl = environment.apiUrl;
-  // baseUrl = "http://40.88.226.19/api/";
-  baseUrl = "http://localhost:3000/";
+  baseUrl = "http://20.185.102.169/api/";
+  //baseUrl = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
-  getCalendar(): Observable<Event[]> {
-    return this.http.get<Event[]>(this.baseUrl + 'calendar');
+  getCalendar(): Observable<any> {
+    //return this.http.get<Event[]>(this.baseUrl + 'calendar');
+    return this.http.get<any>(this.baseUrl + 'Calendar');
   }
 
   getEvents() {
-    return this.http.get(this.baseUrl + 'calendar/events');
+    //return this.http.get<Event[]>(this.baseUrl + 'calendar/events');
+    return this.http.get<Event[]>(this.baseUrl + 'Calendar/events');
   }
 
   createEvent(model: Event): Observable<Event> {
-    return this.http.post<Event>(this.baseUrl + `calendar`, model);
+    //return this.http.post<Event>(this.baseUrl + `calendar`, model);
+    return this.http.post<Event>(this.baseUrl + `Calendar`, model);
   }
 
   deleteEvent(eventId:string) {
-    return this.http.delete(this.baseUrl + `calendar/events/${eventId}`);
+    //return this.http.delete(this.baseUrl + `calendar/events/${eventId}`);
+    return this.http.delete(this.baseUrl + `Calendar/events/${eventId}`);
   }
 
   editEvent(eventId:string, event:Event) {
-    return this.http.put(this.baseUrl + `calendar/${eventId}`, event);
+    //return this.http.put(this.baseUrl + `calendar/${eventId}`, event);
+    return this.http.put(this.baseUrl + `Calendar/events/${eventId}`, event);
   }
 
 }

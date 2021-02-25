@@ -28,8 +28,10 @@ export class EquipmentComponent implements OnInit {
       //this.getUser();
       //this.getItem();
       console.log(this.equipmentList);
+      console.log("IN");
     }, err => {
-      console.log(err)
+      console.log(err);
+      console.log(err["error"]);
     })
     
   }

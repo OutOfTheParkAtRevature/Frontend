@@ -35,7 +35,15 @@ export class CalendarComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this._calendar.getCalendar().subscribe(
+    this._calendar.getCalendar().subscribe
+    (
+        (data) => 
+        {
+            console.log(data);
+        }
+    );
+
+    this._calendar.getEvents().subscribe(
       dataOnSuccess => {
         console.log(dataOnSuccess);
         this.eventDTO = dataOnSuccess;
@@ -106,8 +114,8 @@ export class CalendarComponent implements OnInit {
       
       this.eventDTO.forEach(element => {
         eventsFullCalendar.push( { 
-          title: element.Name,
-          date: element.StartTime,
+          title: element.description,
+          date: element.start.dateTime,
           // start: element.StartTime,
           // end: element.EndTime
         });

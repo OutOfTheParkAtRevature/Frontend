@@ -49,5 +49,4 @@ export class TeamNewsComponent implements OnInit {
   }
 
 
-
 }

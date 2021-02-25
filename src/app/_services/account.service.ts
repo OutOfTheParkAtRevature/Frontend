@@ -15,8 +15,9 @@ export class AccountService {
 
   //baseUrl = environment.apiUrl;
   //baseUrl: string = "http://40.88.226.19/api/";
-  //baseUrl: string = "http://20.62.210.88/api/";
-  baseUrl: string = "http://localhost:3000/";
+  baseUrl: string = "http://40.76.159.244/api/";
+  //baseUrl: string = "https://outoftheparkgateway.azurewebsites.net/";
+  //baseUrl: string = "http://localhost:3000/";
   private currentUserSource = new ReplaySubject<UserLoggedIn>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
@@ -30,6 +31,7 @@ export class AccountService {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
           this.currentUserSource.next(user);
+          localStorage.setItem('id_token', user.token);
         }
       })
     )
@@ -46,8 +48,8 @@ export class AccountService {
 
   registerUser(model: CreateUser) : Observable<User>
   {
-    //return this.http.post<User>(this.baseUrl + 'account/create', model);
-    return this.http.post<User>(this.baseUrl + "users", model);
+    return this.http.post<User>(this.baseUrl + 'account/create', model);
+    //return this.http.post<User>(this.baseUrl + "users", model);
   }
 
 
