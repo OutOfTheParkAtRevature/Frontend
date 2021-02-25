@@ -1,9 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 //Events from Calendar
-import { Calendar } from '@fullcalendar/core';
 import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
-import { formatDate } from '@fullcalendar/angular';
-import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import { Event } from 'src/app/_models/Event';
 import { CalendarService } from 'src/app/_services/calendar.service';
 import { NgbCalendar, NgbModal, NgbModalConfig } from "@ng-bootstrap/ng-bootstrap";
@@ -56,6 +53,8 @@ export class CalendarComponent implements OnInit {
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
+    // eventColor: '#2ba0ba',
+    themeSystem: 'bootstrap',
 
     /* This throws an error during tests (- Tyler) */
     // dateClick: this.handleDateClick.bind(this), // bind is important!
@@ -76,10 +75,10 @@ export class CalendarComponent implements OnInit {
     // weekends: false
     eventClick : (args) => {
       // opens events in a popup window
-      // console.log(args);
-      window.open(args.event.url, '_blank', 'width=700,height=600');
+      console.log(args);
+      // window.open(args.event.url, '_blank', 'width=700,height=600');
       // prevents current tab from navigating
-      args.jsEvent.preventDefault();
+      // args.jsEvent.preventDefault();
     }
   };
 
@@ -229,6 +228,9 @@ export class CalendarComponent implements OnInit {
       this._calendar.editEvent(this.selectedEvent.id, this.selectedEvent).subscribe(
         dataOnSuccess=> {
           console.log("Success", dataOnSuccess);
+
+
+          this.displayElementsIntoCalendar();
         },
         dataOnError => {
           console.log("Error => ", dataOnError);

@@ -13,7 +13,8 @@ import { Event } from '../_models/Event';
 export class CalendarService {
 
   //baseUrl = environment.apiUrl;
-  baseUrl = "http://40.88.226.19/api/";
+  // baseUrl = "http://40.88.226.19/api/";
+  baseUrl = "http://localhost:3000/";
   constructor(private http: HttpClient) { }
 
   getCalendar(): Observable<Event[]> {
