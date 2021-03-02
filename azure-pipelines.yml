@@ -1,14 +1,10 @@
 trigger:
 - staging
 
-pr:
-- staging
-
 variables:
   frontendRepository: 'frontend'
   tag: 'latest'
   imagePullSecret: 'frontend'
-
 
 stages:
   - stage: analyze
@@ -52,7 +48,7 @@ stages:
           - task: AzureRmWebAppDeployment@4
             inputs:
               ConnectionType: 'AzureRM'
-              azureSubscription: 'out-of-the-park-rg Connection'
+              azureSubscription: 'Travis out-of-the-park-rg Connection'
               appType: 'webAppLinux'
-              WebAppName: 'OutOfThePark'
+              WebAppName: 'out-of-the-park'
               packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
